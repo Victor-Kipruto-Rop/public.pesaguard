@@ -12,7 +12,7 @@ export const siteConfig = {
   tagline: "Real-time M-Pesa reconciliation and anomaly detection.",
   description:
     "PesaGuard watches M-Pesa (Safaricom Daraja) transaction flow as it happens, matches callbacks against internal records, and flags mismatches and suspicious patterns before they become disputes or losses.",
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
+  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://pesaguard.co.ke",
   email: "hello@pesaguard.com",
   repository: "https://github.com/Victor-Kipruto-Rop/pesaguard",
   region: "Nairobi, Kenya",
