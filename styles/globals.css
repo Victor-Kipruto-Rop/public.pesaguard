@@ -507,13 +507,16 @@ samp {
 }
 
 .button-primary {
-  background: var(--ink);
-  color: var(--lime);
+  background: var(--lime);
+  color: var(--ink);
+  border-color: var(--lime);
   box-shadow: var(--shadow-sm);
 }
 
 .button-primary:hover {
-  background: var(--forest);
+  background: var(--lime-strong);
+  border-color: var(--lime-strong);
+  color: var(--ink);
   box-shadow: var(--shadow-md);
 }
 
@@ -1443,7 +1446,7 @@ textarea.field:focus {
 
 .site-header[data-elevated="true"] {
   border-bottom-color: var(--line);
-  background: rgba(244, 245, 239, 0.94);
+  background: rgba(242, 247, 244, 0.96);
 }
 
 .header-inner {
@@ -1536,7 +1539,7 @@ textarea.field:focus {
 .nav-item[data-open="true"] .nav-link,
 .nav-link[aria-current="page"] {
   color: var(--ink);
-  background: rgba(14, 19, 17, 0.05);
+  background: var(--lime-wash);
 }
 
 .nav-link[aria-current="page"] {
