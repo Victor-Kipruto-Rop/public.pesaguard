@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { PageHero } from "@/components/sections/PageHero";
 import { SectionShell } from "@/components/sections/SectionShell";
 import { SectionHeading } from "@/components/sections/SectionHeading";
@@ -89,7 +90,7 @@ export function ContactPage({ kind = "general" }: { kind?: ContactKind }) {
               <ul className="check-list">
                 <li>We receive only the context your email draft contains if you choose to send it.</li>
                 <li>Use <a href="https://docs.pesaguard.co.ke" target="_blank" rel="noreferrer">the developer documentation</a> for technical reference material.</li>
-                <li>For a live issue, include the safe request context and check the <a href="/status">service status</a> page.</li>
+                <li>For a live issue, include the safe request context and check the <Link href="/status">service status</Link> page.</li>
               </ul>
               <p className="small muted">Configured contact address: {siteConfig.email}. This address and its mailbox routing should be verified before launch.</p>
             </div>
@@ -99,9 +100,9 @@ export function ContactPage({ kind = "general" }: { kind?: ContactKind }) {
             <strong>Keep the conversation safe and specific.</strong>
             <p>Describe the workflow, not secrets. PesaGuard's current active payment scope is M-Pesa (Safaricom Daraja); planned integrations are not represented as live capabilities.</p>
             <div className="side-note-links">
-              <a href="/integrations">Integration availability</a>
-              <a href="/privacy">Privacy notice</a>
-              <a href="/terms">Terms of use</a>
+              <Link href="/integrations">Integration availability</Link>
+              <Link href="/privacy">Privacy notice</Link>
+              <Link href="/terms">Terms of use</Link>
             </div>
             <ContactForm kind={kind} />
           </aside>
