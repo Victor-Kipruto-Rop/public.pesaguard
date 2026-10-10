@@ -120,7 +120,7 @@ export default function Home() {
               </div>
               <Link
                 className="pg-devlink"
-                href="https://docs.pesaguard.victorkipruto.com"
+                href="https://docs.pesaguard.co.ke"
                 rel="noreferrer"
                 target="_blank"
               >
