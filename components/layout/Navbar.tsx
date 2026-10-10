@@ -58,7 +58,7 @@ export function Navbar() {
       </a>
       <div className="container header-inner">
         <Link aria-label="PesaGuard home" className="brand" href="/">
-          <Image alt="" aria-hidden="true" className="brand-logo" height={34} src="/logo/icon.svg" width={34} />
+          <Image alt="" aria-hidden="true" className="brand-logo" height={34} src="/logo/brand-mark.svg" width={34} />
           <span className="brand-wordmark"><span>Pesa</span><span>Guard</span></span>
           <span className="brand-sub">M-Pesa reconciliation</span>
         </Link>
