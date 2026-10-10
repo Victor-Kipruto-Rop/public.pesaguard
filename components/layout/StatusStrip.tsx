@@ -23,7 +23,7 @@ export async function StatusStrip() {
         />
         <strong>{operational ? "All systems operational" : "Status: monitoring"}</strong>
         <span className="pg-strip-middle">Real-time reconciliation infrastructure</span>
-        <a className="pg-strip-link" href="https://status.pesaguard.victorkipruto.com" rel="noreferrer" target="_blank">
+        <a className="pg-strip-link" href="https://status.pesaguard.co.ke" rel="noreferrer" target="_blank">
           View status
           <ArrowUpRight aria-hidden="true" size={12} />
         </a>
