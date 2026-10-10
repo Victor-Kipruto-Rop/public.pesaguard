@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-const apiUrl = (process.env.PESAGUARD_API_URL ?? process.env.NEXT_PUBLIC_API_URL ?? "https://api.pesaguard.victorkipruto.com").replace(/\/$/, "");
+const apiUrl = (process.env.PESAGUARD_API_URL ?? process.env.NEXT_PUBLIC_API_URL ?? "https://api.pesaguard.co.ke").replace(/\/$/, "");
 const cookieName = "pesaguard_session";
 
 type LoginBody = { username?: unknown; password?: unknown };

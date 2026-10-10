@@ -16,7 +16,7 @@ import "@/styles/typography.css";
 export const metadata: Metadata = {
   title: { default: "PesaGuard | Trust infrastructure for African payments", template: "%s | PesaGuard" },
   description: siteConfig.description,
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"),
+  metadataBase: new URL(siteConfig.url),
   icons: { icon: "/favicon.svg" },
 };
 

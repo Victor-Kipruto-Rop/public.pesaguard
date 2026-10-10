@@ -11,9 +11,9 @@ npm install
 npm run dev
 ```
 
-Set `PESAGUARD_API_URL` to enable the server-side status health check. No backend secret is exposed to the browser.
+Set `PESAGUARD_API_URL=https://api.pesaguard.co.ke` to enable the server-side status health check. No backend secret is exposed to the browser.
 
-Set `NEXT_PUBLIC_SITE_URL` (for example `https://pesaguard.victorkipruto.com`) at build time. The sitemap, robots.txt, canonical URLs and `metadataBase` all read it and fall back to `http://localhost:3000` if it is missing.
+Set `NEXT_PUBLIC_SITE_URL=https://pesaguard.co.ke` for production deployments. The sitemap, robots.txt, canonical URLs and metadata base all use this canonical domain by default; set `NEXT_PUBLIC_SITE_URL=http://localhost:3000` only when running locally.
 
 ## Checks
 
