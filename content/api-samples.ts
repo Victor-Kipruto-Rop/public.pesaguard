@@ -7,7 +7,7 @@
 
 export const sampleIdempotencyKey = "6f1c2a9e-0b7d-4c55-9a1e-3d2f8b7a1c40";
 
-export const apiBaseUrl = "https://api.pesaguard.victorkipruto.com";
+export const apiBaseUrl = "https://api.pesaguard.co.ke";
 
 export const transactionBody = "{\n  \"provider_transaction_id\": \"SAB1C2D3E4\",\n  \"provider_account_id\": \"174379\",\n  \"TransAmount\": 2845.00,\n  \"Currency\": \"KES\",\n  \"BillRefNumber\": \"INV-20418\",\n  \"MSISDN\": \"254712345678\",\n  \"TransTime\": \"20260919101500\"\n}";
 
