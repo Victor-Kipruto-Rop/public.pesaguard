@@ -1,7 +1,7 @@
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, CheckCircle2, Clock3 } from "lucide-react";
 import { pageMetadata } from "@/lib/seo/metadata";
 import { pages } from "@/content/pages";
-import { integrations } from "@/config/integrations";
+import { availableIntegrations, pendingIntegrations } from "@/config/integrations";
 import { PageHero } from "@/components/sections/PageHero";
 import { SectionShell } from "@/components/sections/SectionShell";
 import { SectionHeading } from "@/components/sections/SectionHeading";
@@ -12,7 +12,7 @@ import { Reveal } from "@/components/ui/Reveal";
 
 export const metadata = pageMetadata(
   "Integrations | PesaGuard",
-  "Connect the rails, channels and systems that matter to your operation.",
+  "See which payment integrations are available today and which connectors are not available yet.",
   "/integrations",
 );
 
@@ -22,81 +22,94 @@ export default function Integrations() {
   return (
     <>
       <PageHero
-        title={data.title}
-        lede={data.lede ?? data.description}
-        label="PesaGuard integrations"
+        title="Connect the payment records you need to explain."
+        lede="PesaGuard currently focuses on M-Pesa through Safaricom Daraja and outbound webhooks. Airtel Money, bank data and point-of-sale connectors are listed below as planned work—not as services you can connect today."
+        label="Integrations · clear scope, no guesswork"
         trail={[{ label: "Home", href: "/" }, { label: "Integrations", href: "/integrations" }]}
       />
 
-      <SectionShell tone="sunken">
+      <SectionShell>
         <Reveal>
           <SectionHeading
-            eyebrow="Rails and channels"
-            title="Live today, named for tomorrow."
-            body="Every row states how far along support really is, with the evidence behind the claim."
+            eyebrow="Available in the current pilot"
+            title="What can be discussed for a live setup"
+            body="Availability is limited to the current deployment and agreed configuration. Contact the team to confirm fit before planning a rollout."
           />
           <div className="status-board">
-            {integrations.map((integration) => (
+            {availableIntegrations.map((integration) => (
               <a className="status-row" href={integration.href} key={integration.href}>
                 <strong>
                   <AvailabilityBadge availability={integration.availability} />
                   {integration.name}
                 </strong>
                 <span>{integration.summary}</span>
-                <span className="badge badge-neutral">{integration.evidence.split("·")[0].trim()}</span>
+                <span className="badge badge-neutral"><CheckCircle2 aria-hidden="true" size={14} /> View scope</span>
               </a>
             ))}
           </div>
         </Reveal>
       </SectionShell>
 
-      {data.sections.map((section) => (
-        <SectionShell key={section.title}>
-          <div className="split split-center">
-            <div>
-              <p className="eyebrow">
-                {section.eyebrow ?? "Signal model"}
-                <span aria-hidden="true" className="eyebrow-rule" />
-              </p>
-              <h2 className="display-3">{section.title}</h2>
-            </div>
-            <div>
-              <p className="large-copy">{section.body}</p>
-              {section.items ? (
-                <ul className="check-list" style={{ marginTop: 24 }}>
-                  {section.items.map((item) => (
-                    <li key={item}>{item}</li>
-                  ))}
-                </ul>
-              ) : null}
-            </div>
+      <SectionShell tone="sunken">
+        <Reveal>
+          <SectionHeading
+            eyebrow="Roadmap · not connectable yet"
+            title="Under development"
+            body="These are customer requirements PesaGuard intends to evaluate. No adapter, connection flow or delivery date is being promised. Each connector must be implemented, tested and documented before its status changes."
+          />
+          <div className="status-board">
+            {pendingIntegrations.map((integration) => (
+              <a className="status-row" href={integration.href} key={integration.href}>
+                <strong>
+                  <AvailabilityBadge availability={integration.availability} />
+                  {integration.name}
+                </strong>
+                <span>{integration.summary}</span>
+                <span className="badge badge-neutral"><Clock3 aria-hidden="true" size={14} /> Planned scope</span>
+              </a>
+            ))}
           </div>
-        </SectionShell>
-      ))}
+        </Reveal>
+      </SectionShell>
+
+      <SectionShell>
+        <div className="split split-center">
+          <div>
+            <p className="eyebrow">A connector is more than an API call<span aria-hidden="true" className="eyebrow-rule" /></p>
+            <h2 className="display-3">Built around the records your team must trust.</h2>
+          </div>
+          <div>
+            <p className="large-copy">For each new provider, PesaGuard must validate access, map the source fields, handle duplicate and delayed events, define matching rules, retain source evidence and test failure paths. A connector is not considered available until those parts have been built and checked.</p>
+            <ul className="check-list" style={{ marginTop: 24 }}>
+              <li>Verified source access and documented prerequisites</li>
+              <li>Defined transaction references, status mapping and data quality rules</li>
+              <li>Duplicate-safe processing and clear failure behavior</li>
+              <li>Test coverage for mismatches, reversals and delayed records where relevant</li>
+              <li>Operational ownership, monitoring and customer-facing setup guidance</li>
+            </ul>
+          </div>
+        </div>
+      </SectionShell>
 
       {data.related?.length ? (
         <SectionShell tone="sunken" tight>
-          <SectionHeading eyebrow="Keep reading" title="Adjacent pages." />
+          <SectionHeading eyebrow="Keep reading" title="Understand the operating model." />
           <RelatedLinks links={data.related} />
         </SectionShell>
       ) : null}
 
-      {data.cta ? (
-        <SectionShell>
-          <div className="panel panel-split ring-decoration closing-ring">
-            <div style={{ maxWidth: "46ch", position: "relative" }}>
-              <p className="eyebrow">{data.cta.eyebrow}</p>
-              <h2>{data.cta.title}</h2>
-              <p>{data.cta.body}</p>
-            </div>
-            <div className="actions">
-              <Button href={data.cta.primary.href} trailing={<ArrowUpRight aria-hidden="true" size={17} />}>
-                {data.cta.primary.label}
-              </Button>
-            </div>
+      <SectionShell>
+        <div className="panel panel-split ring-decoration closing-ring">
+          <div style={{ maxWidth: "46ch", position: "relative" }}>
+            <p className="eyebrow">Tell us what you need</p>
+            <h2>Start with your actual payment flow.</h2>
+            <p>Tell us which providers, bank reports or POS records you use. We will confirm the current boundary and capture requirements for future work without implying that a planned connector is already available.</p>
           </div>
-        </SectionShell>
-      ) : null}
+          <div className="actions">
+            <Button href="/contact/sales" trailing={<ArrowUpRight aria-hidden="true" size={17} />}>Discuss integration requirements</Button>
+          </div>
+        </div>
+      </SectionShell>
     </>
   );
 }
