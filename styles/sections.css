@@ -245,7 +245,7 @@
   width: 34px;
   height: 34px;
   border-radius: var(--r-sm);
-  background: rgba(216, 255, 79, 0.12);
+  background: rgba(34, 197, 94, 0.12);
   color: var(--lime);
 }
 
@@ -545,7 +545,7 @@
 
 .side-note-ink .status-dot {
   background: var(--lime);
-  box-shadow: 0 0 0 4px rgba(216, 255, 79, 0.16);
+  box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.16);
 }
 
 .side-note-links {
