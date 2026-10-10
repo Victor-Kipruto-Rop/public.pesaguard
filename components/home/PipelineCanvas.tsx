@@ -81,7 +81,7 @@ export function PipelineCanvas() {
       const [mpesa, bank, validate, reconcile, risk, matched, flagged] = nodes;
 
       const line = (x1: number, y1: number, x2: number, y2: number) => {
-        ctx.strokeStyle = "rgba(18,51,40,0.18)";
+        ctx.strokeStyle = "rgba(11,93,59,0.18)";
         ctx.lineWidth = 1;
         ctx.beginPath();
         ctx.moveTo(x1, y1);
@@ -105,20 +105,20 @@ export function PipelineCanvas() {
         const wpx = ctx.measureText(node.label).width + 22;
         ctx.strokeStyle =
           node.label === "MATCHED"
-            ? "rgba(110,131,29,0.55)"
+            ? "rgba(11,93,59,0.55)"
             : node.label === "FLAGGED"
               ? "rgba(168,100,28,0.55)"
-              : "rgba(18,51,40,0.2)";
+              : "rgba(11,93,59,0.2)";
         ctx.beginPath();
         ctx.roundRect(node.x - wpx / 2, node.y - 12, wpx, 24, 6);
         ctx.fill();
         ctx.stroke();
         ctx.fillStyle =
           node.label === "MATCHED"
-            ? "#4d5d12"
+            ? "#0b2e24"
             : node.label === "FLAGGED"
               ? "#a8641c"
-              : "#5e6a63";
+              : "#52665d";
         ctx.fillText(node.label, node.x, node.y + 3.5);
       }
 
@@ -156,7 +156,7 @@ export function PipelineCanvas() {
         const pt = pointAt(Math.min(p.t, 0.999), p.clean, p.wobble);
         const flash = 0.55 + 0.45 * Math.sin(time * 0.004 + p.t * 9);
         ctx.fillStyle = p.clean
-          ? `rgba(110,131,29,${(0.9 * flash).toFixed(3)})`
+          ? `rgba(11,93,59,${(0.9 * flash).toFixed(3)})`
           : `rgba(168,100,28,${(0.95 * flash).toFixed(3)})`;
         ctx.beginPath();
         ctx.arc(pt.x, pt.y, 2.1, 0, Math.PI * 2);

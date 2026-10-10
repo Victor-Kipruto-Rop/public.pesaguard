@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { StatusStrip } from "@/components/layout/StatusStrip";
@@ -17,7 +17,12 @@ export const metadata: Metadata = {
   title: { default: "PesaGuard | Trust infrastructure for African payments", template: "%s | PesaGuard" },
   description: siteConfig.description,
   metadataBase: new URL(siteConfig.url),
-  icons: { icon: "/favicon.svg" },
+  icons: { icon: "/favicon.svg", apple: "/logo/icon.svg" },
+};
+
+export const viewport: Viewport = {
+  colorScheme: "light",
+  themeColor: "#2ecc87",
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {

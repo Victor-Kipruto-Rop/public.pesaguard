@@ -1,10 +1,12 @@
-import { ContactForm } from "@/components/contact/ContactForm";
+import { ContactPage } from "@/components/contact/ContactPage";
 import { pageMetadata } from "@/lib/seo/metadata";
 
 export const metadata = pageMetadata(
-  "Sales | PesaGuard",
-  "Share your M-Pesa flow and reconciliation process. We follow up with a focused pilot conversation.",
+  "Sales and pilots | PesaGuard",
+  "Scope a PesaGuard pilot around your M-Pesa flow, reconciliation process and operational risks.",
   "/contact/sales",
 );
 
-export default function Sales(){return <section className="section"><div className="container split"><div><p className="eyebrow">Sales</p><h1>Build a more accountable payment operation.</h1><p className="lede">Share a little context and our team will follow up with a focused conversation.</p></div><ContactForm kind="sales"/></div></section>}
+export default function Sales() {
+  return <ContactPage kind="sales" />;
+}

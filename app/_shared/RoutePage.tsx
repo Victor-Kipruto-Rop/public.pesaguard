@@ -4,6 +4,7 @@ import { detailPages } from "@/content/detail";
 import { integrationDetails } from "@/content/detail-integrations";
 import { securityDetails } from "@/content/detail-security";
 import { solutionDetails } from "@/content/detail-solutions";
+import { legalDetails } from "@/content/legal";
 
 /**
  * Eyebrow labels for detail pages, keyed by their title copy.
@@ -57,7 +58,7 @@ export function RoutePage({
    * unique across the site, while `slug` is the parent page.
    */
   const detail =
-    (title && (detailPages[title] ?? integrationDetails[title] ?? securityDetails[title] ?? solutionDetails[title])) ||
+    (title && (detailPages[title] ?? integrationDetails[title] ?? securityDetails[title] ?? solutionDetails[title] ?? legalDetails[slug])) ||
     undefined;
   const data = detail ?? base;
   const label = (title && detailLabels[title]) || detail?.label || base.label;
