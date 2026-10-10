@@ -99,58 +99,90 @@ export default function Home() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareApplicationJsonLd()) }} />
       <div className="pg-home">
-        {/* 03 · Hero */}
-        <section className="pg-hero">
-          <div className="pg-container pg-hero-grid">
-            <div>
-              <p className="pg-eyebrow">Payment operations infrastructure</p>
-              <h1>Know where every transaction stands.</h1>
+        {/* 03 · Premium hero */}
+        <section className="pg-hero pg-hero-premium">
+          <div className="pg-hero-grid pg-container">
+            <div className="pg-hero-copy">
+              <div className="pg-hero-kicker">
+                <span className="pg-kicker-mark" aria-hidden="true"><i /></span>
+                PAYMENT OPERATIONS INFRASTRUCTURE
+              </div>
+              <h1>
+                Every payment has a story.
+                <em> Make the full picture clear.</em>
+              </h1>
               <p className="pg-lede">
-                PesaGuard gives financial teams real-time transaction reconciliation, anomaly
-                detection, monitoring and alerts across their payment infrastructure.
+                PesaGuard helps financial teams reconcile M-Pesa transactions, investigate
+                exceptions and keep a clear record of what happened — without chasing
+                spreadsheets across the business.
               </p>
               <div className="pg-hero-actions">
                 <Link className="pg-btn pg-btn-primary" href="/contact/sales">
-                  Request a demo
+                  Request a walkthrough
+                  <ArrowRight aria-hidden="true" size={16} />
                 </Link>
                 <Link className="pg-btn pg-btn-ghost" href="/product">
-                  Explore the platform
-                  <ArrowRight aria-hidden="true" size={15} />
+                  Explore PesaGuard
+                  <ArrowUpRight aria-hidden="true" size={15} />
                 </Link>
               </div>
+              <div className="pg-hero-assurance" aria-label="Platform capabilities">
+                <span><i aria-hidden="true">✓</i> Evidence-backed matching</span>
+                <span><i aria-hidden="true">✓</i> Exceptions with context</span>
+                <span><i aria-hidden="true">✓</i> API-first workflows</span>
+              </div>
               <Link
-                className="pg-devlink"
+                className="pg-devlink pg-hero-docs"
                 href="https://docs.pesaguard.co.ke"
                 rel="noreferrer"
                 target="_blank"
               >
-                <Terminal aria-hidden="true" size={13} />
-                Built for modern payment infrastructure. View API documentation
-                <ArrowUpRight aria-hidden="true" size={12} />
+                <Terminal aria-hidden="true" size={14} />
+                For builders: explore the API
+                <ArrowUpRight aria-hidden="true" size={13} />
               </Link>
             </div>
-            <div className="pg-pipeline">
-              <div className="pg-pipeline-head">
-                <strong>PesaGuard</strong>
-                <span>Transaction pipeline</span>
-                <span className="pg-live">
-                  <i aria-hidden="true" />
-                  Live
-                </span>
+            <div className="pg-hero-visual">
+              <div className="pg-visual-orbit pg-visual-orbit-one" aria-hidden="true" />
+              <div className="pg-visual-orbit pg-visual-orbit-two" aria-hidden="true" />
+              <div className="pg-pipeline pg-pipeline-premium">
+                <div className="pg-pipeline-head">
+                  <span className="pg-window-dots" aria-hidden="true"><i /><i /><i /></span>
+                  <strong>Pesaguard / Flow</strong>
+                  <span className="pg-preview-tag">SYSTEM PREVIEW</span>
+                </div>
+                <div className="pg-pipeline-intro">
+                  <div>
+                    <span className="pg-mini-label">TRANSACTION LIFECYCLE</span>
+                    <h2>From payment to proof.</h2>
+                  </div>
+                  <span className="pg-flow-mark" aria-hidden="true">↗</span>
+                </div>
+                <PipelineCanvas />
+                <div className="pg-pipeline-foot">
+                  <span><i className="pg-foot-dot" /> <b>Receive</b> &amp; validate</span>
+                  <span><i className="pg-foot-dot" /> <b>Match</b> &amp; review</span>
+                  <span><i className="pg-foot-dot" /> <b>Record</b> every outcome</span>
+                </div>
               </div>
-              <PipelineCanvas />
-              <div className="pg-pipeline-foot">
-                <span>
-                  Region <b>KE · Africa</b>
-                </span>
-                <span>
-                  Idempotent <b>by write</b>
-                </span>
-                <span>
-                  Evidence <b>append-only</b>
-                </span>
+              <div className="pg-float-note pg-float-note-top">
+                <span className="pg-float-icon" aria-hidden="true">↔</span>
+                <span><b>Reconciliation</b><small>Evidence attached</small></span>
+                <span className="pg-float-check" aria-label="Recorded">✓</span>
+              </div>
+              <div className="pg-float-note pg-float-note-bottom">
+                <span className="pg-float-icon pg-float-icon-alert" aria-hidden="true">!</span>
+                <span><b>Exception detected</b><small>Ready for review</small></span>
+                <span className="pg-float-arrow" aria-hidden="true">↗</span>
               </div>
             </div>
+          </div>
+          <div className="pg-hero-bottomline pg-container">
+            <span>BUILT FOR FINANCIAL OPERATIONS</span>
+            <span className="pg-bottomline-rule" aria-hidden="true" />
+            <span>M-PESA · SAFARICOM DARAJA</span>
+            <span className="pg-bottomline-rule" aria-hidden="true" />
+            <span>API-FIRST BY DESIGN</span>
           </div>
         </section>
 
