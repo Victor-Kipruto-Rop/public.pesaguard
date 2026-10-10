@@ -1,2 +1,12 @@
-import { ContactForm } from "@/components/contact/ContactForm";
-export default function Support(){return <section className="section"><div className="container split"><div><p className="eyebrow">Support</p><h1>Help for the moments that matter.</h1><p className="lede">Describe the issue and include the environment or transaction context that will help us investigate.</p></div><ContactForm kind="support"/></div></section>}
+import { ContactPage } from "@/components/contact/ContactPage";
+import { pageMetadata } from "@/lib/seo/metadata";
+
+export const metadata = pageMetadata(
+  "Support | PesaGuard",
+  "Share safe diagnostic context for a PesaGuard issue and find documentation and live service status.",
+  "/contact/support",
+);
+
+export default function Support() {
+  return <ContactPage kind="support" />;
+}
