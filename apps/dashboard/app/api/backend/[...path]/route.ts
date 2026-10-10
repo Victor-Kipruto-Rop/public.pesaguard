@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 
-const apiUrl = (process.env.PESAGUARD_API_URL ?? process.env.NEXT_PUBLIC_API_URL ?? "https://api.pesaguard.victorkipruto.com").replace(/\/$/, "");
+const apiUrl = (process.env.PESAGUARD_API_URL ?? process.env.NEXT_PUBLIC_API_URL ?? "https://api.pesaguard.co.ke").replace(/\/$/, "");
 type RouteProps = { params: Promise<{ path: string[] }> };
 
 async function proxy(request: NextRequest, { params }: RouteProps) {
