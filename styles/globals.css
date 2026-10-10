@@ -2260,3 +2260,26 @@ textarea.field:focus {
 .site-footer .brand-wordmark > span:last-child {
   color: var(--text-on-dark);
 }
+
+
+/* Shared accessible form states, matching the developer platform auth UI. */
+form :is(input, select, textarea):focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--forest) 30%, transparent);
+  outline-offset: 1px;
+  border-color: var(--forest);
+  box-shadow: 0 0 0 3px var(--lime-wash);
+}
+
+form :is(input, select, textarea)[aria-invalid="true"] {
+  border-color: var(--signal-red) !important;
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--signal-red) 12%, transparent);
+}
+
+.field-validation-error {
+  display: block;
+  margin: 1px 0 0;
+  color: var(--signal-red);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.45;
+}
