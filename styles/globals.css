@@ -1476,6 +1476,26 @@ textarea.field:focus {
   letter-spacing: 0;
 }
 
+.brand-logo {
+  display: block;
+  width: 34px;
+  height: 34px;
+  flex: 0 0 auto;
+  object-fit: contain;
+}
+
+.brand-wordmark {
+  display: inline-flex;
+  gap: 0;
+  color: var(--ink);
+  font-weight: 800;
+  letter-spacing: -0.045em;
+}
+
+.brand-wordmark > span:last-child {
+  color: var(--forest);
+}
+
 .brand-sub {
   font: 500 0.62rem / 1 var(--font-mono);
   letter-spacing: var(--tracking-wider);
