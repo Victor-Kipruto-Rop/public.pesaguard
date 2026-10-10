@@ -55,8 +55,9 @@ const primary: NavItem[] = [
       {
         title: "By organisation",
         links: [
-          { label: "SACCOs", href: "/solutions/saccos", description: "Member contributions and loan repayments" },
-          { label: "E-commerce operators", href: "/solutions/merchants", description: "STK Push volume and reversal checks" },
+          { label: "SACCOs", href: "/solutions/saccos", description: "Member collections and exception review" },
+          { label: "All organizations", href: "/solutions/by-organization", description: "Explore every organization-specific solution" },
+          { label: "Merchants", href: "/solutions/merchants", description: "M-Pesa payment events and order records" },
           { label: "Fintechs", href: "/solutions/fintechs", description: "Fraud visibility without a data team" },
           { label: "Financial institutions", href: "/solutions/financial-institutions", description: "Controls and evidence for audits" },
         ],
@@ -64,10 +65,11 @@ const primary: NavItem[] = [
       {
         title: "By problem",
         links: [
-          { label: "Duplicate payments", href: "/features/fraud-detection", description: "Catch the same Daraja transaction twice" },
-          { label: "Phantom reversals", href: "/features/fraud-detection", description: "Reversal sequences that do not match settlement" },
-          { label: "Callback spoofing", href: "/integrations/mpesa", description: "Signature and source checks on every callback" },
-          { label: "Manual reconciliation", href: "/features/reconciliation", description: "Replace statement-by-statement cross-checking" },
+          { label: "Payment records do not match", href: "/features/reconciliation", description: "Compare M-Pesa events with internal records" },
+          { label: "Poor payment visibility", href: "/features/transaction-monitoring", description: "Review the events and exceptions in scope" },
+          { label: "Unusual activity", href: "/features/fraud-detection", description: "Investigate anomaly signals without treating them as verdicts" },
+          { label: "Late exception handoffs", href: "/features/real-time-alerts", description: "Define owners and verify configured alert channels" },
+          { label: "All problem solutions", href: "/solutions/by-problem", description: "Explore operational problems and current limits" },
         ],
       },
     ],
