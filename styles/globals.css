@@ -73,9 +73,9 @@
 
   /* --- Elevation --------------------------------------------------------- */
   --shadow-xs: 0 1px 2px rgba(11, 61, 39, 0.06);
-  --shadow-sm: 0 6px 18px -10px rgba(14, 19, 17, 0.28);
-  --shadow-md: 0 18px 40px -24px rgba(14, 19, 17, 0.34);
-  --shadow-lg: 0 40px 80px -40px rgba(14, 19, 17, 0.42);
+  --shadow-sm: 0 6px 18px -10px rgba(11, 61, 39, 0.18);
+  --shadow-md: 0 18px 40px -24px rgba(11, 61, 39, 0.2);
+  --shadow-lg: 0 40px 80px -40px rgba(11, 61, 39, 0.3);
   --shadow-offset: 18px 18px 0 rgba(34, 197, 94, 0.22);
 
   /* --- Type -------------------------------------------------------------- */
@@ -2254,3 +2254,9 @@ textarea.field:focus {
 .contact-form :is(input, textarea)[aria-invalid="true"] { border-color: var(--signal-red); box-shadow: 0 0 0 2px color-mix(in srgb, var(--signal-red) 12%, transparent); }
 .field-validation-error { display: block; margin: 1px 0 0; color: var(--signal-red); font-size: 12px; font-weight: 600; line-height: 1.45; }
 @media (prefers-reduced-motion: reduce) { .contact-form input, .contact-form textarea { transition: none; } }
+
+
+.site-footer .brand-wordmark,
+.site-footer .brand-wordmark > span:last-child {
+  color: var(--text-on-dark);
+}
