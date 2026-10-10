@@ -3,7 +3,7 @@
    --------------------------------------------------------------------------
    Loaded after globals.css. Adds font features, optical corrections, and
    rhythm rules that are easier to reason about separately from the layout
-   system. Keeps Manrope for prose/UI and DM Mono for data, codes, and labels.
+   system. Keeps Inter for prose/UI and DM Mono for data, codes, and labels.
    ========================================================================== */
 
 body {
