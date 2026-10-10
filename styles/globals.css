@@ -15,28 +15,28 @@
 
 :root {
   /* --- Brand surfaces ---------------------------------------------------- */
-  --ink: #12352a;
-  --ink-soft: #0b422f;
-  --ink-raised: #0d5038;
-  --ink-line: #1e6046;
-  --ink-line-soft: #174a36;
+  --ink: #0b2e24;
+  --ink-soft: #0b2e24;
+  --ink-raised: #124a3b;
+  --ink-line: #176449;
+  --ink-line-soft: #124a3b;
 
   --paper: #ffffff;
   --paper-raised: #ffffff;
-  --paper-sunken: #f5f9f6;
-  --paper-deep: #eaf3ed;
+  --paper-sunken: #f2f7f4;
+  --paper-deep: #e5f4eb;
 
-  /* --- Brand accent ------------------------------------------------------ */
-  --lime: #22c55e;
-  --lime-strong: #07875d;
-  --lime-deep: #0b5d3b;
-  --lime-ink: #0b5d3b;
-  --lime-wash: rgba(34, 197, 94, 0.12);
-  --lime-veil: rgba(34, 197, 94, 0.05);
+  /* --- Brand accent: PesaGuard mint #2ECC87 ------------------------------ */
+  --lime: #2ecc87;
+  --lime-strong: #16835b;
+  --lime-deep: #0b2e24;
+  --lime-ink: #0b2e24;
+  --lime-wash: rgba(46, 204, 135, 0.14);
+  --lime-veil: rgba(46, 204, 135, 0.06);
 
   /* --- Trust / signal palette ------------------------------------------- */
-  --forest: #0b5d3b;
-  --forest-soft: #07875d;
+  --forest: #0b2e24;
+  --forest-soft: #16835b;
   --signal-green: #168253;
   --signal-amber: #a96413;
   --signal-blue: #74aecf;
@@ -51,9 +51,9 @@
   --text-on-dark-faint: #7ea38e;
 
   /* --- Lines ------------------------------------------------------------- */
-  --line: #dce9e1;
-  --line-soft: #edf4ef;
-  --line-strong: #bfd3c5;
+  --line: #d7e8de;
+  --line-soft: #edf5f0;
+  --line-strong: #bad8c7;
 
   /* --- Layout ------------------------------------------------------------ */
   --container: 1180px;
@@ -72,11 +72,11 @@
   --r-full: 999px;
 
   /* --- Elevation --------------------------------------------------------- */
-  --shadow-xs: 0 1px 2px rgba(11, 61, 39, 0.06);
-  --shadow-sm: 0 6px 18px -10px rgba(11, 61, 39, 0.18);
-  --shadow-md: 0 18px 40px -24px rgba(11, 61, 39, 0.2);
-  --shadow-lg: 0 40px 80px -40px rgba(11, 61, 39, 0.3);
-  --shadow-offset: 18px 18px 0 rgba(34, 197, 94, 0.22);
+  --shadow-xs: 0 1px 2px rgba(11, 46, 36, 0.06);
+  --shadow-sm: 0 6px 18px -10px rgba(11, 46, 36, 0.18);
+  --shadow-md: 0 18px 40px -24px rgba(11, 46, 36, 0.2);
+  --shadow-lg: 0 40px 80px -40px rgba(11, 46, 36, 0.3);
+  --shadow-offset: 18px 18px 0 rgba(46, 204, 135, 0.22);
 
   /* --- Type -------------------------------------------------------------- */
   --font-sans: Inter, "Segoe UI", system-ui, -apple-system, sans-serif;
@@ -215,7 +215,7 @@ samp {
   border-radius: var(--r-xs);
 }
 
-/* Lime reads better than olive on ink surfaces. */
+/* Mint accents carry the brand; forest text preserves accessible contrast. */
 .on-dark :focus-visible,
 .section-ink :focus-visible,
 .surface-ink :focus-visible {
@@ -642,7 +642,7 @@ samp {
 .badge-live {
   background: rgba(143, 206, 63, 0.14);
   border-color: rgba(143, 206, 63, 0.45);
-  color: #3f6a0b;
+  color: #16835b;
 }
 
 .badge-planned {
@@ -1198,7 +1198,7 @@ samp {
   overflow-x: auto;
   font-size: var(--step--1);
   line-height: 1.75;
-  color: #e6ead9;
+  color: #f2f7f4;
 }
 
 .code-block code {
@@ -1214,7 +1214,7 @@ samp {
 }
 
 .code-block .code-token-string {
-  color: #b9e6c9;
+  color: #d7f5e6;
 }
 
 .code-label {
