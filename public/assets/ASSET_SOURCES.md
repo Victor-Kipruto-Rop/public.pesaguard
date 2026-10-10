@@ -1,40 +1,36 @@
 # Public website asset provenance
 
-This file records third-party and original assets used by the PesaGuard public website.
+This register records the visual assets used by the PesaGuard public website and the rights/source checks performed for this asset-recovery pass.
 
-## Audit result
+## Existing local brand assets
 
-At the start of the frontend asset-recovery pass, the repository contained these visual asset files:
+The following repository-owned SVG paths were present before this pass and have been aligned to the visible PG monogram used by the public site's header and footer:
 
-- `public/favicon.svg`
-- `public/logo/favicon.svg`
-- `public/logo/icon.svg`
-- `public/logo/logo-dark.svg`
-- `public/logo/logo-light.svg`
-- `public/logo/logo.svg`
+- `public/favicon.svg` — browser tab favicon, referenced by `app/layout.tsx`
+- `public/logo/favicon.svg` — duplicate favicon variant
+- `public/logo/icon.svg` — square brand icon
+- `public/logo/logo.svg` — default wordmark variant
+- `public/logo/logo-dark.svg` — light wordmark treatment for dark surfaces
+- `public/logo/logo-light.svg` — dark wordmark treatment for light surfaces
 
-The initial repository-tree and earlier-revision checks found no PNG, JPEG, WebP, AVIF, or GIF assets. The homepage already renders a custom payment-processing visualization in `components/home/PipelineCanvas.tsx`. No specific missing raster asset or broken local image reference was established by this audit.
+The updated marks use the existing site's ink (`#121513` / `#111613`), lime (`#d8ff4f`), and paper (`#f4f5ef`) palette. The favicon's visible PG monogram now agrees with the public header/footer wordmark instead of using a different abstract glyph.
 
-Therefore, no third-party raster assets have been downloaded as part of this pass. This is intentional: adding unrelated stock photos would not recover missing originals and would weaken the existing focused fintech design.
+These are existing repository assets edited in place, not downloaded third-party assets. Their original authorship/license provenance was not independently established in this audit; do not represent them as third-party licensed assets.
 
 ## Third-party assets
 
-_No third-party assets added in this pass._
+_No third-party assets were added in this pass._
 
-When adding one, record:
+Before adding a third-party asset, record:
 - Asset name and local path
 - Direct asset/source page URL
 - Creator or copyright holder
-- License/terms and any attribution requirement
+- Specific license/terms and attribution requirements
 - Date checked/downloaded
 - Page/component where the asset is used
 
-## Original assets
+A file being publicly accessible does not itself grant permission to reuse it.
 
-Existing PesaGuard logo and favicon SVGs are repository assets. Their authorship/license provenance was not independently established in this audit; do not describe them as third-party licensed assets without evidence.
+## Original artwork
 
-_No new original SVG illustration was added in this pass because the homepage already has a custom pipeline visualization and no missing image slot was identified._
-
-## Review rule
-
-A file being publicly accessible does not by itself grant permission to reuse it. Verify the specific asset's license and terms before downloading or publishing it.
+_No new illustration was added._ The homepage already has a custom transaction-pipeline canvas, and the audit did not identify a missing image slot that warranted duplicating it or adding generic stock finance imagery.
