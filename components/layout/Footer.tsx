@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { navigation } from "@/config/navigation";
 import { siteConfig } from "@/config/site";
 
@@ -16,10 +17,8 @@ export function Footer() {
       <div className="container footer-top">
         <div className="footer-brand">
           <Link aria-label="PesaGuard home" className="brand" href="/">
-            <span aria-hidden="true" className="brand-mark">
-              PG
-            </span>
-            <span>PesaGuard</span>
+            <Image alt="" aria-hidden="true" className="brand-logo" height={32} src="/logo/icon.svg" width={32} />
+            <span className="brand-wordmark"><span>Pesa</span><span>Guard</span></span>
           </Link>
           <p className="footer-note">{siteConfig.tagline}</p>
           <p className="footer-note">
