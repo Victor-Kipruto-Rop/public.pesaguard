@@ -1607,3 +1607,42 @@
 @media (prefers-reduced-motion: reduce) {
   .pg-home .pg-pipeline-premium, .pg-home .pg-float-note { transform:none; }
 }
+
+
+/* Documentation hub mirrors the canonical docs.pesaguard.co.ke information architecture. */
+.pg-docs-hub { background:#fff; color:#0b2e24; }
+.pg-docs-hub .pg-container { width:min(1180px, calc(100% - 48px)); margin-inline:auto; }
+.pg-docs-hero { padding:clamp(64px,8vw,108px) 0 52px; background:radial-gradient(ellipse at 78% 15%,rgba(46,204,135,.13),transparent 35%),linear-gradient(180deg,#fff,#f2f7f4); border-bottom:1px solid #dbe8e0; }
+.pg-docs-hub .pg-docs-hero h1 { max-width:14ch; margin:14px 0 20px; color:#0b2e24; font-size:clamp(2.8rem,2rem + 3.5vw,4.8rem); line-height:1.02; letter-spacing:-.065em; }
+.pg-docs-lede { max-width:70ch; margin:0; color:#52665d; font-size:clamp(1rem,.95rem + .25vw,1.14rem); line-height:1.75; }
+.pg-docs-actions { display:flex; flex-wrap:wrap; gap:12px; margin-top:28px; }
+.pg-docs-actions .pg-btn { display:inline-flex; align-items:center; gap:10px; text-decoration:none; }
+.pg-docs-meta { display:flex; flex-wrap:wrap; gap:14px 24px; margin-top:28px; color:#52665d; font-size:12px; }
+.pg-docs-meta span { display:inline-flex; align-items:center; gap:8px; }
+.pg-docs-meta svg { color:#16835b; }
+.pg-docs-content { padding-block:clamp(48px,6vw,82px); }
+.pg-docs-group { padding-block:clamp(24px,3vw,40px); border-bottom:1px solid #e1ebe5; }
+.pg-docs-group:first-child { padding-top:0; }
+.pg-docs-group-heading { display:grid; grid-template-columns:44px minmax(0,1fr); gap:18px; align-items:start; margin-bottom:24px; }
+.pg-docs-index { display:grid; place-items:center; width:38px; height:38px; border:1px solid #cfe7d9; border-radius:10px; background:#e4f8ec; color:#124a3b; font:600 11px/1 var(--font-mono); }
+.pg-docs-group-heading h2 { margin:0 0 7px; color:#0b2e24; font-size:clamp(1.45rem,1.2rem + .8vw,2rem); line-height:1.15; letter-spacing:-.04em; }
+.pg-docs-group-heading p { max-width:70ch; margin:0; color:#62766b; font-size:14px; line-height:1.65; }
+.pg-docs-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; }
+.pg-docs-card { display:grid; grid-template-columns:42px minmax(0,1fr) 16px; gap:13px; align-items:start; min-height:132px; padding:19px; border:1px solid #dbe8e0; border-radius:13px; background:#fff; color:inherit; text-decoration:none; transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease,background .18s ease; }
+.pg-docs-card:hover { transform:translateY(-2px); border-color:#9bdab9; background:#fbfefc; box-shadow:0 12px 28px rgba(11,46,36,.06); }
+.pg-docs-card:focus-visible, .pg-docs-note-links a:focus-visible { outline:3px solid #16835b; outline-offset:3px; }
+.pg-docs-card-icon { display:grid; place-items:center; width:40px; height:40px; border-radius:10px; background:#e4f8ec; color:#124a3b; }
+.pg-docs-card-copy { display:grid; gap:8px; }
+.pg-docs-card-copy strong { color:#0b2e24; font-size:14px; letter-spacing:-.015em; }
+.pg-docs-card-copy > span { color:#62766b; font-size:12px; line-height:1.65; }
+.pg-docs-card-arrow { margin-top:3px; color:#71857a; }
+.pg-docs-card:hover .pg-docs-card-arrow { color:#0b2e24; }
+.pg-docs-note { display:grid; grid-template-columns:minmax(0,1.4fr) minmax(220px,.6fr); gap:32px; align-items:center; margin-top:44px; padding:clamp(24px,4vw,40px); border:1px solid #dbe8e0; border-radius:16px; background:#f2f7f4; }
+.pg-docs-note h2 { margin:10px 0 12px; color:#0b2e24; font-size:clamp(1.5rem,1.2rem + 1vw,2.2rem); line-height:1.12; letter-spacing:-.045em; }
+.pg-docs-note p:not(.pg-eyebrow) { max-width:70ch; margin:0; color:#52665d; font-size:13px; line-height:1.75; }
+.pg-docs-note-links { display:grid; gap:10px; }
+.pg-docs-note-links a { display:flex; align-items:center; justify-content:space-between; gap:12px; padding:11px 0; border-bottom:1px solid #d4e4da; color:#124a3b; font-size:12px; font-weight:650; text-decoration:none; }
+.pg-docs-note-links a:hover { color:#0b2e24; text-decoration:underline; text-underline-offset:4px; }
+@media(max-width:900px) { .pg-docs-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } .pg-docs-note { grid-template-columns:1fr; } }
+@media(max-width:600px) { .pg-docs-hub .pg-container { width:calc(100% - 32px); } .pg-docs-hero { padding-top:48px; } .pg-docs-grid { grid-template-columns:1fr; } .pg-docs-card { min-height:0; padding:16px; } .pg-docs-group-heading { grid-template-columns:34px minmax(0,1fr); gap:12px; } .pg-docs-index { width:32px; height:32px; } .pg-docs-actions { display:grid; grid-template-columns:1fr; } .pg-docs-actions .pg-btn { justify-content:center; } }
+@media(prefers-reduced-motion:reduce) { .pg-docs-card { transition:none; } .pg-docs-card:hover { transform:none; } }
