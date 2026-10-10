@@ -78,7 +78,7 @@ export const legalDetails: Record<string, PageData> = {
           "Explain whether you are requesting access, correction, deletion or clarification",
           "For transaction records held by a customer deployment, contact the responsible customer organization where it controls the processing",
         ],
-        note: "Contact: hello@pesaguard.co.ke. This contact route must be monitored before it is treated as a guaranteed support channel.",
+        note: "Contact: hello@pesaguard.com. This contact route must be monitored before it is treated as a guaranteed support channel.",
       },
       {
         eyebrow: "07 · Updates",
@@ -171,7 +171,7 @@ export const legalDetails: Record<string, PageData> = {
         body: "Access may be suspended or revoked where reasonably necessary to protect users, data, service integrity or legal compliance, subject to applicable agreements and law. Questions about these terms should be sent with enough context to identify the relevant website or pilot interaction, but without including secrets.",
         items: [
           "Website: https://pesaguard.co.ke",
-          "Contact: hello@pesaguard.co.ke",
+          "Contact: hello@pesaguard.com",
           "Applicable law and dispute terms should be confirmed in a reviewed customer agreement before production use",
         ],
       },
@@ -237,7 +237,7 @@ export const legalDetails: Record<string, PageData> = {
         items: [
           "Review this notice when third-party scripts or integrations are added",
           "Document cookie name, purpose, provider, category and lifetime for each deployed item",
-          "Send questions to hello@pesaguard.co.ke without including credentials",
+          "Send questions to hello@pesaguard.com without including credentials",
         ],
       },
     ],
