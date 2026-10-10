@@ -12,7 +12,7 @@ export function ContactForm({ kind = "general" }: { kind?: string }) {
   const [attempted, setAttempted] = useState(false);
   const [touched, setTouched] = useState({ name: false, email: false, message: false });
   const [values, setValues] = useState({ name: "", email: "", message: "" });
-  const emailIsValid = /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(values.email.trim());
+  const emailIsValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email.trim());
   const errors = {
     name: !values.name.trim() ? "Enter your name." : "",
     email: !values.email.trim() ? "Enter your work email." : !emailIsValid ? "Enter a valid email address." : "",
@@ -40,7 +40,7 @@ export function ContactForm({ kind = "general" }: { kind?: string }) {
         setAttempted(true);
         if (errors.name || errors.email || errors.message) return;
         const subject = encodeURIComponent(`PesaGuard ${kind} request from ${values.name.trim()}`);
-        const body = encodeURIComponent(`Name: ${values.name.trim()}\\nEmail: ${values.email.trim()}\\nKind: ${kind}\\n\\n${values.message.trim()}`);
+        const body = encodeURIComponent(`Name: ${values.name.trim()}\nEmail: ${values.email.trim()}\nKind: ${kind}\n\n${values.message.trim()}`);
         window.location.href = `mailto:${siteConfig.email}?subject=${subject}&body=${body}`;
         setSent(true);
       }}
