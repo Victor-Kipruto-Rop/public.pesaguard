@@ -66,7 +66,7 @@ export function PipelineCanvas() {
     // Layout is computed from the canvas box so the drawing scales cleanly.
     const layout = (): NodePoint[] => [
       { x: width * 0.16, y: height * 0.14, label: "M-PESA" },
-      { x: width * 0.84, y: height * 0.14, label: "BANK · API" },
+      { x: width * 0.84, y: height * 0.14, label: "INTERNAL LEDGER" },
       { x: width * 0.5, y: height * 0.34, label: "VALIDATE" },
       { x: width * 0.5, y: height * 0.52, label: "RECONCILE" },
       { x: width * 0.5, y: height * 0.7, label: "RISK ENGINE" },
@@ -81,7 +81,7 @@ export function PipelineCanvas() {
       const [mpesa, bank, validate, reconcile, risk, matched, flagged] = nodes;
 
       const line = (x1: number, y1: number, x2: number, y2: number) => {
-        ctx.strokeStyle = "rgba(11,93,59,0.18)";
+        ctx.strokeStyle = "rgba(18,74,59,0.20)";
         ctx.lineWidth = 1;
         ctx.beginPath();
         ctx.moveTo(x1, y1);
@@ -105,10 +105,10 @@ export function PipelineCanvas() {
         const wpx = ctx.measureText(node.label).width + 22;
         ctx.strokeStyle =
           node.label === "MATCHED"
-            ? "rgba(11,93,59,0.55)"
+            ? "rgba(46,204,135,0.85)"
             : node.label === "FLAGGED"
               ? "rgba(168,100,28,0.55)"
-              : "rgba(11,93,59,0.2)";
+              : "rgba(18,74,59,0.22)";
         ctx.beginPath();
         ctx.roundRect(node.x - wpx / 2, node.y - 12, wpx, 24, 6);
         ctx.fill();
@@ -156,7 +156,7 @@ export function PipelineCanvas() {
         const pt = pointAt(Math.min(p.t, 0.999), p.clean, p.wobble);
         const flash = 0.55 + 0.45 * Math.sin(time * 0.004 + p.t * 9);
         ctx.fillStyle = p.clean
-          ? `rgba(11,93,59,${(0.9 * flash).toFixed(3)})`
+          ? `rgba(22,131,91,${(0.9 * flash).toFixed(3)})`
           : `rgba(168,100,28,${(0.95 * flash).toFixed(3)})`;
         ctx.beginPath();
         ctx.arc(pt.x, pt.y, 2.1, 0, Math.PI * 2);
