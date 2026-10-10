@@ -1,27 +1,25 @@
 import type { IntegrationSummary } from "@/types/content";
 
 /**
- * Payment rails and channels, with an explicit availability value.
- *
- * Keep this list honest: `evidence` points at the place in the repository or
- * documentation that supports the claim. Anything we have not built stays
- * `not-started` until an adapter, its tests and its docs exist.
+ * Public-facing integration inventory. Evidence stays in the repository for
+ * maintainers; customer pages describe availability without exposing source
+ * file paths or implying roadmap work is shipped.
  */
 export const integrations: IntegrationSummary[] = [
   {
     name: "M-Pesa (Safaricom Daraja)",
     href: "/integrations/mpesa",
-    availability: "available",
+    availability: "pilot",
     summary:
-      "Daraja callbacks are received, validated, de-duplicated and matched against internal records in real time.",
+      "The active pilot scope: receive Daraja callbacks, validate and de-duplicate events, and compare them with internal records for exception review.",
     evidence: "docs/product/PILOT_READINESS.md · docs/architecture/CURRENT_ARCHITECTURE.md",
   },
   {
     name: "Outbound webhooks",
     href: "/integrations/webhooks",
-    availability: "available",
+    availability: "pilot",
     summary:
-      "PesaGuard delivers signed event notifications with delivery attempts, retries and a dead-letter path.",
+      "Configured outbound event delivery with signatures, recorded attempts, bounded retries and a dead-letter path in the pilot scope.",
     evidence: "webhook_manager.py · webhook delivery tables and migrations",
   },
   {
@@ -29,7 +27,7 @@ export const integrations: IntegrationSummary[] = [
     href: "/integrations/airtel-money",
     availability: "not-started",
     summary:
-      "Named on this site so the scope is clear to buyers. No adapter, tests or documentation exist yet.",
+      "Planned mobile-money connector. Airtel events cannot be connected, imported or reconciled through PesaGuard today.",
     evidence: "docs/architecture/CURRENT_ARCHITECTURE.md: Airtel Money is not implemented",
   },
   {
@@ -37,7 +35,7 @@ export const integrations: IntegrationSummary[] = [
     href: "/integrations/banks",
     availability: "not-started",
     summary:
-      "Statement and settlement imports from banks are out of today's scope. The design keeps room for them.",
+      "Planned bank statement and settlement scope. No bank APIs, account connections or statement imports are available today.",
     evidence: "docs/architecture/CURRENT_ARCHITECTURE.md: bank adapters not implemented",
   },
   {
@@ -45,15 +43,15 @@ export const integrations: IntegrationSummary[] = [
     href: "/integrations/pos",
     availability: "not-started",
     summary:
-      "In-store terminal feeds are not ingested today. We only claim what the M-Pesa pipeline does.",
+      "Planned POS and acquirer scope. Terminal feeds and in-store transaction records are not ingested today.",
     evidence: "docs/product/PRODUCT_SCOPE.md: M-Pesa is the active scope",
   },
 ];
 
 export const availableIntegrations = integrations.filter(
-  (integration) => integration.availability === "available",
+  (integration) => integration.availability === "available" || integration.availability === "pilot",
 );
 
 export const pendingIntegrations = integrations.filter(
-  (integration) => integration.availability !== "available",
+  (integration) => integration.availability !== "available" && integration.availability !== "pilot",
 );
