@@ -17,7 +17,7 @@ export function Footer() {
       <div className="container footer-top">
         <div className="footer-brand">
           <Link aria-label="PesaGuard home" className="brand" href="/">
-            <Image alt="" aria-hidden="true" className="brand-logo" height={32} src="/logo/icon.svg" width={32} />
+            <Image alt="" aria-hidden="true" className="brand-logo" height={32} src="/logo/brand-mark.svg" width={32} />
             <span className="brand-wordmark"><span>Pesa</span><span>Guard</span></span>
           </Link>
           <p className="footer-note">{siteConfig.tagline}</p>
