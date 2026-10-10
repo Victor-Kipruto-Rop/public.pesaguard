@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowLeft, ArrowUpRight } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { pageMetadata } from "@/lib/seo/metadata";
 import { PageHero } from "@/components/sections/PageHero";
 import { SectionShell } from "@/components/sections/SectionShell";
