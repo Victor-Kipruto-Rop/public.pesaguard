@@ -6,6 +6,13 @@
 **Audit branch:** `fix/frontend-asset-recovery-from-main`  
 **Review type:** Source-level route/content/component audit. This is not a claim that the production site has passed browser, accessibility, security or deployment tests.
 
+## Exact mint-and-white theme baseline
+
+- Primary mint: `#2ECC87` for primary action surfaces, active navigation, highlights, progress and brand accents.
+- Dominant background: `#FFFFFF`; section alternate: `#F2F7F4`; readable forest text: `#0B2E24`.
+- Keep mint-on-white for decorative or non-text accents only; small text and controls must use contrast-safe forest text. Primary mint buttons use forest text.
+- The first-party logo family and favicon keep the same shield/check design while using the mint brand accent.
+
 ## Acceptance standard for every page
 
 A page is not considered premium merely because it has a large hero. It should provide:
