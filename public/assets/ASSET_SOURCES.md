@@ -17,6 +17,10 @@ The updated marks use the existing site's ink (`#121513` / `#111613`), lime (`#d
 
 These are existing repository assets edited in place, not downloaded third-party assets. Their original authorship/license provenance was not independently established in this audit; do not represent them as third-party licensed assets.
 
+## Social-share images
+
+No Open Graph/Twitter share image is currently shipped. The SEO default therefore uses a standard summary card instead of advertising a large-image card without an image. No new raster artwork was created and no SVG was assigned as a social preview because support for SVG social cards is inconsistent.
+
 ## Third-party assets
 
 _No third-party assets were added in this pass._
