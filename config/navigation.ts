@@ -32,15 +32,6 @@ const primary: NavItem[] = [
           { label: "Audit trail", href: "/features/audit-trail", description: "Append-only record of decisions and actions" },
         ],
       },
-      {
-        title: "Developers",
-        links: [
-          { label: "API reference", href: "/api", description: "What exists, and what state it is in" },
-          { label: "Documentation", href: "/documentation", description: "Guides for building against PesaGuard" },
-          { label: "Webhook ingestion", href: "/integrations/webhooks", description: "Idempotent, signature-checked callbacks" },
-          { label: "Changelog", href: "/documentation/changelog", description: "Versioning and where changes are recorded" },
-        ],
-      },
     ],
     foot: {
       label: "Talk to the team about your M-Pesa flow",
