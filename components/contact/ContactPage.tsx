@@ -80,31 +80,37 @@ export function ContactPage({ kind = "general" }: { kind?: ContactKind }) {
         trail={[{ label: "Home", href: "/" }, { label: data.label, href: kind === "general" ? "/contact" : `/contact/${kind}` }]}
       />
       <SectionShell>
-        <div className="content-layout">
+        <div className="split">
           <div className="content-main">
             <SectionHeading eyebrow="Before you write" title={data.preparationTitle} body={data.preparationBody} />
-            <FeatureGrid items={data.items} />
+            {data.items.map((item) => (
+              <article className="content-section" key={item.title}>
+                <p className="eyebrow">{item.index}</p>
+                <h2>{item.title}</h2>
+                <p>{item.body}</p>
+              </article>
+            ))}
             <div className="content-section">
               <h2>What happens after you submit</h2>
               <p>{data.note}</p>
               <ul className="check-list">
                 <li>We receive only the context your email draft contains if you choose to send it.</li>
                 <li>Use <a href="https://docs.pesaguard.co.ke" target="_blank" rel="noreferrer">the developer documentation</a> for technical reference material.</li>
-                <li>For a live issue, include the safe request context and check the <Link href="/status">service status</Link> page.</li>
+                <li>For a live issue, include safe request context and check the <Link href="/status">service status</Link> page.</li>
               </ul>
               <p className="small muted">Configured contact address: {siteConfig.email}. This address and its mailbox routing should be verified before launch.</p>
             </div>
           </div>
-          <aside className="side-note">
-            <span className="status-dot" />
-            <strong>Keep the conversation safe and specific.</strong>
-            <p>Describe the workflow, not secrets. PesaGuard's current active payment scope is M-Pesa (Safaricom Daraja); planned integrations are not represented as live capabilities.</p>
+          <aside className="panel panel-split">
+            <p className="eyebrow">PesaGuard contact</p>
+            <h2>Keep the conversation safe and specific.</h2>
+            <p>Describe the workflow, not secrets. The active payment scope is M-Pesa (Safaricom Daraja); planned integrations are not represented as live capabilities.</p>
+            <ContactForm kind={kind} />
             <div className="side-note-links">
               <Link href="/integrations">Integration availability</Link>
               <Link href="/privacy">Privacy notice</Link>
               <Link href="/terms">Terms of use</Link>
             </div>
-            <ContactForm kind={kind} />
           </aside>
         </div>
       </SectionShell>
