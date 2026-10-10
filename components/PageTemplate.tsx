@@ -231,7 +231,7 @@ function LegalTemplate({ data, slug }: { data: PageData; slug: string }) {
         <div className="content-layout">
           <div className="content-main">
             {data.sections.map((section) => (
-              <article className="content-section" key={section.title}>
+              <article className="content-section" id={section.title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "")} key={section.title}>
                 <p className="eyebrow">{section.eyebrow ?? slug}</p>
                 <h2>{section.title}</h2>
                 <p>{section.body}</p>
