@@ -3,7 +3,7 @@ import { redirect } from "next/navigation";
 import { toSessionUser } from "@/lib/auth/session";
 import type { SessionUser } from "@/types/user";
 
-const apiUrl = (process.env.PESAGUARD_API_URL ?? process.env.NEXT_PUBLIC_API_URL ?? "https://api.pesaguard.victorkipruto.com").replace(/\/$/, "");
+const apiUrl = (process.env.PESAGUARD_API_URL ?? process.env.NEXT_PUBLIC_API_URL ?? "https://api.pesaguard.co.ke").replace(/\/$/, "");
 
 export async function requireSession(): Promise<SessionUser> {
   const token = (await cookies()).get("pesaguard_session")?.value;
