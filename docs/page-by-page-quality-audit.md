@@ -20,7 +20,7 @@ A page is not considered premium merely because it has a large hero. It should p
 
 ## Page-by-page inventory
 
-The sitemap defines 55 public routes. The matrix below records each route's implementation shape and the content/protocol checks it needs. “Source-reviewed” does not mean runtime-verified.
+The sitemap defines 51 public routes. The matrix below records each route's implementation shape and the content/protocol checks it needs. “Source-reviewed” does not mean runtime-verified.
 
 | Route | Page purpose / implementation | Audit result and required protocol |
 |---|---|---|
@@ -82,6 +82,7 @@ The sitemap defines 55 public routes. The matrix below records each route's impl
 1. **Legal pages were reusing the About page body.** The privacy, terms and cookies route components all passed `slug="about"`; their headings changed but their body was inherited from the About page. Added dedicated content in `content/legal.ts`, resolved it by legal route, and corrected each route's slug and metadata.
 2. **Legal table-of-contents links did not navigate to their sections.** Every link pointed back to the page root. Added stable section IDs and matching fragment links.
 3. **Legal pages lacked meaningful route-specific metadata.** Added dedicated title and description metadata for privacy, terms and cookies.
+4. **Contact, sales and support pages were thin single-screen forms.** Added a shared, detailed contact experience with route-specific preparation guidance, safe-information reminders, next-step resources and explicit mail-draft limitations. Added route metadata for support and clarified that the configured mailbox must be verified before launch.
 
 ## Protocol rules to keep enforced
 
