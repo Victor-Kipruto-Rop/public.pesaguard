@@ -3,7 +3,6 @@ import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import { pageMetadata } from "@/lib/seo/metadata";
 import { PageHero } from "@/components/sections/PageHero";
 import { SectionShell } from "@/components/sections/SectionShell";
-import { SectionHeading } from "@/components/sections/SectionHeading";
 import { Button } from "@/components/ui/Button";
 
 export const metadata = pageMetadata(
@@ -59,7 +58,7 @@ export default function SolutionsByOrganization() {
         lede="Choose the organization whose responsibilities most closely match yours. Each guide covers the operating problem, likely users, information needed to start, what to validate and what PesaGuard does not currently provide."
         label="Solutions by organization"
         trail={[{ label: "Home", href: "/" }, { label: "Solutions", href: "/solutions" }, { label: "By organization", href: "/solutions/by-organization" }]}
-        actions={<Button href="/solutions" variant="secondary" leading={<ArrowLeft aria-hidden="true" size={16} />}>All solutions</Button>}
+        actions={<Button href="/solutions" variant="quiet" >All solutions</Button>}
       />
       {groups.map((group, index) => (
         <SectionShell key={group.href} tone={index % 2 === 0 ? "sunken" : "paper"}>
