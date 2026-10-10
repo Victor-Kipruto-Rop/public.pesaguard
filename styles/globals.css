@@ -38,9 +38,9 @@
   --forest: #0b5d3b;
   --forest-soft: #07875d;
   --signal-green: #168253;
-  --signal-amber: #e5a63c;
+  --signal-amber: #a96413;
   --signal-blue: #74aecf;
-  --signal-red: #d97a6c;
+  --signal-red: #b04444;
 
   /* --- Text ------------------------------------------------------------- */
   --text: var(--ink);
@@ -2251,6 +2251,10 @@ textarea.field:focus {
 .contact-form textarea::placeholder { color: var(--text-faint); }
 @media (prefers-reduced-motion: reduce) { .contact-form input, .contact-form textarea { transition: none; } }
 
+
+.site-footer .brand-logo {
+  filter: brightness(0) invert(1);
+}
 
 .site-footer .brand-wordmark,
 .site-footer .brand-wordmark > span:last-child {
