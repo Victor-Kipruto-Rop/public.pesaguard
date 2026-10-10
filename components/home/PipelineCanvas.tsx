@@ -115,10 +115,10 @@ export function PipelineCanvas() {
         ctx.stroke();
         ctx.fillStyle =
           node.label === "MATCHED"
-            ? "#4d5d12"
+            ? "#0b2e24"
             : node.label === "FLAGGED"
               ? "#a8641c"
-              : "#5e6a63";
+              : "#52665d";
         ctx.fillText(node.label, node.x, node.y + 3.5);
       }
 
