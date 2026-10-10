@@ -108,7 +108,7 @@ export function PipelineCanvas() {
             ? "rgba(11,93,59,0.55)"
             : node.label === "FLAGGED"
               ? "rgba(168,100,28,0.55)"
-              : "rgba(18,51,40,0.2)";
+              : "rgba(11,93,59,0.2)";
         ctx.beginPath();
         ctx.roundRect(node.x - wpx / 2, node.y - 12, wpx, 24, 6);
         ctx.fill();
