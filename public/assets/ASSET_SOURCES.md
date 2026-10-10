@@ -1,21 +1,24 @@
 # Public website asset provenance
 
-This register records the visual assets used by the PesaGuard public website and the rights/source checks performed for this asset-recovery pass.
+This register records the visual assets used by the PesaGuard public website and the source alignment performed for the shared brand pass.
 
-## Existing local brand assets
+## First-party shared brand assets
 
-The following repository-owned SVG paths were present before this pass and have been aligned to the visible PG monogram used by the public site's header and footer:
+The public website's brand artwork is synchronized with the existing PesaGuard developer platform repository:
 
-- `public/favicon.svg` — browser tab favicon, referenced by `app/layout.tsx`
-- `public/logo/favicon.svg` — duplicate favicon variant
-- `public/logo/icon.svg` — square brand icon
-- `public/logo/logo.svg` — default wordmark variant
-- `public/logo/logo-dark.svg` — light wordmark treatment for dark surfaces
-- `public/logo/logo-light.svg` — dark wordmark treatment for light surfaces
+- Source repository: https://github.com/Victor-Kipruto-Rop/developer.plartform
+- Source paths: `frontend/public/favicon.svg`, `frontend/public/pesaguard-icon.svg`, `frontend/public/pesaguard-logo.svg`, `frontend/public/pesaguard-logo-light.svg`, and `frontend/public/pesaguard-brand-mark.svg`
+- Source branch inspected: `main`
+- Destination paths:
+  - `public/favicon.svg` — browser favicon
+  - `public/logo/favicon.svg` — favicon compatibility copy
+  - `public/logo/icon.svg` — app/touch icon
+  - `public/logo/brand-mark.svg` — shared shield, payment-card and verified-check mark used by the public header/footer
+  - `public/logo/logo.svg` — default logo/wordmark
+  - `public/logo/logo-dark.svg` — light logo for dark surfaces
+  - `public/logo/logo-light.svg` — dark/green logo for light surfaces
 
-The updated marks use the existing site's ink (`#121513` / `#111613`), lime (`#d8ff4f`), and paper (`#f4f5ef`) palette. The favicon's visible PG monogram now agrees with the public header/footer wordmark instead of using a different abstract glyph.
-
-These are existing repository assets edited in place, not downloaded third-party assets. Their original authorship/license provenance was not independently established in this audit; do not represent them as third-party licensed assets.
+These are first-party assets copied from the PesaGuard developer platform repository, not third-party downloads. The palette is aligned to the developer UI's forest green (`#0B5D3B`), mint green (`#22C55E`), white and pale green surfaces.
 
 ## Social-share images
 
@@ -37,4 +40,4 @@ A file being publicly accessible does not itself grant permission to reuse it.
 
 ## Original artwork
 
-_No new illustration was added._ The homepage already has a custom transaction-pipeline canvas, and the audit did not identify a missing image slot that warranted duplicating it or adding generic stock finance imagery.
+_No new illustration was added._ The homepage already has a custom transaction-pipeline canvas. The work focused on shared brand identity, theme tokens, accessible form states and existing page UI rather than adding generic stock finance imagery.
