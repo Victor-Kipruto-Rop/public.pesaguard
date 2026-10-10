@@ -3,7 +3,6 @@ import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { pageMetadata } from "@/lib/seo/metadata";
 import { PageHero } from "@/components/sections/PageHero";
 import { SectionShell } from "@/components/sections/SectionShell";
-import { SectionHeading } from "@/components/sections/SectionHeading";
 import { Button } from "@/components/ui/Button";
 
 export const metadata = pageMetadata(
@@ -103,7 +102,7 @@ export default function Solutions() {
         actions={
           <>
             <Button href="/solutions/by-organization" trailing={<ArrowRight aria-hidden="true" size={16} />}>Browse by organization</Button>
-            <Button href="/solutions/by-problem" variant="secondary" trailing={<ArrowRight aria-hidden="true" size={16} />}>Browse by problem</Button>
+            <Button href="/solutions/by-problem" variant="quiet" trailing={<ArrowRight aria-hidden="true" size={16} />}>Browse by problem</Button>
           </>
         }
       />
@@ -126,7 +125,7 @@ export default function Solutions() {
           ))}
         </div>
         <div className="actions" style={{ marginTop: 24 }}>
-          <Button href="/solutions/by-organization" variant="secondary" trailing={<ArrowRight aria-hidden="true" size={16} />}>View all organization solutions</Button>
+          <Button href="/solutions/by-organization" variant="quiet" trailing={<ArrowRight aria-hidden="true" size={16} />}>View all organization solutions</Button>
         </div>
       </SectionShell>
 
@@ -147,7 +146,7 @@ export default function Solutions() {
           ))}
         </div>
         <div className="actions" style={{ marginTop: 24 }}>
-          <Button href="/solutions/by-problem" variant="secondary" trailing={<ArrowRight aria-hidden="true" size={16} />}>View all problem solutions</Button>
+          <Button href="/solutions/by-problem" variant="quiet" trailing={<ArrowRight aria-hidden="true" size={16} />}>View all problem solutions</Button>
         </div>
       </SectionShell>
 
