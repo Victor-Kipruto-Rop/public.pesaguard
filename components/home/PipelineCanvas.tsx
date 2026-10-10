@@ -81,7 +81,7 @@ export function PipelineCanvas() {
       const [mpesa, bank, validate, reconcile, risk, matched, flagged] = nodes;
 
       const line = (x1: number, y1: number, x2: number, y2: number) => {
-        ctx.strokeStyle = "rgba(18,51,40,0.18)";
+        ctx.strokeStyle = "rgba(11,93,59,0.18)";
         ctx.lineWidth = 1;
         ctx.beginPath();
         ctx.moveTo(x1, y1);
