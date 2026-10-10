@@ -1,7 +1,6 @@
 import Link from "next/link";
-import { ArrowRight, ArrowUpRight, Building2, CircleAlert, Workflow } from "lucide-react";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { pageMetadata } from "@/lib/seo/metadata";
-import { pages } from "@/content/pages";
 import { PageHero } from "@/components/sections/PageHero";
 import { SectionShell } from "@/components/sections/SectionShell";
 import { SectionHeading } from "@/components/sections/SectionHeading";
