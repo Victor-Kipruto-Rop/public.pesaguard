@@ -28,7 +28,7 @@
 
   /* --- Brand accent: PesaGuard mint #2ECC87 ------------------------------ */
   --lime: #2ecc87;
-  --lime-strong: #16835b;
+  --lime-strong: #21b779;
   --lime-deep: #0b2e24;
   --lime-ink: #0b2e24;
   --lime-wash: rgba(46, 204, 135, 0.14);
@@ -772,7 +772,7 @@ samp {
 }
 
 .card-ink .card-icon {
-  background: rgba(34, 197, 94, 0.14);
+  background: rgba(46, 204, 135, 0.14);
   color: var(--lime);
 }
 
@@ -860,10 +860,10 @@ samp {
   height: 340px;
   right: -90px;
   top: -170px;
-  border: 1px solid rgba(34, 197, 94, 0.26);
+  border: 1px solid rgba(46, 204, 135, 0.26);
   border-radius: 50%;
-  box-shadow: 0 0 0 34px rgba(34, 197, 94, 0.04),
-    0 0 0 68px rgba(34, 197, 94, 0.025);
+  box-shadow: 0 0 0 34px rgba(46, 204, 135, 0.04),
+    0 0 0 68px rgba(46, 204, 135, 0.025);
   pointer-events: none;
 }
 
@@ -1085,7 +1085,7 @@ samp {
 }
 
 .data-table tbody tr:hover td {
-  background: rgba(34, 197, 94, 0.07);
+  background: rgba(46, 204, 135, 0.07);
 }
 
 .data-table code {
@@ -1835,7 +1835,10 @@ textarea.field:focus {
 }
 
 .footer-column a:hover {
-  color: var(--lime);
+  color: var(--ink);
+  text-decoration: underline;
+  text-decoration-color: var(--lime-strong);
+  text-underline-offset: 0.18em;
 }
 
 .footer-bottom {
