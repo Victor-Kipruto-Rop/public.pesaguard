@@ -3,7 +3,6 @@ import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import { pageMetadata } from "@/lib/seo/metadata";
 import { PageHero } from "@/components/sections/PageHero";
 import { SectionShell } from "@/components/sections/SectionShell";
-import { SectionHeading } from "@/components/sections/SectionHeading";
 import { Button } from "@/components/ui/Button";
 
 export const metadata = pageMetadata(
@@ -72,7 +71,7 @@ export default function SolutionsByProblem() {
         lede="Explore common payment-operations problems, the questions a good implementation should answer, and the boundaries you need to validate. The goal is not to imply every capability is already live; it is to help you define a useful, testable scope."
         label="Solutions by problem"
         trail={[{ label: "Home", href: "/" }, { label: "Solutions", href: "/solutions" }, { label: "By problem", href: "/solutions/by-problem" }]}
-        actions={<Button href="/solutions" variant="secondary" leading={<ArrowLeft aria-hidden="true" size={16} />}>All solutions</Button>}
+        actions={<Button href="/solutions" variant="quiet" >All solutions</Button>}
       />
       <SectionShell tone="sunken">
         <SectionHeading eyebrow="Operational problem library" title="Choose the gap you need to close." body="Each guide links to a related capability page and lists the decisions to make before relying on it." />
