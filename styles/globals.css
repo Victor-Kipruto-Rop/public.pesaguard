@@ -8,9 +8,9 @@
    styles/docs.css, developer-platform surfaces in styles/api.css, marketing
    homepage blocks in styles/home.css, and motion in styles/animations.css.
 
-   Brand: the palette, type families, and mark shape used here come from the
-   shipped brand assets in public/logo and public/favicon.svg. Do not invent
-   replacement branding without updating those assets first.
+   Brand: the palette, type families, and mark shape follow the shared assets
+   from the PesaGuard developer platform. Keep the public and developer sites
+   aligned when changing brand tokens or visual assets.
    ========================================================================== */
 
 :root {
