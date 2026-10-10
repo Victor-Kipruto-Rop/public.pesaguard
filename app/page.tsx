@@ -203,8 +203,8 @@ export default function Home() {
               <span>transaction processing</span>
             </div>
             <div className="pg-trust-cell">
-              <b>Multi-channel</b>
-              <span>payment data</span>
+              <b>Clear scope</b>
+              <span>M-Pesa + webhooks</span>
             </div>
             <div className="pg-trust-cell">
               <b>Auditable</b>
