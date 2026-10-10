@@ -1,7 +1,7 @@
 import { cookies } from "next/headers";
 import { ApiError } from "@/lib/api/errors";
 
-const apiUrl = (process.env.PESAGUARD_API_URL ?? process.env.NEXT_PUBLIC_API_URL ?? "https://api.pesaguard.victorkipruto.com").replace(/\/$/, "");
+const apiUrl = (process.env.PESAGUARD_API_URL ?? process.env.NEXT_PUBLIC_API_URL ?? "https://api.pesaguard.co.ke").replace(/\/$/, "");
 
 export async function serverRequest<T>(path: string, init: RequestInit = {}): Promise<T> {
   const token = (await cookies()).get("pesaguard_session")?.value;
