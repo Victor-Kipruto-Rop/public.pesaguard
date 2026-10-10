@@ -1,8 +1,8 @@
 ﻿/* ==========================================================================
    PesaGuard homepage â€” light premium fintech
    --------------------------------------------------------------------------
-   The homepage shares the site's design language: paper base, ink text, lime
-   as an accent signal rather than a background. Scoped under `.pg-home` so
+   The homepage shares the developer platform's design language: light surfaces,
+   dark green text, and mint green as an accent signal rather than a background. Scoped under `.pg-home` so
    nothing leaks into other routes. `--pg-*` values alias the global tokens so
    inline styles in the JSX keep working. Motion is limited to four families
    (data, scroll, micro-interaction, system) and is suppressed under
