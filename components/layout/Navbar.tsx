@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { ChevronDown, Menu, X } from "lucide-react";
@@ -57,10 +58,8 @@ export function Navbar() {
       </a>
       <div className="container header-inner">
         <Link aria-label="PesaGuard home" className="brand" href="/">
-          <span aria-hidden="true" className="brand-mark">
-            PG
-          </span>
-          <span>PesaGuard</span>
+          <Image alt="" aria-hidden="true" className="brand-logo" height={34} src="/logo/icon.svg" width={34} />
+          <span className="brand-wordmark"><span>Pesa</span><span>Guard</span></span>
           <span className="brand-sub">M-Pesa reconciliation</span>
         </Link>
 
