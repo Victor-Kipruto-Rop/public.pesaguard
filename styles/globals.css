@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Inter:wght@400;500;600;700;800&display=swap');
 
 /* ==========================================================================
    PesaGuard design system
@@ -15,45 +15,45 @@
 
 :root {
   /* --- Brand surfaces ---------------------------------------------------- */
-  --ink: #0e1311;
-  --ink-soft: #161d1a;
-  --ink-raised: #1e2723;
-  --ink-line: #2d3832;
-  --ink-line-soft: #232c27;
+  --ink: #12352a;
+  --ink-soft: #0b422f;
+  --ink-raised: #0d5038;
+  --ink-line: #1e6046;
+  --ink-line-soft: #174a36;
 
-  --paper: #f4f5ef;
-  --paper-raised: #fbfcf7;
-  --paper-sunken: #e9ece2;
-  --paper-deep: #dfe4d8;
+  --paper: #ffffff;
+  --paper-raised: #ffffff;
+  --paper-sunken: #f5f9f6;
+  --paper-deep: #eaf3ed;
 
   /* --- Brand accent ------------------------------------------------------ */
-  --lime: #d8ff4f;
-  --lime-strong: #c2ec33;
-  --lime-deep: #6e831d;
-  --lime-ink: #4d5d12;
-  --lime-wash: rgba(216, 255, 79, 0.18);
-  --lime-veil: rgba(216, 255, 79, 0.07);
+  --lime: #22c55e;
+  --lime-strong: #07875d;
+  --lime-deep: #0b5d3b;
+  --lime-ink: #0b5d3b;
+  --lime-wash: rgba(34, 197, 94, 0.12);
+  --lime-veil: rgba(34, 197, 94, 0.05);
 
   /* --- Trust / signal palette ------------------------------------------- */
-  --forest: #123328;
-  --forest-soft: #1c4739;
-  --signal-green: #8fce3f;
+  --forest: #0b5d3b;
+  --forest-soft: #07875d;
+  --signal-green: #168253;
   --signal-amber: #e5a63c;
   --signal-blue: #74aecf;
   --signal-red: #d97a6c;
 
   /* --- Text ------------------------------------------------------------- */
   --text: var(--ink);
-  --text-muted: #5e6a63;
-  --text-faint: #8a958d;
-  --text-on-dark: #f3f5ef;
-  --text-on-dark-muted: #a6b2aa;
-  --text-on-dark-faint: #78857d;
+  --text-muted: #52665d;
+  --text-faint: #809187;
+  --text-on-dark: #f4fff7;
+  --text-on-dark-muted: #bbdfc8;
+  --text-on-dark-faint: #7ea38e;
 
   /* --- Lines ------------------------------------------------------------- */
-  --line: #d7ddd0;
-  --line-soft: #e5e9de;
-  --line-strong: #b7c1ae;
+  --line: #dce9e1;
+  --line-soft: #edf4ef;
+  --line-strong: #bfd3c5;
 
   /* --- Layout ------------------------------------------------------------ */
   --container: 1180px;
@@ -72,14 +72,14 @@
   --r-full: 999px;
 
   /* --- Elevation --------------------------------------------------------- */
-  --shadow-xs: 0 1px 2px rgba(14, 19, 17, 0.06);
+  --shadow-xs: 0 1px 2px rgba(11, 61, 39, 0.06);
   --shadow-sm: 0 6px 18px -10px rgba(14, 19, 17, 0.28);
   --shadow-md: 0 18px 40px -24px rgba(14, 19, 17, 0.34);
   --shadow-lg: 0 40px 80px -40px rgba(14, 19, 17, 0.42);
-  --shadow-offset: 18px 18px 0 rgba(216, 255, 79, 0.22);
+  --shadow-offset: 18px 18px 0 rgba(34, 197, 94, 0.22);
 
   /* --- Type -------------------------------------------------------------- */
-  --font-sans: Manrope, "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-sans: Inter, "Segoe UI", system-ui, -apple-system, sans-serif;
   --font-mono: "DM Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
 
   --step--1: clamp(0.75rem, 0.73rem + 0.1vw, 0.8rem);
@@ -629,7 +629,7 @@ samp {
 
 .badge-lime {
   background: var(--lime-wash);
-  border-color: rgba(110, 131, 29, 0.35);
+  border-color: rgba(11, 93, 59, 0.35);
   color: var(--lime-ink);
 }
 
@@ -772,7 +772,7 @@ samp {
 }
 
 .card-ink .card-icon {
-  background: rgba(216, 255, 79, 0.14);
+  background: rgba(34, 197, 94, 0.14);
   color: var(--lime);
 }
 
@@ -860,10 +860,10 @@ samp {
   height: 340px;
   right: -90px;
   top: -170px;
-  border: 1px solid rgba(216, 255, 79, 0.26);
+  border: 1px solid rgba(34, 197, 94, 0.26);
   border-radius: 50%;
-  box-shadow: 0 0 0 34px rgba(216, 255, 79, 0.04),
-    0 0 0 68px rgba(216, 255, 79, 0.025);
+  box-shadow: 0 0 0 34px rgba(34, 197, 94, 0.04),
+    0 0 0 68px rgba(34, 197, 94, 0.025);
   pointer-events: none;
 }
 
@@ -1085,7 +1085,7 @@ samp {
 }
 
 .data-table tbody tr:hover td {
-  background: rgba(216, 255, 79, 0.07);
+  background: rgba(34, 197, 94, 0.07);
 }
 
 .data-table code {
@@ -2159,9 +2159,9 @@ textarea.field:focus {
 }
 
 @keyframes pg-pulse {
-  0% { box-shadow: 0 0 0 0 rgba(110, 131, 29, 0.35); opacity: 1; }
-  70% { box-shadow: 0 0 0 9px rgba(110, 131, 29, 0); opacity: 0.85; }
-  100% { box-shadow: 0 0 0 0 rgba(110, 131, 29, 0); opacity: 1; }
+  0% { box-shadow: 0 0 0 0 rgba(11, 93, 59, 0.35); opacity: 1; }
+  70% { box-shadow: 0 0 0 9px rgba(11, 93, 59, 0); opacity: 0.85; }
+  100% { box-shadow: 0 0 0 0 rgba(11, 93, 59, 0); opacity: 1; }
 }
 
 @keyframes pg-fade-pulse {
