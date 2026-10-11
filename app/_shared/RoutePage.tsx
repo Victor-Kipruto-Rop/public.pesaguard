@@ -18,7 +18,7 @@ const detailLabels: Record<string, string> = {
   "Trust the data before you act.": "Data quality",
   "Make risk signals useful.": "Fraud detection",
   "Route the right alert to the right owner.": "Real-time alerts",
-  "Reconciliation with the full picture.": "Reconciliation",
+  "Reconciliation you can explain.": "Reconciliation",
   "Reports people can act on.": "Reporting",
   "See transaction flows as they change.": "Transaction monitoring",
   "Connect Airtel Money without losing context.": "Airtel Money",
@@ -36,9 +36,9 @@ const detailLabels: Record<string, string> = {
   "Protect revenue across every channel.": "Merchants",
   "A clearer ledger for every member payment.": "SACCOs",
   "Incident history and communication.": "Incident history",
-  "Cookies and local storage.": "Cookies",
-  "Privacy, stated plainly.": "Privacy",
-  "Terms for working together.": "Terms",
+  Cookies: "Cookies",
+  Privacy: "PesaGuard legal",
+  Terms: "PesaGuard legal",
 };
 
 export function RoutePage({

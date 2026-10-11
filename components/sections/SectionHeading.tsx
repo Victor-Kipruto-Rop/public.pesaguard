@@ -33,10 +33,7 @@ export function SectionHeading({
   const heading = (
     <div className={cn("section-heading", variant === "centered" && "section-heading-centered", className)}>
       {eyebrow ? (
-        <p className="eyebrow">
-          {eyebrow}
-          <span aria-hidden="true" className="eyebrow-rule" />
-        </p>
+        <p className="eyebrow">{eyebrow}</p>
       ) : null}
       <Tag id={id}>{title}</Tag>
       {body ? <p>{body}</p> : null}

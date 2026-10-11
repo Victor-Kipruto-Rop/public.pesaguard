@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ContactForm } from "@/components/contact/ContactForm";
+import { docsUrl } from "@/config/docs";
 import { siteConfig } from "@/config/site";
 import type { FeatureBlock } from "@/types/content";
 
@@ -67,12 +68,12 @@ const pageCopy: Record<ContactKind, {
     ],
     note: "Never include passwords, API keys, bearer tokens, OTPs, full phone numbers or unredacted payment/member data. This form opens an email draft; it does not create a ticket.",
     responseTitle: "Keep sensitive data out",
-    responseBody: "If a live issue is involved, check the service status page and share safe request context—not secrets or full customer records.",
+    responseBody: "If a live issue is involved, check the service status page and share safe request context, not secrets or full customer records.",
   },
 };
 
 const resources = [
-  { number: "01", title: "Developer documentation", body: "Authentication, requests, idempotency and error handling.", href: "/documentation", action: "Explore docs" },
+  { number: "01", title: "Developer documentation", body: "Authentication, requests, idempotency and error handling.", href: docsUrl(), action: "Explore docs" },
   { number: "02", title: "Service status", body: "Check the latest available service and backend signals.", href: "/status", action: "View status" },
   { number: "03", title: "Security and scope", body: "Review current controls, maturity and integration boundaries.", href: "/security", action: "Review security" },
 ];

@@ -1,4 +1,5 @@
 import type { PageData } from "@/types/content";
+import { docsUrl } from "@/config/docs";
 
 /**
  * Long-form solution pages. These pages describe customer problems in detail,
@@ -570,7 +571,7 @@ export const solutionDetails: Record<string, PageData> = {
       { question: "What evidence should we require before production?", answer: "Require successful build and automated tests, deployment health, dependency and recovery tests, security review, tenant-isolation evidence, observability, backup/restore validation and an agreed operational support model." },
     ],
     related: [
-      { label: "Developer documentation", href: "/documentation", description: "Review current developer guidance." },
+      { label: "Developer documentation", href: docsUrl(), description: "Review current developer guidance." },
       { label: "API reference", href: "/api", description: "Verify available API contracts." },
       { label: "Webhooks", href: "/integrations/webhooks", description: "Review configured outbound delivery." },
       { label: "M-Pesa / Daraja", href: "/integrations/mpesa", description: "Current inbound provider scope." },
@@ -582,7 +583,7 @@ export const solutionDetails: Record<string, PageData> = {
       title: "Bring the contract your team needs to rely on.",
       body: "Share your event model, API requirements, volume assumptions and operational acceptance criteria. The team can map them to verified current capabilities and identify the gaps before implementation begins.",
       primary: { label: "Discuss a technical integration", href: "/contact/sales", description: "Map requirements to current scope." },
-      secondary: { label: "Read developer docs", href: "/documentation", description: "Review the current integration guidance." },
+      secondary: { label: "Read developer docs", href: docsUrl(), description: "Review the current integration guidance." },
     },
   },
 

@@ -3,10 +3,10 @@ import { pageMetadata } from "@/lib/seo/metadata";
 
 export const metadata = pageMetadata(
   "Terms of use | PesaGuard",
-  "Conditions for visiting the PesaGuard website and evaluating or using the service.",
+  "Public website terms for lawful access, pilot scope, customer responsibilities, product boundaries and legal review.",
   "/terms",
 );
 
 export default function Terms() {
-  return <RoutePage slug="terms" title="Terms for working together." description="The baseline conditions for visiting the PesaGuard website and evaluating or using the service." />;
+  return <RoutePage slug="terms" title="Terms" />;
 }

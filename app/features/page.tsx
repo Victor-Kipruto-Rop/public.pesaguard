@@ -5,7 +5,6 @@ import { PageHero } from "@/components/sections/PageHero";
 import { SectionShell } from "@/components/sections/SectionShell";
 import { SectionHeading } from "@/components/sections/SectionHeading";
 import { FeatureGrid } from "@/components/sections/FeatureGrid";
-import { RelatedLinks } from "@/components/sections/RelatedLinks";
 import { Button } from "@/components/ui/Button";
 import { Reveal } from "@/components/ui/Reveal";
 
@@ -16,6 +15,25 @@ export const metadata = pageMetadata(
 );
 
 const data = pages.features;
+
+const workflow = [
+  {
+    title: "Receive",
+    body: "A payment callback arrives through the configured Safaricom Daraja M-Pesa pilot flow.",
+  },
+  {
+    title: "Compare",
+    body: "The callback is checked against the expected business record using the agreed fields and rules.",
+  },
+  {
+    title: "Review",
+    body: "A match or exception is returned with available context; unresolved differences remain for human review.",
+  },
+  {
+    title: "Account",
+    body: "Teams use the recorded outcome and evidence to follow their own operational and accounting procedures.",
+  },
+];
 
 export default function Features() {
   return (
@@ -28,44 +46,52 @@ export default function Features() {
       />
 
       {data.features?.length ? (
-        <SectionShell tone="sunken">
+        <SectionShell tone="sunken" className="feature-overview-section">
           <Reveal>
             <SectionHeading
-              eyebrow="The toolkit"
-              title="Six controls, one operating rhythm."
-              body="Each control works alone; together they turn raw payment events into accountable outcomes."
+              eyebrow="Core capabilities"
+              title="One clear path from payment event to review."
+              body="These capabilities support the same practical goal: help your team understand what happened to a payment and what needs attention."
             />
-            <FeatureGrid items={data.features} />
+            <FeatureGrid className="feature-overview-grid" items={data.features} />
           </Reveal>
         </SectionShell>
       ) : null}
 
-      {data.sections.map((section) => (
-        <SectionShell key={section.title}>
-          <div className="split split-center">
-            <div>
-              <p className="eyebrow">
-                {section.eyebrow ?? "A focused toolkit"}
-                <span aria-hidden="true" className="eyebrow-rule" />
-              </p>
-              <h2 className="display-3">{section.title}</h2>
-            </div>
-            <p className="large-copy">{section.body}</p>
-          </div>
-        </SectionShell>
-      ))}
+      <SectionShell className="feature-workflow-section">
+        <SectionHeading
+          eyebrow="How the capabilities fit together"
+          title="A straightforward operating rhythm."
+          body="PesaGuard helps teams compare the payment event with the business record, make differences visible, and keep the final decision with an accountable person."
+        />
+        <ol className="feature-overview-flow">
+          {workflow.map((step, index) => (
+            <li key={step.title}>
+              <span>{String(index + 1).padStart(2, "0")}</span>
+              <h3>{step.title}</h3>
+              <p>{step.body}</p>
+            </li>
+          ))}
+        </ol>
+      </SectionShell>
 
-      {data.related?.length ? (
-        <SectionShell tone="sunken" tight>
-          <SectionHeading eyebrow="Keep reading" title="Adjacent pages." />
-          <RelatedLinks links={data.related} />
-        </SectionShell>
-      ) : null}
+      <SectionShell tone="sunken" tight>
+        <div className="feature-scope-note">
+          <div>
+            <p className="eyebrow">Current scope</p>
+            <h2>Safaricom Daraja M-Pesa pilot</h2>
+          </div>
+          <p>
+            Other payment rails and ready-made connectors are not implied. Confirm the callback flow,
+            data source, feature coverage and configuration for your pilot before relying on a capability.
+          </p>
+        </div>
+      </SectionShell>
 
       {data.cta ? (
         <SectionShell>
-          <div className="panel panel-split ring-decoration closing-ring">
-            <div style={{ maxWidth: "46ch", position: "relative" }}>
+          <div className="panel panel-split ring-decoration closing-ring feature-overview-cta">
+            <div style={{ maxWidth: "52ch", position: "relative" }}>
               <p className="eyebrow">{data.cta.eyebrow}</p>
               <h2>{data.cta.title}</h2>
               <p>{data.cta.body}</p>

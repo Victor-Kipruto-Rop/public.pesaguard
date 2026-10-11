@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ArrowRight, ArrowUpRight, Check, Terminal } from "lucide-react";
 import { apiBaseUrl, sampleIdempotencyKey } from "@/content/api-samples";
+import { docsUrl } from "@/config/docs";
 import { highlight } from "@/lib/docs/highlight";
 
 const heroRequest = `curl -X POST "$PESAGUARD_API_URL/api/v1/transactions" \\
@@ -30,7 +31,7 @@ const surface: Surface[] = [
     method: "POST",
     path: "/api/v1/transactions",
     label: "Record a transaction",
-    href: "/documentation/transactions",
+    href: docsUrl("api/"),
     detail: "One idempotent write. The transaction, its event trail and its audit entry are stored together.",
     state: "documented",
   },
@@ -38,7 +39,7 @@ const surface: Surface[] = [
     method: "GET",
     path: "/discrepancies",
     label: "Work the exceptions",
-    href: "/documentation/discrepancies",
+    href: docsUrl("guides/"),
     detail: "Filter by severity and status, watch the SLA fields, then assign, annotate or resolve.",
     state: "documented",
   },
@@ -46,7 +47,7 @@ const surface: Surface[] = [
     method: "GET",
     path: "/public/customers/{tenant_id}/reconciliations",
     label: "Read reconciliation results",
-    href: "/documentation/discrepancies#customer-routes",
+    href: docsUrl("guides/"),
     detail: "A read-only, offset-paged view of a tenant’s outcomes, with a matching reports route.",
     state: "documented",
   },
@@ -54,32 +55,32 @@ const surface: Surface[] = [
     method: "POST",
     path: "/webhooks",
     label: "Register a webhook",
-    href: "/documentation/webhooks",
+    href: docsUrl("webhooks/"),
     detail: "HTTPS-only endpoints with signed payloads and retries. No product event is connected to it yet.",
     state: "unwired",
   },
   {
     path: "X-API-Key",
     label: "Authenticate",
-    href: "/documentation/authentication",
+    href: docsUrl("security/"),
     detail: "Tenant-scoped keys with a role and optional narrower scopes, or a bearer token for signed-in users.",
     state: "documented",
   },
   {
     path: "risk_score, risk_level",
     label: "Fraud assessments",
-    href: "/documentation/fraud",
+    href: docsUrl("concepts/"),
     detail: "A rules engine scores each transaction. Nothing returns those assessments over the API today.",
     state: "internal",
   },
 ];
 
 const conventions: [string, string, string, string][] = [
-  ["Idempotency", "Every write carries an Idempotency-Key. Repeat it and you get duplicate: true, not a second record.", "Read the rules", "/documentation/idempotency"],
-  ["Tenancy", "A credential belongs to one tenant. Naming another tenant in a header or query returns 403.", "How access is scoped", "/documentation/authentication#tenancy"],
-  ["Errors", "Four error shapes exist today, tied to four parts of the surface. Branch on the HTTP status first.", "See each shape", "/documentation/errors"],
-  ["Tracing", "Send X-Correlation-ID and it comes back unchanged. Quote it when you ask for help.", "Tracing a request", "/documentation/errors#tracing"],
-  ["Limits", "Token buckets with Retry-After on a 429. No per-tenant ingestion quota is published.", "Read the limits", "/documentation/rate-limits"],
+  ["Idempotency", "Every write carries an Idempotency-Key. Repeat it and you get duplicate: true, not a second record.", "Read the rules", docsUrl("concepts/")],
+  ["Tenancy", "A credential belongs to one tenant. Naming another tenant in a header or query returns 403.", "How access is scoped", docsUrl("security/")],
+  ["Errors", "Four error shapes exist today, tied to four parts of the surface. Branch on the HTTP status first.", "See each shape", docsUrl("errors/")],
+  ["Tracing", "Send X-Correlation-ID and it comes back unchanged. Quote it when you ask for help.", "Tracing a request", docsUrl("errors/")],
+  ["Limits", "Token buckets with Retry-After on a 429. No per-tenant ingestion quota is published.", "Read the limits", docsUrl("api/")],
 ];
 
 export function ApiPage({ title, intro }: { title: string; intro: string }) {
@@ -97,10 +98,10 @@ export function ApiPage({ title, intro }: { title: string; intro: string }) {
             <h1>{title}</h1>
             <p className="api-intro">{intro}</p>
             <div className="actions">
-              <Link className="button button-primary" href="/documentation/getting-started">
+              <Link className="button button-primary" href={docsUrl("getting-started/quickstart.html")}>
                 Send your first transaction <ArrowRight size={17} />
               </Link>
-              <Link className="button button-api-quiet" href="/documentation">
+              <Link className="button button-api-quiet" href={docsUrl()}>
                 Browse the docs <ArrowUpRight size={16} />
               </Link>
             </div>

@@ -1,2 +1,15 @@
-import { RoutePage } from "@/app/_shared/RoutePage";
-export default function Monitoring(){return <RoutePage slug="features" title="See transaction flows as they change." description="Monitor movement, latency, and exceptions across payment channels from one operational view."/>}
+import TransactionMonitoringPage from "@/components/features/TransactionMonitoringPage";
+import { detailPages } from "@/content/detail";
+import { pageMetadata } from "@/lib/seo/metadata";
+
+const data = detailPages["See transaction flows as they change."];
+
+export const metadata = pageMetadata(
+  "Transaction monitoring | PesaGuard",
+  data.description,
+  "/features/transaction-monitoring",
+);
+
+export default function Monitoring() {
+  return <TransactionMonitoringPage />;
+}

@@ -1,44 +1,26 @@
 import type { HealthProbe } from "@/lib/api/client";
-import { serviceCatalogue, unpublishedIncidentNote } from "@/content/status";
 import type { ServiceRow, StatusSnapshot } from "@/types/status";
 
-/**
- * Turns a health probe into what the status page renders.
- *
- * The marketing site can observe exactly one thing: whether the API answers its
- * health endpoint. Everything else is reported as `unknown` with the reason,
- * because claiming a service is healthy without a signal for it would be a
- * fabrication. `live` is true only when the probe actually reached the API.
- */
 export function buildStatusSnapshot(probe: HealthProbe): StatusSnapshot {
-  const services: ServiceRow[] = serviceCatalogue.map((service) => {
-    if (!service.observedByProbe) {
-      return {
-        name: service.name,
-        state: "unknown",
-        detail: `${service.detail} ${service.unobservedReason}`,
-      };
-    }
-
-    return {
-      name: service.name,
-      state: probe.reachable ? "operational" : "unknown",
-      detail: probe.reachable
-        ? `${service.detail} Answered by ${probe.endpoint} during this request.`
-        : `${service.detail} ${probe.detail}`,
-    };
-  });
+  const services: ServiceRow[] = [{
+    name: "Core API",
+    state: probe.state,
+    detail: "Overall health reported by the Core API's /health endpoint.",
+  }, ...probe.services];
 
   return {
     live: probe.reachable,
-    headline: probe.reachable
-      ? "The API answered its health endpoint just now."
-      : "No live health signal for this deployment.",
-    note: probe.reachable
-      ? unpublishedIncidentNote
-      : `${probe.detail} Values below are reported as unknown rather than assumed.`,
+    state: probe.state,
+    headline: probe.state === "operational"
+      ? "The Core API reports that measured services are operational."
+      : probe.state === "degraded"
+        ? "The Core API reports degraded service health."
+        : probe.state === "outage"
+          ? "The Core API reports a service outage."
+          : "Service health could not be confirmed.",
+    note: `${probe.detail} This feed reflects only checks returned by the Core API; it does not include incident history or uptime calculations.`,
+    endpoint: probe.endpoint,
     checkedAt: probe.checkedAt,
     services,
-    incidents: [],
   };
 }

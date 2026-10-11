@@ -8,23 +8,14 @@ export type ServiceRow = {
   detail: string;
 };
 
-/** A recorded incident. The list is empty until a real incident exists. */
-export type Incident = {
-  id: string;
-  title: string;
-  startedAt: string;
-  resolvedAt?: string;
-  impact: string;
-  summary: string;
-};
-
 /** What the status page renders. */
 export type StatusSnapshot = {
-  /** True when the values came from a live backend health probe. */
+  /** True when the Core API returned an HTTP response for the health request. */
   live: boolean;
+  state: ServiceState;
   headline: string;
   note: string;
+  endpoint: string;
   checkedAt?: string;
   services: ServiceRow[];
-  incidents: Incident[];
 };

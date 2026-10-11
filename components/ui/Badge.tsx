@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils/cn";
 import type { Availability } from "@/types/content";
 import type { ServiceState } from "@/types/status";
 
-type BadgeTone = "live" | "pending" | "planned" | "neutral" | "lime" | "ink";
+type BadgeTone = "live" | "pending" | "planned" | "neutral" | "lime" | "ink" | "danger";
 
 const toneClasses: Record<BadgeTone, string> = {
   live: "badge badge-live",
@@ -13,6 +13,7 @@ const toneClasses: Record<BadgeTone, string> = {
   neutral: "badge badge-neutral",
   lime: "badge badge-lime",
   ink: "badge badge-ink",
+  danger: "badge badge-danger",
 };
 
 /** Small status pill for feature lists, navigation and spec tables. */
@@ -69,7 +70,7 @@ export function AvailabilityBadge({
 const stateTone: Record<ServiceState, BadgeTone> = {
   operational: "live",
   degraded: "pending",
-  outage: "pending",
+  outage: "danger",
   unknown: "neutral",
 };
 

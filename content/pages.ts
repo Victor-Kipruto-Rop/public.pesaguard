@@ -1,53 +1,27 @@
 import type { PageData } from "@/types/content";
+import { docsUrl } from "@/config/docs";
 
 export const pages: Record<string, PageData> = {
   product: {
-    title: "One control plane for payment trust.",
-    description: "Bring transactions, reconciliation, risk, and evidence into one operational view.",
+    title: "A clearer payment operation.",
+    description: "See how PesaGuard compares Safaricom Daraja M-Pesa events with business records, surfaces exceptions and supports accountable review.",
     label: "PesaGuard product",
-    lede: "PesaGuard watches M-Pesa (Safaricom Daraja) transaction flow as it happens, matches callbacks against internal records, and flags mismatches and suspicious patterns before they become disputes or losses.",
+    lede: "Understand how PesaGuard processes payment data, reconciles records, detects discrepancies and supports financial accountability.",
     status: {
       availability: "pilot",
-      label: "MVP live with a pilot customer.",
-      note: "Active payment scope: M-Pesa (Safaricom Daraja).",
+      label: "MVP live with a pilot customer",
+      note: "Safaricom Daraja M-Pesa pilot; production hardening is in progress.",
     },
-    steps: [
-      { step: "01", title: "Connect", body: "Daraja callbacks land as normalized payment events.", detail: "Validated, de-duplicated and tied to a tenant from the first write." },
-      { step: "02", title: "Match", body: "Callbacks are matched against internal records as they arrive.", detail: "Mismatches become exceptions with the evidence your team needs." },
-      { step: "03", title: "Act", body: "Review risk signals, send alerts and keep an audit trail.", detail: "SMS, email and Slack notifications route the right alert to the right owner." },
+    faq: [
+      { question: "What is PesaGuard?", answer: "PesaGuard is a payment reconciliation and exception-review product. It compares payment events with expected business records and helps teams follow up on differences." },
+      { question: "How does reconciliation work?", answer: "The configured workflow validates and compares Daraja events with the business records supplied for the pilot. Matching fields and tolerances are agreed for each flow; unresolved differences are sent for review." },
+      { question: "Which M-Pesa flows are supported?", answer: "Safaricom Daraja M-Pesa is the active pilot scope. PayBill or Buy Goods/Till support depends on merchant eligibility, Daraja access and callback configuration." },
+      { question: "Can PesaGuard identify missing or duplicate transactions?", answer: "The workflow can surface unmatched records and handle repeated provider events. Results depend on source data and the matching configuration." },
+      { question: "Does PesaGuard prevent fraud?", answer: "No. An anomaly is a reason to investigate, not proof of fraud or an automatic payment block. A responsible team reviews the evidence and decides what to do." },
+      { question: "Can it integrate with existing business systems?", answer: "The API and webhook interfaces are documented. Specific POS, accounting, ERP, SACCO or other provider connectors are not implied; confirm a required data path with the team." },
+      { question: "How is transaction data protected?", answer: "Published security information describes authentication, access permissions, tenant separation, encryption and audit controls. Confirm deployment-specific details with the team." },
+      { question: "How do I get started?", answer: "Contact the team to review your Daraja setup, the internal records to compare and the test arrangements for a scoped pilot." },
     ],
-    comparison: [
-      { label: "Payment rail scope", ours: "M-Pesa (Safaricom Daraja) today", others: "Every rail at once, thinly", oursNegative: true },
-      { label: "Reconciliation", ours: "Real-time matching with exceptions", others: "End-of-day spreadsheets" },
-      { label: "Evidence", ours: "Append-only audit trail", others: "Chat threads and memory" },
-    ],
-    sections: [
-      {
-        title: "See the whole payment lifecycle",
-        body: "PesaGuard connects payment rails to the controls your team depends on, so every exception has context and every decision leaves evidence.",
-        items: [
-          "Normalize Daraja callback events into canonical payment records",
-          "Match callbacks against internal records in real time",
-          "Route risk signals and exceptions to the right team",
-        ],
-      },
-      {
-        title: "Built for the work between systems",
-        body: "Give finance, operations, and engineering a shared view of what happened, what needs attention, and what can be trusted.",
-      },
-    ],
-    related: [
-      { label: "How it works", href: "/how-it-works", description: "From Daraja callback to reconciled record." },
-      { label: "Security model", href: "/security", description: "Tenant isolation, access control and audit trail." },
-      { label: "System status", href: "/status", description: "Live health of the services we run." },
-    ],
-    cta: {
-      eyebrow: "Talk to the pilot team",
-      title: "Bring your M-Pesa flow and current reconciliation process.",
-      body: "We will show what real-time matching and evidence-backed exceptions look like on your volume.",
-      primary: { label: "Talk to our team", href: "/contact/sales", description: "Start a pilot conversation." },
-      secondary: { label: "Read the docs", href: "/documentation", description: "Guides for building against PesaGuard." },
-    },
   },
   solutions: {
     title: "Payment operations that fit your world.",
@@ -77,63 +51,89 @@ export const pages: Record<string, PageData> = {
     },
   },
   "how-it-works": {
-    title: "From payment event to trusted record.",
-    description: "A practical data path for payment teams.",
-    lede: "Daraja callbacks become normalized records, matched outcomes and an audit trail your team can investigate.",
-    steps: [
-      { step: "01", title: "Connect", body: "Bring in Daraja callbacks and internal records.", detail: "Signature-checked, idempotent and de-duplicated on write." },
-      { step: "02", title: "Understand", body: "Normalize, validate and match each record.", detail: "Missing, duplicated or contradictory data becomes an exception." },
-      { step: "03", title: "Act", body: "Reconcile, investigate and preserve evidence.", detail: "Alerts, review workflows and an append-only trail." },
-    ],
-    sections: [
-      { title: "Connect", body: "Bring in transaction, settlement, and operational signals through connectors or webhooks." },
-      { title: "Understand", body: "Normalize and validate records, then identify missing, duplicated, or contradictory data." },
-      { title: "Act", body: "Reconcile, investigate risk, notify owners, and preserve the evidence behind each outcome." },
-    ],
-    related: [
-      { label: "Reconciliation", href: "/features/reconciliation", description: "Match callbacks to internal records as they land." },
-      { label: "Transaction monitoring", href: "/features/transaction-monitoring", description: "Watch the M-Pesa flow in real time." },
-      { label: "Documentation", href: "/documentation", description: "Guides for building against PesaGuard." },
-    ],
-    cta: {
-      eyebrow: "See it on your flow",
-      title: "Walk us through a recent mismatch or dispute.",
-      body: "We will show how the callback-to-evidence path would have caught it earlier.",
-      primary: { label: "Talk to our team", href: "/contact/sales", description: "Book a walkthrough." },
+    title: "How payment reconciliation works.",
+    description: "A clear guide to how the Safaricom Daraja M-Pesa pilot receives payment events, compares them with business records and routes differences for human review.",
+    lede: "Follow a payment event from the Daraja callback through validation and matching to a recorded team decision. The active integration is currently in a customer pilot.",
+    status: {
+      availability: "pilot",
+      label: "MVP live with a pilot customer",
+      note: "Active payment scope: Safaricom Daraja M-Pesa.",
     },
+    sections: [],
+    faq: [
+      { question: "What information is compared?", answer: "The agreed workflow can compare available transaction references and amounts, plus any configured timing tolerance. The fields and rules are confirmed for each pilot flow." },
+      { question: "What happens when a payment has no matching record?", answer: "It remains unmatched for the customer team to investigate. The team may need to check whether the expected business record arrived or whether the reference needs clarification." },
+      { question: "Does a flagged transaction mean fraud?", answer: "No. A mismatch or unusual signal is a reason to review available evidence. An authorized customer reviewer decides what action to take." },
+      { question: "Which payment methods does this flow support?", answer: "Safaricom Daraja M-Pesa is the active pilot scope. PayBill and Buy Goods/Till eligibility depends on merchant access and the callback configuration. Other provider connections should not be assumed." },
+      { question: "Does PesaGuard move or hold money?", answer: "No. PesaGuard supports reconciliation and exception review; it does not itself initiate payments or hold customer funds." },
+    ],
   },
   features: {
-    title: "Controls for every critical moment.",
-    description: "The operational building blocks behind reliable payment systems.",
+    title: "Every payment should have a clear record.",
+    description: "See how PesaGuard compares M-Pesa payment callbacks with business records, explains exceptions and supports accountable review.",
+    label: "PesaGuard features",
+    lede: "PesaGuard helps finance and operations teams understand what was received, what it matched, and what still needs a person to review it.",
+    status: {
+      availability: "pilot",
+      label: "MVP live with a pilot customer",
+      note: "Active payment scope: Safaricom Daraja M-Pesa. Feature coverage is confirmed for each pilot workflow.",
+    },
     features: [
-      { iconKey: "reconcile", title: "Reconciliation", body: "Match callbacks to internal records as they land.", href: "/features/reconciliation", linkLabel: "Explore reconciliation" },
-      { iconKey: "monitor", title: "Transaction monitoring", body: "Watch the M-Pesa flow in real time.", href: "/features/transaction-monitoring", linkLabel: "Explore monitoring" },
-      { iconKey: "shield", title: "Fraud detection", body: "Rule-based and statistical anomaly checks.", href: "/features/fraud-detection", linkLabel: "Explore fraud signals" },
-      { iconKey: "alert", title: "Real-time alerts", body: "SMS, email and Slack notifications.", href: "/features/real-time-alerts", linkLabel: "Explore alerts" },
-      { iconKey: "report", title: "Reporting", body: "Operational and reconciliation summaries.", href: "/features/reporting", linkLabel: "Explore reporting" },
-      { iconKey: "audit", title: "Audit trail", body: "Append-only record of decisions and actions.", href: "/features/audit-trail", linkLabel: "Explore audit trail" },
+      { iconKey: "reconcile", title: "Reconciliation", body: "Compare a Safaricom Daraja M-Pesa callback with the expected order, receipt or ledger record. See the result and why it needs attention.", href: "/features/reconciliation", linkLabel: "View reconciliation details" },
+      { iconKey: "monitor", title: "Transaction monitoring", body: "Follow payment events through validation, matching and review. Help teams see pending work and changes in the pilot flow.", href: "/features/transaction-monitoring", linkLabel: "View monitoring details" },
+      { iconKey: "shield", title: "Fraud signals", body: "Surface unusual patterns for investigation. A flag is context for a human reviewer, not a fraud finding or an automatic block.", href: "/features/fraud-detection", linkLabel: "View fraud-signal details" },
+      { iconKey: "alert", title: "Exception alerts", body: "Make an unresolved difference easier to notice and follow up, with the reason and available transaction context.", href: "/features/real-time-alerts", linkLabel: "View alert details" },
+      { iconKey: "report", title: "Reporting", body: "Summarize reconciliation outcomes and open exceptions so finance and operations can review activity over an agreed period.", href: "/features/reporting", linkLabel: "View reporting details" },
+      { iconKey: "audit", title: "Audit trail", body: "Keep the context behind important workflow actions and decisions available for later operational review.", href: "/features/audit-trail", linkLabel: "View audit-trail details" },
+      { iconKey: "data", title: "Data quality", body: "Check incoming payment data for missing or inconsistent information before teams rely on it to explain a result.", href: "/features/data-quality", linkLabel: "View data-quality details" },
     ],
-    sections: [
-      {
-        title: "A focused toolkit",
-        body: "Move from raw events to clear decisions with reconciliation, monitoring, fraud detection, alerting, reporting, audit trails, and data quality controls.",
-        items: ["Reconciliation", "Transaction monitoring", "Fraud detection", "Real-time alerts", "Reporting and audit trail", "Data quality"],
-      },
-    ],
-    related: [
-      { label: "Product overview", href: "/product", description: "What PesaGuard does and where it stands today." },
-      { label: "Pricing", href: "/pricing", description: "How pilot and growth plans are scoped." },
-    ],
+    sections: [],
     cta: {
-      eyebrow: "Start with one control",
-      title: "Pick the exception that costs you the most time.",
-      body: "We will scope reconciliation, monitoring or alerting around it first.",
-      primary: { label: "Talk to our team", href: "/contact/sales", description: "Scope the first control." },
+      eyebrow: "Start with your payment flow",
+      title: "Make the records easier to explain.",
+      body: "Tell us how M-Pesa payments arrive, which business records they should match, and how your team handles exceptions. We will clarify fit and pilot coverage before you integrate.",
+      primary: { label: "Discuss a pilot", href: "/contact/sales", description: "Discuss the current pilot scope." },
     },
   },
   security: {
-    title: "Security is part of the product.",
-    description: "Layered controls for sensitive financial data and the teams that operate it.",
+    title: "Security controls you can review.",
+    description: "Explore PesaGuard's documented security control areas and the deployment-specific evidence customers should verify before use.",
+    lede: "Payment and reconciliation data deserve careful handling. We describe the safeguards the platform is designed around, distinguish them from deployment evidence, and invite customers to review the details relevant to their environment.",
+    status: {
+      availability: "pilot",
+      label: "MVP live with a pilot customer",
+      note: "Production hardening is in progress; deployment controls require review.",
+    },
+    faq: [
+      {
+        question: "Does PesaGuard hold an independent security certification?",
+        answer: "No third-party security certification is currently claimed for PesaGuard. The security materials describe controls and the evidence customers can review directly; they are not a substitute for an independent certification or audit. If an attestation is a procurement requirement, ask whether one is available before sharing production data.",
+      },
+      {
+        question: "How is one customer's data kept separate from another's?",
+        answer: "The documented design scopes tenant-owned resources to the authenticated tenant context and describes tenant separation at the database layer. That describes the intended control, not proof that every route, background job, export or deployment has been verified. For the environment you plan to use, request current cross-tenant test results and review how the boundary is enforced across those paths.",
+      },
+      {
+        question: "Is payment data encrypted, and how are keys handled?",
+        answer: "Published security material describes encrypted traffic between services and encryption for sensitive data at rest. It also states that keys are kept outside application source and rotated, while credentials and keys are excluded from logs and audit entries. Confirm the hosting configuration, key-management responsibilities, rotation process and any customer-specific options for your deployment.",
+      },
+      {
+        question: "What information appears in logs and audit records?",
+        answer: "The documented approach excludes credentials, tokens and keys from logs and audit entries, and describes redacting sensitive fields at logging boundaries. Audit records are intended to help trace actors, tenant context and transaction-related decisions. Ask to review the deployed redaction rules, recorded fields, access to logs and retention period before onboarding.",
+      },
+      {
+        question: "How long is customer data kept, and how can it be deleted?",
+        answer: "The security materials describe retention and archival under a documented policy that considers tenant, legal-hold and residency requirements; they do not specify a single universal retention period here. Confirm the schedule, deletion process, archival behavior and any legal-hold exceptions in the applicable agreement and deployment before sending data.",
+      },
+      {
+        question: "Are backups, recovery and incident response verified?",
+        answer: "This page does not claim a tested backup restoration, recovery-time objective, recovery-point objective or independently verified incident-response capability. Those require operational evidence from the relevant environment. Before production use, request the current backup-and-restore results, recovery responsibilities, escalation path and incident communication process.",
+      },
+      {
+        question: "How are payment callbacks and webhooks protected?",
+        answer: "Published integration material describes signature verification for inbound provider callbacks, and recommends that webhook consumers verify signatures and handle retries or repeated deliveries safely. The exact signature scheme, replay protections and failure behavior depend on the integration contract. Confirm the supported controls for your Daraja pilot flow and test them before go-live.",
+      },
+    ],
     pillars: [
       { index: "01", title: "Encrypt in transit and at rest", body: "Protect sensitive payment and operational data across every hop." },
       { index: "02", title: "Authenticate explicitly", body: "Bearer tokens, scopes and rotation for server-to-server access." },
@@ -173,64 +173,13 @@ export const pages: Record<string, PageData> = {
     related: [
       { label: "M-Pesa", href: "/integrations/mpesa", description: "Daraja callbacks, validated and matched." },
       { label: "Webhooks", href: "/integrations/webhooks", description: "Signed delivery with retries and dead letters." },
-      { label: "Webhook docs", href: "/documentation/webhooks", description: "Signature checks, retries and replay." },
+      { label: "Webhook docs", href: docsUrl("webhooks/"), description: "Signature checks, retries and replay." },
     ],
     cta: {
       eyebrow: "Check your rail",
       title: "Tell us which rails and channels you depend on.",
       body: "We will confirm what is live today and what the path looks like for the rest.",
       primary: { label: "Talk to our team", href: "/contact/sales", description: "Confirm integration scope." },
-    },
-  },
-  pricing: {
-    title: "Pricing that follows your operation.",
-    description: "Start with the controls you need, then grow into deeper visibility as payment volume and complexity increase.",
-    plans: [
-      {
-        name: "Pilot",
-        price: "Scoped per pilot",
-        summary: "For one M-Pesa flow and the team that owns it.",
-        features: ["Real-time Daraja reconciliation", "Exception queue with evidence", "SMS, email and Slack alerts", "Append-only audit trail"],
-        note: "MVP live with a pilot customer. Production hardening in progress.",
-        cta: { label: "Talk to our team", href: "/contact/sales", description: "Scope a pilot." },
-      },
-      {
-        name: "Growth",
-        price: "Talk to us",
-        summary: "For growing volume, more owners and deeper history.",
-        features: ["Everything in Pilot", "Additional flows and environments", "Longer retention and reporting", "Review workflows and roles"],
-        note: "Scoped around payment volume, data sources and retention.",
-        featured: true,
-        cta: { label: "Talk to our team", href: "/contact/sales", description: "Scope growth pricing." },
-      },
-      {
-        name: "Institution",
-        price: "Talk to us",
-        summary: "For audits, controls and multi-team accountability.",
-        features: ["Everything in Growth", "Tenant isolation review", "Compliance evidence pack", "Dedicated support path"],
-        cta: { label: "Contact sales", href: "/contact/sales", description: "Scope institutional pricing." },
-      },
-    ],
-    faq: [
-      { question: "Is there a self-serve plan?", answer: "No. PesaGuard is deployed and scoped with the pilot team so reconciliation matches your flow from day one." },
-      { question: "What drives the price?", answer: "Payment volume, data sources, retention and the workflows your team needs. We scope it in a focused conversation." },
-      { question: "Can we start with one flow?", answer: "Yes. Most pilots start with a single M-Pesa flow, then expand to more owners and history." },
-    ],
-    sections: [
-      {
-        title: "A conversation, not a hidden meter",
-        body: "We scope pricing around payment volume, data sources, retention, and the workflows your team needs. Talk to us for a considered proposal.",
-      },
-    ],
-    related: [
-      { label: "Product overview", href: "/product", description: "What is included in the platform today." },
-      { label: "Contact sales", href: "/contact/sales", description: "Scope pricing around your operation." },
-    ],
-    cta: {
-      eyebrow: "Get a considered proposal",
-      title: "Bring your volume and current reconciliation process.",
-      body: "We will scope a pilot or growth plan around what your team needs first.",
-      primary: { label: "Talk to our team", href: "/contact/sales", description: "Request pricing." },
     },
   },
   about: {

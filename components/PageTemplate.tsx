@@ -1,5 +1,6 @@
 import type { PageData } from "@/types/content";
 import { faqJsonLd } from "@/lib/seo/structured-data";
+import Link from "next/link";
 import { PageHero } from "@/components/sections/PageHero";
 import { AvailabilityBadge } from "@/components/ui/Badge";
 import { SectionShell } from "@/components/sections/SectionShell";
@@ -8,7 +9,6 @@ import { SectionHeading } from "@/components/sections/SectionHeading";
 import { FeatureGrid } from "@/components/sections/FeatureGrid";
 import { CapabilityList } from "@/components/sections/CapabilityList";
 import { StepFlow } from "@/components/sections/StepFlow";
-import { PricingGrid } from "@/components/sections/PricingGrid";
 import { PillarGrid } from "@/components/sections/PillarGrid";
 import { Timeline } from "@/components/sections/Timeline";
 import { ComparisonTable } from "@/components/sections/ComparisonTable";
@@ -18,6 +18,19 @@ import { CtaBand } from "@/components/sections/CtaBand";
 import { StatBand } from "@/components/sections/StatBand";
 import { Reveal } from "@/components/ui/Reveal";
 import { ArrowUpRight, Check } from "lucide-react";
+import { FeatureDetailPage } from "@/components/features/FeatureDetailPage";
+import { DataQualityPage } from "@/components/features/DataQualityPage";
+import { CookiePreferencesButton } from "@/components/layout/CookieConsent";
+
+const legalPages = [
+  { slug: "privacy", label: "Privacy notice" },
+  { slug: "terms", label: "Terms of use" },
+  { slug: "cookies", label: "Cookie notice" },
+];
+
+function legalSectionId(title: string) {
+  return title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+}
 
 /**
  * Shared long-form page renderer.
@@ -31,6 +44,13 @@ import { ArrowUpRight, Check } from "lucide-react";
 export function PageTemplate({ data, slug }: { data: PageData; slug: string }) {
   if (slug === "privacy" || slug === "terms" || slug === "cookies") {
     return <LegalTemplate data={data} slug={slug} />;
+  }
+
+  if (slug === "features") {
+    if (data.label === "Data quality") {
+      return <DataQualityPage data={data} />;
+    }
+    return <FeatureDetailPage data={data} />;
   }
 
   return (
@@ -162,13 +182,6 @@ export function PageTemplate({ data, slug }: { data: PageData; slug: string }) {
         </SectionShell>
       ) : null}
 
-      {data.plans?.length ? (
-        <SectionShell>
-          <SectionHeading eyebrow="Plans" title="Scoped to your operation." />
-          <PricingGrid plans={data.plans} />
-        </SectionShell>
-      ) : null}
-
       {data.timeline?.length ? (
         <SectionShell tone="sunken">
           <div className="split">
@@ -223,17 +236,28 @@ function LegalTemplate({ data, slug }: { data: PageData; slug: string }) {
     <>
       <PageHero
         title={data.title}
-        lede={data.lede ?? data.description}
-        label={data.label ?? "PesaGuard legal"}
-        trail={[{ label: "Home", href: "/" }, { label: data.label ?? data.title, href: `/${slug}` }]}
+        lede={undefined}
+        label={undefined}
+        trail={slug === "privacy" || slug === "terms" || slug === "cookies" ? undefined : [{ label: "Home", href: "/" }, { label: data.label ?? data.title, href: `/${slug}` }]}
+        className="page-hero-legal"
       />
-      <SectionShell>
-        <div className="content-layout">
+      <SectionShell className="legal-document-section">
+        <p className="legal-document-meta">
+          <span>Effective date</span>
+          <time dateTime="2026-10-11">11 October 2026</time>
+          <span>Public website notice · PesaGuard, Nairobi, Kenya</span>
+        </p>
+        <div className="content-layout legal-content-layout">
           <div className="content-main">
             {data.sections.map((section) => (
-              <article className="content-section" id={section.title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "")} key={section.title}>
+              <article
+                aria-labelledby={`${legalSectionId(section.title)}-heading`}
+                className="content-section legal-content-section"
+                id={legalSectionId(section.title)}
+                key={section.title}
+              >
                 <p className="eyebrow">{section.eyebrow ?? slug}</p>
-                <h2>{section.title}</h2>
+                <h2 id={`${legalSectionId(section.title)}-heading`}>{section.title}</h2>
                 <p>{section.body}</p>
                 {section.items ? (
                   <ul className="check-list">
@@ -249,15 +273,39 @@ function LegalTemplate({ data, slug }: { data: PageData; slug: string }) {
               </article>
             ))}
           </div>
-          <aside className="side-note">
-            <p className="toc-title">On this page</p>
-            <nav aria-label="On this page" className="toc">
-              {data.sections.map((section) => (
-                <a href={`#${section.title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "")}`} key={section.title}>
-                  {section.title}
-                </a>
-              ))}
-            </nav>
+          <aside aria-label="Legal page navigation and contact information" className="legal-sidebar">
+            <div>
+              <p className="legal-sidebar-label">PESAGUARD POLICIES</p>
+              <nav aria-label="Legal pages" className="legal-policy-nav">
+                {legalPages.map((page) => (
+                  <Link aria-current={page.slug === slug ? "page" : undefined} href={`/${page.slug}`} key={page.slug}>
+                    {page.label}
+                  </Link>
+                ))}
+              </nav>
+            </div>
+            <div>
+              <p className="legal-sidebar-label">ON THIS PAGE</p>
+              <nav aria-label="On this page" className="toc">
+                {data.sections.map((section) => {
+                  const sectionId = legalSectionId(section.title);
+                  return <a href={`#${sectionId}`} key={section.title}>{section.title}</a>;
+                })}
+              </nav>
+            </div>
+            <div className="legal-contact-card">
+              <p className="legal-sidebar-label">NOTICE CONTACT</p>
+              <strong>Victor Kipruto Rop</strong>
+              <p>Project developer · Data Engineer</p>
+              <address>
+                <a href="mailto:hello@pesaguard.co.ke">hello@pesaguard.co.ke</a>
+                <a href="mailto:hello@victorkipruto.com">hello@victorkipruto.com</a>
+                <a href="tel:+254723484552">+254 723 484 552</a>
+                <span>Nairobi, Kenya</span>
+              </address>
+              <p className="legal-entity-caveat">PesaGuard is the product name shown on this website. The contracting legal entity, if applicable, must be identified in the signed customer agreement.</p>
+            </div>
+            {slug === "cookies" ? <CookiePreferencesButton /> : null}
           </aside>
         </div>
       </SectionShell>

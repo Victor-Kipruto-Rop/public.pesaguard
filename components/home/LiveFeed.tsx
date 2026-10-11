@@ -55,7 +55,7 @@ const initialRows = (): FeedRow[] => {
 /**
  * Live processing board.
  *
- * This is a simulated operational preview — clearly labelled as one — so the
+ * This is a simulated operational preview, clearly labelled as one, so the
  * marketing page can show the rhythm of the product without pretending to be
  * connected to a tenant's production traffic. It pauses when the tab is hidden
  * and stills under prefers-reduced-motion.

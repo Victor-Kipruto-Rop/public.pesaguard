@@ -89,8 +89,6 @@ export type PageData = {
   steps?: StepBlock[];
   /** Honest contrast between PesaGuard and a common alternative. */
   comparison?: ComparisonRow[];
-  /** Commercial plans, rendered on the pricing page. */
-  plans?: PlanBlock[];
   /** Numbered principles, rendered as a pillar grid. */
   pillars?: PillarBlock[];
   sections: PageSection[];
@@ -175,18 +173,6 @@ export type ComparisonRow = {
   others: string;
   /** Set when the PesaGuard column is itself the limitation, e.g. M-Pesa only. */
   oursNegative?: boolean;
-};
-
-/** Commercial plan. `price` stays a string so "From" and "Talk to us" both fit. */
-export type PlanBlock = {
-  name: string;
-  price: string;
-  cadence?: string;
-  summary: string;
-  features: string[];
-  note?: string;
-  featured?: boolean;
-  cta: RelatedLink;
 };
 
 /** Numbered principle or architecture pillar. */

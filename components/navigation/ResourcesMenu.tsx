@@ -1,2 +1,6 @@
 import Link from "next/link";
-export function ResourcesMenu(){return <Link href="/documentation">Resources</Link>}
+import { docsUrl } from "@/config/docs";
+
+export function ResourcesMenu() {
+  return <Link href={docsUrl()}>Resources</Link>;
+}

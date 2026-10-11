@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
+import { CookieConsent } from "@/components/layout/CookieConsent";
 import { StatusStrip } from "@/components/layout/StatusStrip";
 import { organizationJsonLd } from "@/lib/seo/structured-data";
 import { siteConfig } from "@/config/site";
@@ -17,7 +18,10 @@ export const metadata: Metadata = {
   title: { default: "PesaGuard | Trust infrastructure for African payments", template: "%s | PesaGuard" },
   description: siteConfig.description,
   metadataBase: new URL(siteConfig.url),
-  icons: { icon: "/favicon.svg", apple: "/logo/icon.svg" },
+  icons: {
+    icon: [{ url: "/logo/favicon.svg", type: "image/svg+xml" }],
+    apple: "/logo/icon.svg",
+  },
 };
 
 export const viewport: Viewport = {
@@ -34,8 +38,8 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <Navbar />
         <main id="main-content">{children}</main>
         <Footer />
+        <CookieConsent />
       </body>
     </html>
   );
 }
-

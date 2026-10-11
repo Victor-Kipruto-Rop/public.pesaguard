@@ -2,11 +2,11 @@ import { RoutePage } from "@/app/_shared/RoutePage";
 import { pageMetadata } from "@/lib/seo/metadata";
 
 export const metadata = pageMetadata(
-  "Privacy | PesaGuard",
-  "How PesaGuard handles website enquiries, operational information and customer data boundaries.",
+  "Privacy notice | PesaGuard",
+  "How PesaGuard handles website enquiries and configured service data, including data roles, identified infrastructure providers and privacy rights.",
   "/privacy",
 );
 
 export default function Privacy() {
-  return <RoutePage slug="privacy" title="Privacy, stated plainly." description="How PesaGuard handles information entrusted to the website and platform." />;
+  return <RoutePage slug="privacy" title="Privacy" description="How PesaGuard handles your information." />;
 }

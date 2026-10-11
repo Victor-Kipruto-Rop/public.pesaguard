@@ -22,5 +22,15 @@ describe("security headers", () => {
     expect(csp).toContain("object-src 'none'");
     expect(csp).toContain("https://fonts.googleapis.com");
     expect(csp).toContain("https://fonts.gstatic.com");
+    expect(csp).not.toContain("googletagmanager.com");
+  });
+
+  it("allows Google Analytics origins only when an analytics ID is configured", () => {
+    const csp = Object.fromEntries(securityHeaders(true, true).map((header) => [header.key, header.value]))[
+      "Content-Security-Policy"
+    ];
+    expect(csp).toContain("https://www.googletagmanager.com");
+    expect(csp).toContain("https://www.google-analytics.com");
+    expect(csp).toContain("https://region1.google-analytics.com");
   });
 });

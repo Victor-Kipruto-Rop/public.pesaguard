@@ -7,10 +7,10 @@
 
 ## Reference UI inspected
 
-- `frontend/src/pages/auth/AuthPages.tsx` — login, registration, email verification/MFA, password recovery and reset flows; inline validation, touched-field handling, disabled/loading states, six-digit code inputs, accessible notices and focus handling.
-- `frontend/src/styles/auth-pages.css` — auth page surfaces, rounded controls, field focus treatment, error styling and reduced-motion-aware transitions.
-- `frontend/src/styles/globals.css` — shared light palette, Inter typography and forest/mint tokens.
-- `frontend/public/favicon.svg`, `pesaguard-icon.svg`, `pesaguard-logo.svg`, `pesaguard-logo-light.svg`, and `pesaguard-brand-mark.svg` — first-party favicon, icon, logo and brand mark.
+- `frontend/src/pages/auth/AuthPages.tsx`: login, registration, email verification/MFA, password recovery and reset flows; inline validation, touched-field handling, disabled/loading states, six-digit code inputs, accessible notices and focus handling.
+- `frontend/src/styles/auth-pages.css`: auth page surfaces, rounded controls, field focus treatment, error styling and reduced-motion-aware transitions.
+- `frontend/src/styles/globals.css`: shared light palette, Inter typography and forest/mint tokens.
+- `frontend/public/favicon.svg`, `pesaguard-icon.svg`, `pesaguard-logo.svg`, `pesaguard-logo-light.svg`, and `pesaguard-brand-mark.svg`: first-party favicon, icon, logo and brand mark.
 
 ## Findings
 

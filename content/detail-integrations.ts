@@ -1,4 +1,5 @@
 import type { PageData } from "@/types/content";
+import { docsUrl } from "@/config/docs";
 
 /**
  * Integration pages describe the customer outcome, prerequisites and current
@@ -56,7 +57,7 @@ export const integrationDetails: Record<string, PageData> = {
       },
       {
         eyebrow: "Operational expectations",
-        title: "What PesaGuard does — and does not do",
+        title: "What PesaGuard does and does not do",
         body: "PesaGuard supports visibility and reconciliation around M-Pesa events. It does not operate Safaricom’s network, guarantee callback delivery during provider outages, or make a fraud determination solely from an anomaly signal.",
         items: [
           "It helps teams find and explain mismatches; people still decide how to resolve them",
@@ -75,14 +76,14 @@ export const integrationDetails: Record<string, PageData> = {
     related: [
       { label: "Reconciliation", href: "/features/reconciliation", description: "How matching and exceptions are presented." },
       { label: "Webhook delivery", href: "/integrations/webhooks", description: "Send configured events to your systems." },
-      { label: "Documentation", href: "/documentation", description: "Review the current integration guidance." },
+      { label: "Documentation", href: docsUrl(), description: "Review the current integration guidance." },
     ],
     cta: {
       eyebrow: "Pilot fit",
       title: "Confirm your Daraja flow before implementation.",
       body: "Share your PayBill or Till setup, internal record source and exception workflow. The team can confirm the current supported boundary and the steps needed for a pilot.",
       primary: { label: "Discuss an M-Pesa pilot", href: "/contact/sales", description: "Confirm current scope." },
-      secondary: { label: "Read documentation", href: "/documentation", description: "Review available guidance." },
+      secondary: { label: "Read documentation", href: docsUrl(), description: "Review available guidance." },
     },
   },
 
@@ -93,7 +94,7 @@ export const integrationDetails: Record<string, PageData> = {
     lede: "The intended goal is to help teams reconcile Airtel Money collections against their own invoices, receipts or ledger records using a consistent operational workflow. PesaGuard does not currently have an Airtel Money adapter, so Airtel transactions cannot be connected, imported or reconciled through this integration today.",
     status: {
       availability: "not-started",
-      label: "Under development planning — not available today.",
+      label: "Under development planning: not available today.",
       note: "No production connector, customer setup flow or delivery date is being promised.",
     },
     spec: [
@@ -105,17 +106,17 @@ export const integrationDetails: Record<string, PageData> = {
     capabilities: [
       {
         index: "01",
-        title: "Provider event intake — planned",
+        title: "Provider event intake - planned",
         body: "A future connector would need an approved Airtel developer application, the relevant country and product API permissions, environment configuration and a supported way to receive or retrieve transaction events. No Airtel endpoint is currently wired into PesaGuard.",
       },
       {
         index: "02",
-        title: "Normalize payment records — planned",
+        title: "Normalize payment records - planned",
         body: "The design goal is to map provider references, amounts, currency, timestamps, status and merchant identifiers into a common record shape while retaining provider-specific evidence. Field mapping and supported event types have not yet been validated against a live adapter.",
       },
       {
         index: "03",
-        title: "Reconcile and investigate — planned",
+        title: "Reconcile and investigate - planned",
         body: "If implemented and tested, normalized Airtel records could be compared with internal sales, invoice or ledger records, with unmatched or contradictory items presented for human review. This workflow is a target, not a capability customers can use today.",
       },
     ],
@@ -181,7 +182,7 @@ export const integrationDetails: Record<string, PageData> = {
     lede: "The intended goal is to compare bank credits, transfers and settlement records with the payments or sales they should represent. PesaGuard does not currently import bank statements, connect to bank APIs or ingest bank settlement files, so bank reconciliation is not available through this integration today.",
     status: {
       availability: "not-started",
-      label: "Under development planning — not available today.",
+      label: "Under development planning: not available today.",
       note: "No bank connection, file-import workflow or launch date is promised.",
     },
     spec: [
@@ -193,17 +194,17 @@ export const integrationDetails: Record<string, PageData> = {
     capabilities: [
       {
         index: "01",
-        title: "Bring in bank records — planned",
+        title: "Bring in bank records - planned",
         body: "A future version may support agreed statement files or specific bank APIs. The actual formats, connection methods, supported institutions and frequency would be selected and verified per use case; no bank coverage is currently available.",
       },
       {
         index: "02",
-        title: "Map credits and settlement references — planned",
+        title: "Map credits and settlement references - planned",
         body: "The target is to preserve bank references, value dates, posting dates, amounts, fees and transaction descriptions where supplied, then map them to a normalized record without losing the source evidence. Exact fields depend on the selected bank and statement format.",
       },
       {
         index: "03",
-        title: "Explain differences — planned",
+        title: "Explain differences - planned",
         body: "A future reconciliation workflow could identify missing credits, amount differences, duplicate entries, fees or timing differences against internal records. These are intended use cases, not implemented bank features.",
       },
     ],
@@ -269,7 +270,7 @@ export const integrationDetails: Record<string, PageData> = {
     lede: "The intended goal is to connect till or terminal sales with payment and settlement records so merchants can explain differences between what the POS recorded, what a provider reported and what reached the bank. PesaGuard does not currently ingest POS transactions, terminal feeds or acquirer settlement files.",
     status: {
       availability: "not-started",
-      label: "Under development planning — not available today.",
+      label: "Under development planning: not available today.",
       note: "No POS vendor, acquirer or terminal integration is currently supported.",
     },
     spec: [
@@ -281,17 +282,17 @@ export const integrationDetails: Record<string, PageData> = {
     capabilities: [
       {
         index: "01",
-        title: "Capture sales and payment references — planned",
+        title: "Capture sales and payment references - planned",
         body: "A future adapter would need to obtain transaction identifiers, terminal or store references, amounts, timestamps, tender type and status from a supported POS or payment acquirer. The vendors and fields supported have not been selected or verified.",
       },
       {
         index: "02",
-        title: "Compare POS, provider and settlement records — planned",
+        title: "Compare POS, provider and settlement records - planned",
         body: "The intended workflow is to compare a sale or till receipt with the corresponding payment event and settlement entry when those records are available. This could surface missing payments, duplicates, amount differences, voids and refund mismatches for review.",
       },
       {
         index: "03",
-        title: "Keep branch-level accountability — planned",
+        title: "Keep branch-level accountability - planned",
         body: "If implemented, store, till, terminal and operator context could help finance teams trace a difference to the right location or workflow. Such fields depend on the selected POS vendor and must not be assumed to exist in every feed.",
       },
     ],
@@ -380,7 +381,7 @@ export const integrationDetails: Record<string, PageData> = {
       { question: "What happens when a consumer stays down?", answer: "Deliveries retry on a bounded schedule, then move to the dead-letter path for inspection and replay once the consumer recovers." },
     ],
     related: [
-      { label: "Webhook docs", href: "/documentation/webhooks", description: "Signature checks, retries and replay." },
+      { label: "Webhook docs", href: docsUrl("webhooks/"), description: "Signature checks, retries and replay." },
       { label: "Real-time alerts", href: "/features/real-time-alerts", description: "What delivery carries." },
       { label: "M-Pesa", href: "/integrations/mpesa", description: "Inbound events, matched live." },
     ],
@@ -389,7 +390,7 @@ export const integrationDetails: Record<string, PageData> = {
       title: "Point a staging endpoint at the pilot.",
       body: "We will show signed delivery, a retry, and where the dead letter lands.",
       primary: { label: "Talk to our team", href: "/contact/sales", description: "Scope webhook delivery." },
-      secondary: { label: "Webhook docs", href: "/documentation/webhooks", description: "Verify the contract." },
+      secondary: { label: "Webhook docs", href: docsUrl("webhooks/"), description: "Verify the contract." },
     },
   },
 };

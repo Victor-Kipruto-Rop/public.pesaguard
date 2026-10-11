@@ -1,4 +1,5 @@
 ﻿import type { PageData } from "@/types/content";
+import { docsUrl } from "@/config/docs";
 
 /**
  * Per-detail-page content.
@@ -75,70 +76,85 @@ export const detailPages: Record<string, PageData> = {
       title: "Bring an exception your team could not explain.",
       body: "We will show how the evidence, the decision and the operator are captured around it.",
       primary: { label: "Talk to our team", href: "/contact/sales", description: "Walk through the audit trail." },
-      secondary: { label: "Read the docs", href: "/documentation", description: "How the platform is built." },
+      secondary: { label: "Read the docs", href: docsUrl(), description: "How the platform is built." },
     },
   },
 
   "Trust the data before you act.": {
     title: "Trust the data before you act.",
-    description: "Validation that rejects bad records loudly instead of absorbing them.",
+    description: "Understand the checks applied to incoming payment records, what a failure means and where human review remains essential.",
     label: "Data quality",
-    lede: "Bad payment data is worse than missing payment data, because it looks authoritative. Records are validated and normalized before anything downstream trusts them.",
+    lede: "A payment record can look complete and still be unusable. PesaGuard applies explicit checks to incoming data, returns a pass or failure with reasons, and—when the provenance workflow is configured to do so—quarantines failed records instead of treating them as clean input.",
+    status: {
+      availability: "pilot",
+      label: "Data-quality controls are part of the platform MVP.",
+      note: "Confirm the validation and quarantine path for your Safaricom Daraja M-Pesa pilot environment.",
+    },
     spec: [
-      { label: "Checked on arrival", value: "Schema · currency · amount · reference" },
-      { label: "On failure", value: "Quarantined with the reason" },
-      { label: "On success", value: "Normalized to one canonical shape" },
-      { label: "Silent drops", value: "Never" },
+      { label: "Rule set", value: "7 explicit input checks" },
+      { label: "Result", value: "Pass or fail, with rule reasons" },
+      { label: "Failure handling", value: "Quarantine when configured" },
+      { label: "Public payment scope", value: "Safaricom Daraja M-Pesa pilot" },
     ],
     capabilities: [
       {
         index: "01",
-        title: "Validation before trust",
-        body: "Provider payloads are checked against explicit rules so malformed events cannot reach matching or reporting.",
-        items: ["Required fields enforced", "Currency and amount sanity checks", "Reference format validated"],
+        title: "Check required identifiers",
+        body: "A record needs a transaction identifier and tenant identifier so it can be associated with a payment and its account context.",
+        items: ["Transaction ID must be present", "Tenant ID must be present"],
       },
       {
         index: "02",
-        title: "Invalid records stay visible",
-        body: "A rejected record is quarantined with its reason attached. It is not discarded and it is not silently converted into a plausible-looking success.",
+        title: "Reject unusable transaction values",
+        body: "The current rules check that an amount can be read as a number and is greater than zero, that the currency is in the accepted set, and that the provider label is recognized.",
+        items: ["Numeric amount greater than zero", "Currency accepted by the rule set: KES or USD", "Provider label from the recognized set"],
       },
       {
         index: "03",
-        title: "One canonical shape",
-        body: "Normalization means downstream logic sees a single consistent structure regardless of which provider emitted the event.",
+        title: "Require reference and schema context",
+        body: "A payment reference and a declared schema version help the processing path interpret a record against its expected shape.",
+        items: ["Reference must be present", "Schema version must be present"],
       },
     ],
     sections: [
       {
-        title: "Quality you can inspect",
-        body: "Data quality is reported rather than assumed. When records are rejected, the count and the reason are visible, so a spike is investigated instead of explained away.",
+        title: "What a pass or failure tells your team",
+        body: "A pass means this record met the listed rules. A failure includes the failed rule and reason; in the configured provenance workflow, that record can be quarantined with its failure context for follow-up. These checks do not prove that funds settled, that the source values are factually correct, or that a reference belongs to the right business transaction.",
         items: [
-          "Rejected-record counts with reasons",
-          "Per-source completeness signals",
-          "Duplicate detection on write",
+          "Failing rule and reason are retained with the quality result.",
+          "The provenance flow can quarantine failed records instead of accepting them.",
+          "A pass is not a fraud assessment, settlement confirmation or accuracy guarantee.",
+          "Duplicate prevention is handled by idempotency controls, not by these seven field checks.",
         ],
       },
     ],
     faq: [
       {
-        question: "What happens to a malformed callback?",
-        answer: "It is quarantined with the validation reason attached and surfaced for review. It is never silently dropped or coerced into a passing record.",
+        question: "Which fields are checked?",
+        answer: "The current rule set checks that transaction ID, tenant ID, payment reference and schema version are present; amount is numeric and greater than zero; currency is KES or USD; and the provider label belongs to the recognized set. The exact active path and payload must be confirmed for your pilot.",
       },
       {
-        question: "Are duplicates treated as bad data?",
-        answer: "Duplicates are rejected on write by database-level idempotency, so a provider retry cannot create a second financial record.",
+        question: "What happens when a record fails?",
+        answer: "The quality result includes the failed rule and its reason. When the provenance workflow is configured with quarantine enabled, the record is stored as quarantined with its failure context rather than accepted as clean input. Confirm this behavior in the environment and integration path you plan to use.",
+      },
+      {
+        question: "Does a passing check prove the payment is correct?",
+        answer: "No. It means only that the record satisfied these explicit checks. It does not prove settlement, fraud status, the factual accuracy of source data, or that the payment belongs to the intended order or customer.",
+      },
+      {
+        question: "Does this feature detect every duplicate?",
+        answer: "No. Duplicate-delivery protection is handled separately by idempotency controls. These data-quality rules do not claim to detect every duplicate business record or repeated provider event.",
+      },
+      {
+        question: "Does a recognized provider label mean that provider is connected?",
+        answer: "No. A provider label accepted by a validation rule is not evidence that an integration adapter is available. The active public payment scope is Safaricom Daraja M-Pesa in a customer pilot; confirm the actual callback configuration and enabled controls.",
       },
     ],
-    related: [
-      { label: "Audit trail", href: "/features/audit-trail", description: "Evidence behind each decision." },
-      { label: "Transaction monitoring", href: "/features/transaction-monitoring", description: "Watch the flow as it changes." },
-      { label: "Reconciliation", href: "/features/reconciliation", description: "Matching built on clean input." },
-    ],
     cta: {
-      eyebrow: "Test the input",
-      title: "Send us a week of real callback payloads.",
-      body: "We will show exactly which records validate, which are quarantined, and why.",
-      primary: { label: "Talk to our team", href: "/contact/sales", description: "Review data quality on your traffic." },
+      eyebrow: "Review your payment data",
+      title: "Know what your records can—and cannot—tell you.",
+      body: "Walk through a representative Daraja callback, the business context you need to preserve, and how failed checks should be handled in your pilot.",
+      primary: { label: "Discuss your data flow", href: "/contact/sales", description: "Review validation scope and failure handling." },
     },
   },
 
@@ -268,64 +284,97 @@ export const detailPages: Record<string, PageData> = {
     },
   },
 
-  "Reconciliation with the full picture.": {
-    title: "Reconciliation with the full picture.",
-    description: "Match provider events to internal records while preserving the reason behind every outcome.",
+  "Reconciliation you can explain.": {
+    title: "Reconciliation you can explain.",
+    description: "See how PesaGuard compares Safaricom Daraja payment callbacks with expected business records and explains each outcome.",
     label: "Reconciliation",
-    lede: "Every provider event is paired with the internal record it belongs to, and each pairing keeps the evidence that produced it. Differences become exceptions, not silence.",
+    lede: "PesaGuard compares a provider callback with the expected business record using agreed reference, amount and timing rules. Each result distinguishes a match from a difference and carries the rules that explain why it was returned.",
     status: {
       availability: "pilot",
-      label: "Live for M-Pesa (Safaricom Daraja).",
-      note: "Matching runs on Daraja callbacks in the pilot deployment.",
+      label: "Pilot scope: Safaricom Daraja M-Pesa.",
+      note: "Confirm the callback flow, source records and active matching settings for your pilot.",
     },
     spec: [
-      { label: "Match keys", value: "Amount · reference · timestamp tolerance" },
-      { label: "When", value: "As callbacks arrive" },
-      { label: "On difference", value: "Exception with reason attached" },
-      { label: "Replay safety", value: "Idempotent by write" },
+      { label: "Compared records", value: "Daraja callback + expected business record" },
+      { label: "Matching inputs", value: "Reference · amount · time · optional phone" },
+      { label: "Engine defaults", value: "0.5% (min 0.01) · 900 seconds" },
+      { label: "Possible outcomes", value: "7 explicit reconciliation statuses" },
     ],
     steps: [
-      { step: "01", title: "Receive", body: "A Daraja callback is validated, de-duplicated and normalised.", detail: "A retry of the same event does not create a second record." },
-      { step: "02", title: "Match", body: "The event is compared against internal records on the configured keys.", detail: "Amount, reference and a timestamp tolerance are evaluated together." },
-      { step: "03", title: "Decide", body: "Matched records keep their evidence; differences queue as exceptions.", detail: "Each exception carries the reason it was raised." },
+      { step: "01", title: "Receive an in-scope callback", body: "An eligible Safaricom Daraja M-Pesa callback enters the configured pilot flow.", detail: "PesaGuard observes payment data; it does not initiate or hold the payment." },
+      { step: "02", title: "Validate and normalize", body: "The engine prepares both callback values and expected records for comparison.", detail: "Unusable data, a missing transaction ID or a refund without its original reference returns an EXCEPTION with a reason." },
+      { step: "03", title: "Find possible records", body: "The callback is compared with expected business records supplied through the agreed data path.", detail: "If no suitable record is available, the engine does not invent a match." },
+      { step: "04", title: "Apply matching rules", body: "Reference, amount and event time are evaluated using the configured flow settings; phone is also checked when both records provide it.", detail: "The engine checks repeated transaction IDs and ambiguous references rather than silently choosing a duplicate." },
+      { step: "05", title: "Return an explained result", body: "The outcome includes its status, the matching rules that led to it, a match score, timestamp and candidate evidence where available.", detail: "The result describes a comparison; it is not a settlement confirmation or fraud verdict." },
+      { step: "06", title: "Review unresolved differences", body: "A finance or operations owner investigates outcomes that need follow-up using the source records and reason returned.", detail: "The customer team remains responsible for approvals, corrections and final accounting decisions." },
     ],
     capabilities: [
       {
         index: "01",
-        title: "Deterministic rules",
-        body: "The same inputs produce the same outcome, so a reconciliation result can be explained and reproduced months later.",
+        title: "Explainable matching",
+        body: "Results carry named matching rules and the candidate record, when one is identified, so a reviewer can see why the engine reached that outcome.",
       },
       {
         index: "02",
-        title: "Differences are first-class",
-        body: "An amount that disagrees with the ledger is not smoothed over. It becomes an exception with the difference stated explicitly.",
-        items: ["Amount mismatch with the delta shown", "Reference not found", "Outside timestamp tolerance"],
+        title: "Distinct outcomes",
+        body: "Exact matches, incomplete matches, conflicting data and invalid input are represented separately rather than collapsed into one generic failure.",
+        items: ["Matched or pending", "Partial, mismatch or unmatched", "Duplicate or exception"],
       },
       {
         index: "03",
-        title: "Safe to re-run",
-        body: "Reprocessing is expected, not feared. Idempotency is enforced where writes happen, so a replay cannot double-count a payment.",
+        title: "Duplicate-aware processing",
+        body: "The engine can identify a previously seen transaction ID or multiple internal records with the same reference and return a duplicate outcome for review.",
+      },
+      {
+        index: "04",
+        title: "Stable candidate selection",
+        body: "When multiple candidates have equal match scores, a stable secondary key breaks the tie so reordering the same records does not change the selected candidate.",
       },
     ],
     sections: [
       {
-        title: "What happens to an exception",
-        body: "Exceptions queue for review with the transaction, the provider event and the reason it was raised. A reviewer resolves it and the decision is recorded, which is what keeps month-end from becoming archaeology.",
+        eyebrow: "Configuration and boundaries",
+        title: "Matching depends on the records and rules you agree.",
+        body: "The reconciliation engine has defaults of 0.5% amount tolerance and a 900-second time window. A flow can be configured differently; these defaults are not a promise about the active pilot configuration. Confirm the expected-record source, fields, tolerance, time zone handling and exception owner before evaluating results.",
         items: [
-          "Queue ordered by severity and age",
-          "Resolution captured with a reason",
-          "Outcome written to the append-only trail",
+          "The active public product scope is the Safaricom Daraja M-Pesa pilot.",
+          "Airtel Money, bank statements and POS feeds are not represented as connected reconciliation sources.",
+          "PesaGuard supports reconciliation and review; it does not move funds or replace the customer's ledger.",
         ],
       },
     ],
     faq: [
       {
-        question: "Which rails are reconciled today?",
-        answer: "M-Pesa via Safaricom Daraja is the active, tested scope. Airtel Money, bank rails and point-of-sale feeds have no adapter yet and are listed as planned.",
+        question: "What does reconciliation mean in PesaGuard?",
+        answer: "It means comparing a payment event received through the supported Daraja M-Pesa pilot with an expected business record supplied through the agreed data path. PesaGuard returns a status and the matching rules that explain the comparison. It does not initiate or settle the payment.",
       },
       {
-        question: "What tolerance is used for timestamps?",
-        answer: "A bounded tolerance is configured per flow, because provider and ledger timestamps rarely agree to the second. It is a setting, not a hidden constant.",
+        question: "Which payment sources are in scope?",
+        answer: "Safaricom Daraja M-Pesa is the active pilot scope. Airtel Money, bank statement imports and point-of-sale feeds are not represented as connected reconciliation sources. Confirm merchant eligibility and the callback configuration for the specific pilot.",
+      },
+      {
+        question: "Which business records does PesaGuard compare against?",
+        answer: "PesaGuard needs the expected order, receipt, ledger or other business record that represents the payment. The source and delivery method must be agreed for the pilot; this page does not claim a ready-made connector for every accounting, ERP, POS or SACCO system.",
+      },
+      {
+        question: "What do the reconciliation statuses mean?",
+        answer: "MATCHED means the reference, amount and time rules align; phone is also compared when both records provide it. PENDING means the candidate internal record is marked pending. PARTIAL identifies a candidate that only meets some or tolerance-based rules. MISMATCH means relevant comparison fields do not align. UNMATCHED means no eligible candidate was found. DUPLICATE identifies a repeated transaction ID or ambiguous reference. EXCEPTION means the callback or an expected record could not be evaluated, such as invalid required data or a refund/reversal without an original reference.",
+      },
+      {
+        question: "What amount tolerance and time window are used?",
+        answer: "The engine defaults are 0.5% of the callback amount with a minimum tolerance of 0.01, and a 900-second (15-minute) time window. Flow or tenant configuration can override these values. Confirm the actual settings, time-zone handling and comparison fields for your pilot before interpreting a result.",
+      },
+      {
+        question: "Does MATCHED confirm settlement or prove a payment is safe?",
+        answer: "No. MATCHED means the available callback and expected business record met the configured comparison rules. It is not confirmation that funds settled, a guarantee of accounting correctness, or a fraud assessment. Your organization remains responsible for settlement checks and financial decisions.",
+      },
+      {
+        question: "Does a mismatch or duplicate mean fraud?",
+        answer: "No. These statuses identify data that differs, repeats or needs investigation. Timing delays, incorrect references, repeated delivery, duplicate source records or incomplete data can all require review. A status is a review signal, not proof of fraud or misconduct.",
+      },
+      {
+        question: "Can PesaGuard hold or move customer money?",
+        answer: "No. Reconciliation compares transaction information and supports exception review. It does not initiate, receive, hold, transfer or settle funds.",
       },
     ],
     related: [
@@ -334,11 +383,11 @@ export const detailPages: Record<string, PageData> = {
       { label: "How it works", href: "/how-it-works", description: "The pipeline end to end." },
     ],
     cta: {
-      eyebrow: "Reconcile a real day",
-      title: "Bring one day of M-Pesa callbacks and your ledger.",
-      body: "We will show the matches, the exceptions and the reasons behind each one.",
-      primary: { label: "Talk to our team", href: "/contact/sales", description: "Run a reconciliation review." },
-      secondary: { label: "Read the docs", href: "/documentation/reconciliation", description: "How matching is configured." },
+      eyebrow: "Scope a reconciliation pilot",
+      title: "Start with the callback and the record you need to match.",
+      body: "Review your Daraja setup, expected business records, matching fields and exception owners with the PesaGuard team.",
+      primary: { label: "Discuss your flow", href: "/contact/sales", description: "Scope a reconciliation pilot." },
+      secondary: { label: "Read the matching guide", href: docsUrl("guides/"), description: "Review engine outcomes and matching rules." },
     },
   },
 
@@ -406,70 +455,71 @@ export const detailPages: Record<string, PageData> = {
   },
 
   "See transaction flows as they change.": {
-    title: "See transaction flows as they change.",
-    description: "One surface for payment flow, exceptions and channel behaviour.",
+    title: "Know where each payment is in the process.",
+    description: "Follow transaction lifecycle states, understand processing exceptions, and distinguish status monitoring from reconciliation and settlement.",
     label: "Transaction monitoring",
-    lede: "Problems are cheapest to fix while they are still a pattern. Monitoring keeps the current state of the payment flow visible instead of reconstructing it after the fact.",
+    lede: "Follow a payment transaction through its recorded processing states—from receipt and validation to processing, reconciliation and completion. Understand the exceptions that can interrupt that path and what a status can—and cannot—tell your team.",
     status: {
       availability: "pilot",
-      label: "Monitoring M-Pesa flow today.",
-      note: "Other channels appear as planned until an adapter exists.",
+      label: "Transaction monitoring is within the PesaGuard MVP pilot.",
+      note: "Active public payment scope: Safaricom Daraja M-Pesa. Confirm status visibility for your configured flow.",
     },
     spec: [
-      { label: "Source", value: "M-Pesa (Safaricom Daraja) callbacks" },
-      { label: "View", value: "Flow, volume, exceptions, state changes" },
-      { label: "Cadence", value: "As events arrive" },
-      { label: "Scope", value: "Enforced per tenant" },
+      { label: "Payment source", value: "Safaricom Daraja M-Pesa pilot" },
+      { label: "Monitoring focus", value: "Reported processing status" },
+      { label: "Use", value: "Operational follow-up" },
+      { label: "Decision owner", value: "Customer team" },
     ],
     capabilities: [
       {
         index: "01",
-        title: "Current state, not last week",
-        body: "Transactions are visible as they move through validation, matching and review, so a stall is noticed rather than discovered.",
-        items: ["Per-transaction state", "In-flight and pending volume", "Exception rate by channel"],
+        title: "Follow reported processing status",
+        body: "See the status information returned for a transaction in the configured processing flow. A status helps explain what the system recorded; it is not proof of settlement.",
       },
       {
         index: "02",
-        title: "Channel coverage is labelled",
-        body: "M-Pesa is marked live. Airtel Money, bank rails and point-of-sale are marked planned, so a dashboard never implies coverage that does not exist.",
+        title: "Bring exceptions into view",
+        body: "Use an outcome that needs attention as a prompt to review the payment event and available business context. A signal does not decide the cause or the customer action.",
       },
       {
         index: "03",
-        title: "Operational signals",
-        body: "Volume, processing latency and failure counts are first-class operational signals rather than log lines found later.",
+        title: "Keep the payment boundary clear",
+        body: "Monitoring observes transaction information handled by the configured workflow. PesaGuard does not initiate, hold, transfer or settle customer funds.",
       },
     ],
-    sections: [
-      {
-        title: "Built to be watched",
-        body: "Monitoring is designed for the person on duty. Filters follow the questions they actually ask: what is pending, what failed, what needs a decision, and what changed since the last shift.",
-        items: [
-          "Filter by state, channel and time",
-          "Exception queue alongside live flow",
-          "Drill down from a count to the transaction",
-        ],
-      },
+    steps: [
+      { step: "01", title: "Receive an in-scope event", body: "A configured Safaricom Daraja M-Pesa callback enters the pilot processing path." },
+      { step: "02", title: "Follow its reported state", body: "Follow the recorded progression through RECEIVED, VALIDATED, PROCESSING, RECONCILING and RECONCILED. FAILED and REJECTED are separate outcomes that need review, not assumptions of success." },
+      { step: "03", title: "Investigate with context", body: "Use the status and available transaction information to decide what to check next. Follow-up remains with the customer team." },
     ],
+    sections: [],
     faq: [
       {
-        question: "Which channels can be monitored today?",
-        answer: "M-Pesa via Safaricom Daraja. Airtel Money, bank rails and point-of-sale are named on the roadmap with no adapter yet, and the interface labels them as planned.",
+        question: "Which payment source is in scope?",
+        answer: "The active public payment scope is Safaricom Daraja M-Pesa in a customer pilot. Do not assume Airtel Money, bank statements or POS feeds are connected. Confirm the specific callback flow and enabled status reporting for your pilot.",
       },
       {
-        question: "Is monitoring real time?",
-        answer: "Transactions are reflected as their events are processed. It is not a nightly batch view of yesterday.",
+        question: "Does a transaction status confirm that funds settled?",
+        answer: "No. A status does not confirm settlement; it describes processing information recorded by the configured workflow. Verify settlement through the appropriate provider or financial records and your organization's process.",
+      },
+      {
+        question: "Does monitoring identify fraud or the cause of an exception?",
+        answer: "No. A status or exception can help your team decide what to investigate, but it does not prove fraud, explain every delay, or make an operational decision on your behalf.",
+      },
+      {
+        question: "Does this mean there is an always-on dashboard or latency guarantee?",
+        answer: "No. This page describes the monitoring purpose and the status information available through configured transaction flows. It does not claim an always-on live dashboard, particular refresh intervals, volume coverage or processing-latency guarantees.",
+      },
+      {
+        question: "Who is responsible for the next action?",
+        answer: "Your finance or operations team remains responsible for investigating available evidence and deciding what to do. Confirm monitoring access, ownership and escalation steps as part of the pilot setup.",
       },
     ],
-    related: [
-      { label: "Real-time alerts", href: "/features/real-time-alerts", description: "When monitoring needs a human." },
-      { label: "Fraud detection", href: "/features/fraud-detection", description: "Signals read from the flow." },
-      { label: "System status", href: "/status", description: "Health of the services themselves." },
-    ],
     cta: {
-      eyebrow: "Watch your flow",
-      title: "Walk us through your busiest hour.",
-      body: "We will show what your team would see on the monitoring surface during it.",
-      primary: { label: "Talk to our team", href: "/contact/sales", description: "Review monitoring scope." },
+      eyebrow: "Scope your monitoring workflow",
+      title: "Make payment status easier to interpret.",
+      body: "Review your Daraja callback flow, the status information your team needs, and who owns follow-up when an event needs attention.",
+      primary: { label: "Discuss your payment flow", href: "/contact/sales", description: "Review transaction monitoring scope." },
     },
   },
 
@@ -537,7 +587,7 @@ export const detailPages: Record<string, PageData> = {
       title: "Bring your shortcode and callback volume.",
       body: "We will scope validation, matching and exception handling around it.",
       primary: { label: "Talk to our team", href: "/contact/sales", description: "Scope the M-Pesa integration." },
-      secondary: { label: "M-Pesa docs", href: "/documentation/transactions", description: "Transaction endpoints and shapes." },
+      secondary: { label: "M-Pesa docs", href: docsUrl("api/"), description: "Transaction endpoints and shapes." },
     },
   },
 
@@ -783,7 +833,7 @@ export const detailPages: Record<string, PageData> = {
       },
     ],
     related: [
-      { label: "Webhook docs", href: "/documentation/webhooks", description: "Signature checks, retries and replay." },
+      { label: "Webhook docs", href: docsUrl("webhooks/"), description: "Signature checks, retries and replay." },
       { label: "Real-time alerts", href: "/features/real-time-alerts", description: "What delivery carries." },
       { label: "M-Pesa", href: "/integrations/mpesa", description: "Inbound events, matched live." },
     ],
@@ -792,7 +842,7 @@ export const detailPages: Record<string, PageData> = {
       title: "Point a staging endpoint at the pilot.",
       body: "We will show signed delivery, a retry, and where the dead letter lands.",
       primary: { label: "Talk to our team", href: "/contact/sales", description: "Scope webhook delivery." },
-      secondary: { label: "Webhook docs", href: "/documentation/webhooks", description: "Verify the contract." },
+      secondary: { label: "Webhook docs", href: docsUrl("webhooks/"), description: "Verify the contract." },
     },
   },
 };

@@ -27,6 +27,7 @@ export function PageHero({
   children,
   tone = "paper",
   id,
+  className,
 }: {
   title: string;
   lede?: string;
@@ -39,16 +40,14 @@ export function PageHero({
   children?: ReactNode;
   tone?: "paper" | "ink";
   id?: string;
+  className?: string;
 }) {
   return (
-    <section className={cn("page-hero", tone === "ink" && "page-hero-ink on-dark")}>
+    <section className={cn("page-hero", tone === "ink" && "page-hero-ink on-dark", className)}>
       <div className="container page-hero-inner">
         {trail?.length ? <Breadcrumbs trail={trail} /> : null}
         {label ? (
-          <p className="eyebrow">
-            {label}
-            <span aria-hidden="true" className="eyebrow-rule" />
-          </p>
+          <p className="eyebrow">{label}</p>
         ) : null}
         <h1 id={id}>{title}</h1>
         {lede ? <p className="lede">{lede}</p> : null}

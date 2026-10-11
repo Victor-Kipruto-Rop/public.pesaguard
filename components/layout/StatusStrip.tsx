@@ -16,12 +16,12 @@ export async function StatusStrip() {
   return (
     <div className="pg-strip">
       <div className="pg-strip-inner">
+        <strong>{operational ? "All systems operational" : "Status: monitoring"}</strong>
         <span
           aria-hidden="true"
-          className="pg-strip-dot"
+          className="pg-strip-pulse"
           data-state={operational ? "operational" : "unknown"}
         />
-        <strong>{operational ? "All systems operational" : "Status: monitoring"}</strong>
         <span className="pg-strip-middle">Real-time reconciliation infrastructure</span>
         <a className="pg-strip-link" href="https://status.pesaguard.co.ke" rel="noreferrer" target="_blank">
           View status

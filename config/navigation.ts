@@ -1,11 +1,12 @@
 import type { FooterGroup, NavItem } from "@/types/navigation";
+import { docsUrl } from "@/config/docs";
 
 /**
  * Header navigation.
  *
- * Every top-level entry links to a real section index page. Entries with
- * `groups` also open a mega-menu panel, and the panels only list destinations
- * that exist as routes so the header cannot promise pages we do not ship.
+ * Every top-level entry links to a real destination. Entries with `groups`
+ * also open a mega-menu panel, and the panels only list destinations that
+ * exist as routes so the header cannot promise pages we do not ship.
  */
 const primary: NavItem[] = [
   {
@@ -17,6 +18,7 @@ const primary: NavItem[] = [
         links: [
           { label: "Product overview", href: "/product", description: "What PesaGuard does and where it stands today" },
           { label: "How it works", href: "/how-it-works", description: "From Daraja callback to reconciled record" },
+          { label: "Customer requirements", href: "/how-it-works#customer-requirements", description: "What your team needs to prepare for a pilot" },
           { label: "Security model", href: "/security", description: "Tenant isolation, access control, audit trail" },
           { label: "System status", href: "/status", description: "Live health of the services we run" },
         ],
@@ -122,35 +124,7 @@ const primary: NavItem[] = [
     ],
     foot: { label: "Read the integration status list", href: "/integrations", description: "What is live, what is planned, and what is out of scope." },
   },
-  {
-    label: "Docs",
-    href: "/documentation",
-    groups: [
-      {
-        title: "Start here",
-        links: [
-          { label: "Getting started", href: "/documentation/getting-started", description: "Create a key and send a first transaction" },
-          { label: "Authentication", href: "/documentation/authentication", description: "API keys, bearer tokens and roles" },
-          { label: "Transactions", href: "/documentation/transactions", description: "POST /api/v1/transactions, field by field" },
-          { label: "Reconciliation", href: "/documentation/reconciliation", description: "Matching rules and exceptions" },
-          { label: "Discrepancies", href: "/documentation/discrepancies", description: "List, assign and resolve exceptions" },
-        ],
-      },
-      {
-        title: "Operating PesaGuard",
-        links: [
-          { label: "Idempotency", href: "/documentation/idempotency", description: "Duplicate detection and safe retries" },
-          { label: "Webhooks", href: "/documentation/webhooks", description: "Inbound callbacks and signed outbound delivery" },
-          { label: "Fraud", href: "/documentation/fraud", description: "Risk levels and the signals behind them" },
-          { label: "Errors", href: "/documentation/errors", description: "Error shapes and retry guidance" },
-          { label: "Rate limits", href: "/documentation/rate-limits", description: "Limits, backoff and 429 handling" },
-          { label: "Changelog", href: "/documentation/changelog", description: "Versioning and where changes are recorded" },
-        ],
-      },
-    ],
-    foot: { label: "Browse the API reference", href: "/api", description: "What exists, and what state it is in." },
-  },
-  { label: "Pricing", href: "/pricing" },
+  { label: "How it works", href: "/how-it-works" },
 ];
 
 /** Footer columns, rendered by `Footer`. */
@@ -161,9 +135,8 @@ const footer: FooterGroup[] = [
       { label: "Product overview", href: "/product" },
       { label: "Features", href: "/features" },
       { label: "Reconciliation", href: "/features/reconciliation" },
-      { label: "Fraud detection", href: "/features/fraud-detection" },
-      { label: "Alerts", href: "/features/real-time-alerts" },
       { label: "Integrations", href: "/integrations" },
+      { label: "How it works", href: "/how-it-works" },
     ],
   },
   {
@@ -178,19 +151,11 @@ const footer: FooterGroup[] = [
   {
     title: "Developers",
     links: [
+      { label: "Get started", href: docsUrl("getting-started/quickstart.html") },
       { label: "API reference", href: "/api" },
-      { label: "Documentation", href: "/documentation" },
-      { label: "Webhooks", href: "/documentation/webhooks" },
-      { label: "Changelog", href: "/documentation/changelog" },
-    ],
-  },
-  {
-    title: "Resources",
-    links: [
-      { label: "How it works", href: "/how-it-works" },
-      { label: "System status", href: "/status" },
-      { label: "Incident history", href: "/status/incidents" },
-      { label: "Pricing", href: "/pricing" },
+      { label: "Webhooks", href: docsUrl("webhooks/") },
+      { label: "Error handling", href: docsUrl("errors/") },
+      { label: "Changelog", href: docsUrl("changelog/") },
     ],
   },
   {
@@ -207,9 +172,10 @@ const footer: FooterGroup[] = [
     links: [
       { label: "Security model", href: "/security" },
       { label: "Tenant isolation", href: "/security/tenant-isolation" },
-      { label: "Privacy", href: "/privacy" },
-      { label: "Terms", href: "/terms" },
-      { label: "Cookies", href: "/cookies" },
+      { label: "Authentication", href: "/security/authentication" },
+      { label: "Access control", href: "/security/access-control" },
+      { label: "Encryption", href: "/security/encryption" },
+      { label: "Compliance", href: "/security/compliance" },
     ],
   },
 ];

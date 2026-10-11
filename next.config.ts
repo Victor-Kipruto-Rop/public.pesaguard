@@ -1,6 +1,7 @@
 import type { NextConfig } from "next";
 
 type Header = { key: string; value: string };
+const docsBaseUrl = "https://docs.pesaguard.co.ke/";
 
 /**
  * Baseline security headers for every route.
@@ -11,7 +12,7 @@ type Header = { key: string; value: string };
  * Fonts, which styles/globals.css imports. The CSP is production-only because
  * the dev server needs eval for fast refresh.
  */
-export function securityHeaders(production: boolean): Header[] {
+export function securityHeaders(production: boolean, googleAnalyticsEnabled = false): Header[] {
   const headers: Header[] = [
     { key: "X-Content-Type-Options", value: "nosniff" },
     { key: "X-Frame-Options", value: "DENY" },
@@ -21,15 +22,22 @@ export function securityHeaders(production: boolean): Header[] {
   ];
 
   if (production) {
+    const analyticsScript = googleAnalyticsEnabled ? " https://www.googletagmanager.com" : "";
+    const analyticsConnect = googleAnalyticsEnabled
+      ? " https://www.google-analytics.com https://region1.google-analytics.com"
+      : "";
+    const analyticsImage = googleAnalyticsEnabled
+      ? " https://www.google-analytics.com https://stats.g.doubleclick.net"
+      : "";
     headers.push({
       key: "Content-Security-Policy",
       value: [
         "default-src 'self'",
-        "script-src 'self' 'unsafe-inline'",
+        `script-src 'self' 'unsafe-inline'${analyticsScript}`,
         "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
         "font-src 'self' data: https://fonts.gstatic.com",
-        "img-src 'self' data:",
-        "connect-src 'self'",
+        `img-src 'self' data:${analyticsImage}`,
+        `connect-src 'self'${analyticsConnect}`,
         "object-src 'none'",
         "base-uri 'self'",
         "form-action 'self'",
@@ -46,18 +54,36 @@ const nextConfig: NextConfig = {
   reactStrictMode: true,
   images: { unoptimized: true },
   async redirects() {
-    // The per-topic API pages duplicated the docs. Keep their URLs alive.
     return [
-      { source: "/api/authentication", destination: "/documentation/authentication", permanent: true },
-      { source: "/api/transactions", destination: "/documentation/transactions", permanent: true },
-      { source: "/api/reconciliation", destination: "/documentation/reconciliation", permanent: true },
-      { source: "/api/fraud", destination: "/documentation/fraud", permanent: true },
-      { source: "/api/webhooks", destination: "/documentation/webhooks", permanent: true },
+      { source: "/documentation", destination: docsBaseUrl, permanent: true },
+      { source: "/documentation/getting-started", destination: `${docsBaseUrl}getting-started/quickstart.html`, permanent: true },
+      { source: "/documentation/authentication", destination: `${docsBaseUrl}security/`, permanent: true },
+      { source: "/documentation/transactions", destination: `${docsBaseUrl}api/`, permanent: true },
+      { source: "/documentation/discrepancies", destination: `${docsBaseUrl}guides/`, permanent: true },
+      { source: "/documentation/idempotency", destination: `${docsBaseUrl}concepts/`, permanent: true },
+      { source: "/documentation/errors", destination: `${docsBaseUrl}errors/`, permanent: true },
+      { source: "/documentation/rate-limits", destination: `${docsBaseUrl}api/`, permanent: true },
+      { source: "/documentation/reconciliation", destination: `${docsBaseUrl}guides/`, permanent: true },
+      { source: "/documentation/webhooks", destination: `${docsBaseUrl}webhooks/`, permanent: true },
+      { source: "/documentation/fraud", destination: `${docsBaseUrl}concepts/`, permanent: true },
+      { source: "/documentation/changelog", destination: `${docsBaseUrl}changelog/`, permanent: true },
+      { source: "/documentation/:path*", destination: docsBaseUrl, permanent: true },
+      { source: "/api/authentication", destination: `${docsBaseUrl}security/`, permanent: true },
+      { source: "/api/transactions", destination: `${docsBaseUrl}api/`, permanent: true },
+      { source: "/api/reconciliation", destination: `${docsBaseUrl}guides/`, permanent: true },
+      { source: "/api/fraud", destination: `${docsBaseUrl}concepts/`, permanent: true },
+      { source: "/api/webhooks", destination: `${docsBaseUrl}webhooks/`, permanent: true },
       { source: "/api/reference", destination: "/api", permanent: true },
     ];
   },
   async headers() {
-    return [{ source: "/:path*", headers: securityHeaders(process.env.NODE_ENV === "production") }];
+    const googleAnalyticsEnabled = /^G-[A-Z0-9]+$/i.test(
+      process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID ?? "",
+    );
+    return [{
+      source: "/:path*",
+      headers: securityHeaders(process.env.NODE_ENV === "production", googleAnalyticsEnabled),
+    }];
   },
 };
 

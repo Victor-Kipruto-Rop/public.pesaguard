@@ -35,10 +35,7 @@ export default function About() {
         <div className="split">
           {data.sections.map((section, index) => (
             <div key={section.title}>
-              <p className="eyebrow">
-                {index === 0 ? "Mission" : "Approach"}
-                <span aria-hidden="true" className="eyebrow-rule" />
-              </p>
+              <p className="eyebrow">{index === 0 ? "Mission" : "Approach"}</p>
               <h2 className="display-3">{section.title}</h2>
               <p className="large-copy" style={{ marginTop: 16 }}>
                 {section.body}

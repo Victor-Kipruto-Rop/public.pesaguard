@@ -10,13 +10,13 @@ The public website's brand artwork is synchronized with the existing PesaGuard d
 - Source paths: `frontend/public/favicon.svg`, `frontend/public/pesaguard-icon.svg`, `frontend/public/pesaguard-logo.svg`, `frontend/public/pesaguard-logo-light.svg`, and `frontend/public/pesaguard-brand-mark.svg`
 - Source branch inspected: `main`
 - Destination paths:
-  - `public/favicon.svg` — browser favicon
-  - `public/logo/favicon.svg` — favicon compatibility copy
-  - `public/logo/icon.svg` — app/touch icon
-  - `public/logo/brand-mark.svg` — shared shield, payment-card and verified-check mark used by the public header/footer
-  - `public/logo/logo.svg` — default logo/wordmark
-  - `public/logo/logo-dark.svg` — light logo for dark surfaces
-  - `public/logo/logo-light.svg` — dark/green logo for light surfaces
+  - `public/favicon.svg`: browser favicon
+  - `public/logo/favicon.svg`: favicon compatibility copy
+  - `public/logo/icon.svg`: app/touch icon
+  - `public/logo/brand-mark.svg`: shared shield, payment-card and verified-check mark used by the public header/footer
+  - `public/logo/logo.svg`: default logo/wordmark
+  - `public/logo/logo-dark.svg`: light logo for dark surfaces
+  - `public/logo/logo-light.svg`: dark/green logo for light surfaces
 
 These are first-party assets copied from the PesaGuard developer platform repository, not third-party downloads. The palette is aligned to the developer UI's forest green (`#0B5D3B`), mint green (`#22C55E`), white and pale green surfaces.
 

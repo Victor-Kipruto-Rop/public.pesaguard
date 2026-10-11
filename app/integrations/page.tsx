@@ -23,7 +23,7 @@ export default function Integrations() {
     <>
       <PageHero
         title="Connect the payment records you need to explain."
-        lede="PesaGuard currently focuses on M-Pesa through Safaricom Daraja and outbound webhooks. Airtel Money, bank data and point-of-sale connectors are listed below as planned work—not as services you can connect today."
+        lede="PesaGuard currently focuses on M-Pesa through Safaricom Daraja and outbound webhooks. Airtel Money, bank data and point-of-sale connectors are listed below as planned work, not as services you can connect today."
         label="Integrations · clear scope, no guesswork"
         trail={[{ label: "Home", href: "/" }, { label: "Integrations", href: "/integrations" }]}
       />
@@ -75,7 +75,7 @@ export default function Integrations() {
       <SectionShell>
         <div className="split split-center">
           <div>
-            <p className="eyebrow">A connector is more than an API call<span aria-hidden="true" className="eyebrow-rule" /></p>
+            <p className="eyebrow">A connector is more than an API call</p>
             <h2 className="display-3">Built around the records your team must trust.</h2>
           </div>
           <div>

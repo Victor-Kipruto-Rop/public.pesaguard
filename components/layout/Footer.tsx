@@ -2,15 +2,10 @@ import Link from "next/link";
 import Image from "next/image";
 import { navigation } from "@/config/navigation";
 import { siteConfig } from "@/config/site";
+import { CookiePreferencesButton } from "@/components/layout/CookieConsent";
+import { Button } from "@/components/ui/Button";
 
-/**
- * Site footer.
- *
- * Columns come from `config/navigation` so the footer cannot drift away from
- * the header. The status line stays deliberately vague about uptime: the
- * marketing site only knows about the backend when its health probe answers,
- * and a footer is the wrong place to claim availability we have not measured.
- */
+/** Site footer with grouped product navigation and developer quick links. */
 export function Footer() {
   return (
     <footer className="site-footer">
@@ -21,37 +16,35 @@ export function Footer() {
             <span className="brand-wordmark"><span>Pesa</span><span>Guard</span></span>
           </Link>
           <p className="footer-note">{siteConfig.tagline}</p>
-          <p className="footer-note">
-            {siteConfig.maturity} {siteConfig.scope}
-          </p>
-          <Link className="footer-status-line" href="/status">
-            <span aria-hidden="true" className="status-dot status-dot-muted" />
-            <span>System status</span>
-            <span className="muted">Values appear when the health probe answers</span>
-          </Link>
+          <p className="footer-maturity">{siteConfig.maturity}</p>
+          <Button href="/contact/sales" size="sm" variant="lime">Talk to our team</Button>
         </div>
 
-        {navigation.footer.map((group) => (
-          <div className="footer-column" key={group.title}>
-            <h2>{group.title}</h2>
-            {group.links.map((link) => (
-              <Link href={link.href} key={link.href}>
-                {link.label}
-              </Link>
-            ))}
-          </div>
-        ))}
+        <div className="footer-links">
+          {navigation.footer.map((group) => (
+            <nav aria-label={`${group.title} links`} className="footer-column" key={group.title}>
+              <h2>{group.title}</h2>
+              {group.links.map((link) => (
+                <Link href={link.href} key={link.href}>
+                  {link.label}
+                </Link>
+              ))}
+            </nav>
+          ))}
+        </div>
       </div>
 
       <div className="container footer-bottom">
-        <span>
-          © {new Date().getFullYear()} PesaGuard · {siteConfig.region}
+        <span className="footer-copyright">
+          © {new Date().getFullYear()} PesaGuard <span aria-hidden="true">·</span> {siteConfig.region}
         </span>
+        <span className="footer-motto">Every Transaction.Accounted For</span>
         <span className="footer-legal">
           <Link href="/privacy">Privacy</Link>
           <Link href="/terms">Terms</Link>
           <Link href="/cookies">Cookies</Link>
-          <a href={siteConfig.repository}>Source repository</a>
+          <CookiePreferencesButton />
+          <a href={siteConfig.repository} rel="noreferrer" target="_blank">Source repository</a>
         </span>
       </div>
     </footer>

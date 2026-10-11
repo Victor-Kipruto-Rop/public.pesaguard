@@ -1,66 +1,111 @@
-/** What a backend health probe is expected to return, for typed consumption on the status page. */
+import { dependencyCatalogue } from "@/content/status";
+import type { ServiceRow, ServiceState } from "@/types/status";
+
+/** What a Core API health probe returns for the public status page. */
 export type HealthProbe = {
   reachable: boolean;
-  status: string;
+  state: ServiceState;
   detail: string;
-  endpoint?: string;
+  endpoint: string;
   checkedAt?: string;
+  services: ServiceRow[];
 };
 
+const DEFAULT_API_URL = "https://api.pesaguard.co.ke";
+const healthStates: Record<string, ServiceState> = {
+  ok: "operational",
+  operational: "operational",
+  degraded: "degraded",
+  failed: "outage",
+  outage: "outage",
+};
+
+function readState(value: unknown): ServiceState {
+  return typeof value === "string" ? healthStates[value.toLowerCase()] ?? "unknown" : "unknown";
+}
+
+function readHealthServices(checks: unknown): ServiceRow[] {
+  const healthChecks = typeof checks === "object" && checks !== null
+    ? checks as Record<string, unknown>
+    : {};
+
+  return dependencyCatalogue.map((dependency) => {
+    const check = healthChecks[dependency.id];
+    const checkStatus = typeof check === "object" && check !== null
+      ? (check as Record<string, unknown>).status
+      : undefined;
+    const state = readState(checkStatus);
+    return {
+      name: dependency.name,
+      state,
+      detail: state === "unknown"
+        ? `${dependency.detail} The health endpoint did not return a recognized state for this check.`
+        : dependency.detail,
+    };
+  });
+}
+
 /**
- * Health probe for the API.
+ * Probe the Core API's public health endpoint.
  *
- * Returns a live signal only when `PESAGUARD_API_URL` is configured and the
- * `/health` endpoint answers. Otherwise reports unreachable with the reason,
- * so the status page never claims availability it has not measured.
+ * The API URL can be overridden for a deployment, but defaults to the public
+ * Core API. A reachable endpoint is not automatically considered operational:
+ * the response must contain a recognized health state.
  */
 export async function getBackendHealth(): Promise<HealthProbe> {
-  const baseUrl = process.env.PESAGUARD_API_URL;
-  const endpoint = baseUrl ? `${baseUrl.replace(/\/$/, "")}/health` : undefined;
-  if (!baseUrl) {
-    return {
-      reachable: false,
-      status: "No live health signal for this deployment.",
-      detail: "No API URL was configured for the marketing site.",
-      endpoint,
-      checkedAt: new Date().toISOString(),
-    };
-  }
+  const baseUrl = (process.env.PESAGUARD_API_URL || DEFAULT_API_URL).replace(/\/+$/, "");
+  const endpoint = `${baseUrl}/health`;
 
   try {
-    const response = await fetch(endpoint as string, {
-      next: { revalidate: 30, tags: ["status"] },
+    const response = await fetch(endpoint, {
+      cache: "no-store",
       signal: AbortSignal.timeout(6000),
     });
 
-    if (response.ok) {
-      const body = (await response.json().catch(() => ({}))) as { status?: string };
+    const checkedAt = new Date().toISOString();
+    let payload: Record<string, unknown> = {};
+    try {
+      const body: unknown = await response.json();
+      if (typeof body === "object" && body !== null) {
+        payload = body as Record<string, unknown>;
+      }
+    } catch {
       return {
         reachable: true,
-        status: body.status ?? "All systems operational",
-        detail: `Answered by ${endpoint} during this request.`,
+        state: "unknown",
+        detail: `The Core API responded with HTTP ${response.status}, but its health response was not valid JSON.`,
         endpoint,
-        checkedAt: new Date().toISOString(),
+        checkedAt,
+        services: readHealthServices(undefined),
       };
     }
 
+    const state = readState(payload.status);
+    const services = readHealthServices(payload.checks);
+    const componentStates = services.map((service) => service.state);
+    const reportedState = componentStates.includes("outage")
+      ? "outage"
+      : componentStates.includes("degraded") || (!response.ok && state === "operational")
+        ? "degraded"
+        : state;
     return {
-      reachable: false,
-      status: "Monitoring service health",
-      detail: `API returned ${response.status} ${response.statusText} on /health.`,
+      reachable: true,
+      state: reportedState,
+      detail: state === "unknown"
+        ? `The Core API responded with HTTP ${response.status}, but did not return a recognized overall health state.`
+        : `Current health was reported by the Core API at ${endpoint}.`,
       endpoint,
-      checkedAt: new Date().toISOString(),
+      checkedAt,
+      services,
     };
-  } catch (error) {
-    const message = error instanceof Error ? error.message : "health probe error";
+  } catch {
     return {
       reachable: false,
-      status: "Monitoring service health",
-      detail: `API health endpoint could not be reached. Detail: ${message}.`,
+      state: "unknown",
+      detail: "The Core API health endpoint could not be reached. Current service health is unknown.",
       endpoint,
       checkedAt: new Date().toISOString(),
+      services: readHealthServices(undefined),
     };
   }
 }
-
-

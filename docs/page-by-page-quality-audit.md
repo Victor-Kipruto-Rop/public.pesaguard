@@ -1,4 +1,4 @@
-# PesaGuard public website — page-by-page quality and protocol audit
+# PesaGuard public website - page-by-page quality and protocol audit
 
 **Repository:** `Victor-Kipruto-Rop/public.pesaguard`  
 **Domain:** `https://pesaguard.co.ke`  
@@ -27,7 +27,7 @@ A page is not considered premium merely because it has a large hero. It should p
 
 ## Page-by-page inventory
 
-The sitemap defines 51 public routes. The matrix below records each route's implementation shape and the content/protocol checks it needs. “Source-reviewed” does not mean runtime-verified.
+The sitemap defines 50 public routes. The matrix below records each route's implementation shape and the content/protocol checks it needs. “Source-reviewed” does not mean runtime-verified.
 
 | Route | Page purpose / implementation | Audit result and required protocol |
 |---|---|---|
@@ -59,7 +59,6 @@ The sitemap defines 51 public routes. The matrix below records each route's impl
 | `/integrations/banks` | Planned integration | State bank rails/files are not imported today; avoid suggesting settlement-file support is live. |
 | `/integrations/pos` | Planned integration | State terminal/acquirer feeds are not ingested today. |
 | `/integrations/webhooks` | Webhook detail | Separate inbound provider callbacks from outbound event delivery; explain signatures, idempotency, retries and dead letters only to the implemented extent. |
-| `/pricing` | Pilot/commercial scope | Avoid fake public prices or a billing prerequisite; scope pilots with volume, source, retention and support expectations. |
 | `/documentation` | Documentation index | Must guide developers to the correct current API base, credential header and supported endpoints. |
 | `/documentation/getting-started` | Working quick start | Hand-authored, includes request/response examples and retry guidance. Revalidate examples against the deployed API contract before release. |
 | `/documentation/authentication` | Auth guide | Ensure header name, key lifecycle, permissions and environment behaviour match the live API. |
