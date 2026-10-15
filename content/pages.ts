@@ -7,6 +7,7 @@ export const pages: Record<string, PageData> = {
     description: "See how PesaGuard compares Safaricom Daraja M-Pesa events with business records, surfaces exceptions and supports accountable review.",
     label: "PesaGuard product",
     lede: "Understand how PesaGuard processes payment data, reconciles records, detects discrepancies and supports financial accountability.",
+    sections: [],
     status: {
       availability: "pilot",
       label: "MVP live with a pilot customer",
@@ -79,7 +80,7 @@ export const pages: Record<string, PageData> = {
       note: "Active payment scope: Safaricom Daraja M-Pesa. Feature coverage is confirmed for each pilot workflow.",
     },
     features: [
-      { iconKey: "reconcile", title: "Reconciliation", body: "Compare a Safaricom Daraja M-Pesa callback with the expected order, receipt or ledger record. See the result and why it needs attention.", href: "/features/reconciliation", linkLabel: "View reconciliation details" },
+      { iconKey: "reconcile", title: "Reconciliation", body: "Compare a Safaricom Daraja M-Pesa callback with the expected order, receipt or ledger record. See the result and why it needs attention.", href: "/product/reconciliation", linkLabel: "View reconciliation details" },
       { iconKey: "monitor", title: "Transaction monitoring", body: "Follow payment events through validation, matching and review. Help teams see pending work and changes in the pilot flow.", href: "/features/transaction-monitoring", linkLabel: "View monitoring details" },
       { iconKey: "shield", title: "Fraud signals", body: "Surface unusual patterns for investigation. A flag is context for a human reviewer, not a fraud finding or an automatic block.", href: "/features/fraud-detection", linkLabel: "View fraud-signal details" },
       { iconKey: "alert", title: "Exception alerts", body: "Make an unresolved difference easier to notice and follow up, with the reason and available transaction context.", href: "/features/real-time-alerts", linkLabel: "View alert details" },

@@ -4,11 +4,11 @@ import { integrations } from "@/config/integrations";
 import { pages } from "@/content/pages";
 import { detailPages } from "@/content/detail";
 
-const routes = ["/", "/product", "/solutions", "/features", "/security", "/integrations", "/api", "/about", "/contact", "/status", "/privacy", "/terms", "/cookies", "/how-it-works"];
+const routes = ["/", "/product", "/product/reconciliation", "/solutions", "/features", "/security", "/integrations", "/api", "/about", "/contact", "/status", "/privacy", "/terms", "/cookies", "/how-it-works"];
 
 describe("public route contract", () => {
   it("keeps the primary routes explicit", () => {
-    expect(routes).toHaveLength(14);
+    expect(routes).toHaveLength(15);
     expect(routes).toContain("/status");
     expect(routes).not.toContain("/pricing");
   });

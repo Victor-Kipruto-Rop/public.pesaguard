@@ -4,6 +4,7 @@ import { pageMetadata } from "@/lib/seo/metadata";
 import { PageHero } from "@/components/sections/PageHero";
 import { SectionShell } from "@/components/sections/SectionShell";
 import { Button } from "@/components/ui/Button";
+import { SectionHeading } from "@/components/sections/SectionHeading";
 
 export const metadata = pageMetadata(
   "Solutions by organization and problem | PesaGuard",

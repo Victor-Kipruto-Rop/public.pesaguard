@@ -36,7 +36,7 @@ const platformLinks = [
 ];
 
 const capabilities: { title: string; body: string; href: string; icon: LucideIcon }[] = [
-  { title: "Reconciliation", body: "Match payments against business records.", href: "/features/reconciliation", icon: Check },
+  { title: "Reconciliation", body: "Match payments against business records.", href: "/product/reconciliation", icon: Check },
   { title: "Transaction monitoring", body: "Review payment events and processing states.", href: "/features/transaction-monitoring", icon: Database },
   { title: "Anomaly signals", body: "Flag discrepancies and unusual activity for review.", href: "/features/fraud-detection", icon: CircleAlert },
   { title: "Alerts and notifications", body: "Bring relevant exceptions to authorized reviewers.", href: "/features/real-time-alerts", icon: Network },

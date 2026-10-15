@@ -26,7 +26,7 @@ const primary: NavItem[] = [
       {
         title: "Capabilities",
         links: [
-          { label: "Reconciliation", href: "/features/reconciliation", description: "Match callbacks to internal records as they land" },
+          { label: "Reconciliation", href: "/product/reconciliation", description: "Match callbacks to internal records as they land" },
           { label: "Transaction monitoring", href: "/features/transaction-monitoring", description: "Watch the M-Pesa flow in real time" },
           { label: "Fraud detection", href: "/features/fraud-detection", description: "Rule-based and statistical anomaly checks" },
           { label: "Real-time alerts", href: "/features/real-time-alerts", description: "SMS, email and Slack notifications" },
@@ -134,7 +134,7 @@ const footer: FooterGroup[] = [
     links: [
       { label: "Product overview", href: "/product" },
       { label: "Features", href: "/features" },
-      { label: "Reconciliation", href: "/features/reconciliation" },
+      { label: "Reconciliation", href: "/product/reconciliation" },
       { label: "Integrations", href: "/integrations" },
       { label: "How it works", href: "/how-it-works" },
     ],
