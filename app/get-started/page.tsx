@@ -95,7 +95,7 @@ export default function GetStartedPage() {
         </form>
       </section>
     </div>
-    <footer className="onboarding-footer"><span>© {new Date().getFullYear()} PesaGuard</span><span><Link href="/privacy">Privacy</Link><Link href="/terms">Terms</Link><Link href="/contact">Support</Link></span></footer>
+    <footer className="onboarding-footer"><span>© {new Date().getFullYear()} PesaGuard</span><span><Link href="/privacy">Privacy</Link><Link href="/terms">Terms</Link><Link href="/contact/sales">Support</Link></span></footer>
   </main>;
 }
 function Brand() { return <Link className="onboarding-brand" href="/"><span className="brand-symbol"><ShieldCheck size={21} /></span><span>PesaGuard<small>FINANCIAL OPERATIONS</small></span></Link>; }
