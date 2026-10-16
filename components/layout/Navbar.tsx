@@ -77,7 +77,7 @@ export function Navbar() {
       <div className="header-actions">
         <span className="hide-mobile header-app-actions">
           <Button href={tenantAppRoutes.signIn} size="sm" variant="quiet">Sign in</Button>
-          <Button href={tenantAppRoutes.getStarted} size="sm">Open dashboard</Button>
+          <Button href={tenantAppRoutes.getStarted} size="sm">Get started</Button>
         </span>
         <button aria-controls="mobile-navigation" aria-expanded={drawerOpen} aria-label={drawerOpen?"Close menu":"Open menu"} className="nav-toggle show-mobile" onClick={()=>setDrawerOpen(!drawerOpen)} type="button">{drawerOpen?<X size={19} aria-hidden="true"/>:<Menu size={19} aria-hidden="true"/>}</button>
       </div>
@@ -95,7 +95,7 @@ export function Navbar() {
       <div className="mobile-quick-links"><Link href="/status" onClick={()=>setDrawerOpen(false)}>Service status</Link></div>
       <div className="mobile-actions">
         <Button block href={tenantAppRoutes.signIn} variant="quiet">Sign in to PesaGuard</Button>
-        <Button block href={tenantAppRoutes.getStarted}>Open tenant dashboard</Button>
+        <Button block href={tenantAppRoutes.getStarted}>Get started</Button>
         <Button block href="/contact/sales" variant="lime">Talk to our team</Button>
       </div>
     </div></div>:null}
