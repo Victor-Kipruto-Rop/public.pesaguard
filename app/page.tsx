@@ -80,7 +80,7 @@ export default function Home() {
               <HeroHeadline />
               <p className="pg-enterprise-lede">PesaGuard helps teams reconcile M-Pesa transactions against internal records, investigate exceptions and account for what happened, without relying on scattered spreadsheets and manual follow-up.</p>
               <div className="pg-enterprise-actions">
-                <Link className="pg-enterprise-button pg-enterprise-button-primary" href={tenantAppRoutes.getStarted}>Open tenant dashboard <ArrowRight size={15} aria-hidden="true" /></Link>
+                <Link className="pg-enterprise-button pg-enterprise-button-primary" href={tenantAppRoutes.getStarted}>Get started <ArrowRight size={15} aria-hidden="true" /></Link>
                 <Link className="pg-enterprise-button pg-enterprise-button-secondary" href={docsUrl()}>Read the documentation <ArrowUpRight size={15} aria-hidden="true" /></Link>
               </div>
             </div>
