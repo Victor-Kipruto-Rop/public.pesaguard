@@ -33,7 +33,7 @@ export default function GetStartedPage() {
     if (!form.consent) { setError("Please confirm your authority to submit these details and accept the Terms and Privacy Notice."); return; }
     try {
       // Frontend preview only: never persist passwords or claim that an account was created.
-      const { password: _password, consent: _consent, ...safeDraft } = form;
+      const safeDraft = { fullName: form.fullName, email: form.email.trim().toLowerCase(), phone: form.phone, organization: form.organization, organizationType: form.organizationType, country: form.country, transactionVolume: form.transactionVolume, paymentSource: form.paymentSource, businessRecord: form.businessRecord };
       sessionStorage.setItem("pesaguard.onboarding.preview", JSON.stringify(safeDraft));
       router.push("/onboarding/verify-email?preview=1&email=" + encodeURIComponent(form.email.trim().toLowerCase()));
     } catch {
