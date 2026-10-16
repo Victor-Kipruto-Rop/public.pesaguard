@@ -6,6 +6,7 @@ import { useEffect, useRef, useState } from "react";
 import { ArrowRight, ChevronDown, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { navigation } from "@/config/navigation";
+import { tenantAppRoutes } from "@/config/app";
 import type { NavItem } from "@/types/navigation";
 
 function panelId(href: string) { return "mega-" + href.replace(/[^a-z0-9]+/gi, "-"); }
@@ -73,7 +74,13 @@ export function Navbar() {
           ) : null}
         </li>;
       })}</ul></nav>
-      <div className="header-actions"><span className="hide-mobile"><Button href="/contact/sales" size="sm">Talk to us</Button></span><button aria-controls="mobile-navigation" aria-expanded={drawerOpen} aria-label={drawerOpen?"Close menu":"Open menu"} className="nav-toggle show-mobile" onClick={()=>setDrawerOpen(!drawerOpen)} type="button">{drawerOpen?<X size={19} aria-hidden="true"/>:<Menu size={19} aria-hidden="true"/>}</button></div>
+      <div className="header-actions">
+        <span className="hide-mobile header-app-actions">
+          <Button href={tenantAppRoutes.signIn} size="sm" variant="quiet">Sign in</Button>
+          <Button href={tenantAppRoutes.getStarted} size="sm">Open dashboard</Button>
+        </span>
+        <button aria-controls="mobile-navigation" aria-expanded={drawerOpen} aria-label={drawerOpen?"Close menu":"Open menu"} className="nav-toggle show-mobile" onClick={()=>setDrawerOpen(!drawerOpen)} type="button">{drawerOpen?<X size={19} aria-hidden="true"/>:<Menu size={19} aria-hidden="true"/>}</button>
+      </div>
     </div>
     {drawerOpen?<div className="mobile-nav show-mobile" id="mobile-navigation"><div className="container mobile-nav-inner"><div className="mobile-nav-intro"><span>EXPLORE PESAGUARD</span><p>Payment reconciliation, with clear boundaries.</p></div>
       <nav aria-label="Mobile main navigation" className="mobile-nav-sections">
@@ -85,7 +92,12 @@ export function Navbar() {
           </div>)}
         </section>)}
       </nav>
-      <div className="mobile-quick-links"><Link href="/status" onClick={()=>setDrawerOpen(false)}>Service status</Link></div><div className="mobile-actions"><Button block href="/contact/sales">Talk to our team</Button></div>
+      <div className="mobile-quick-links"><Link href="/status" onClick={()=>setDrawerOpen(false)}>Service status</Link></div>
+      <div className="mobile-actions">
+        <Button block href={tenantAppRoutes.signIn} variant="quiet">Sign in to PesaGuard</Button>
+        <Button block href={tenantAppRoutes.getStarted}>Open tenant dashboard</Button>
+        <Button block href="/contact/sales" variant="lime">Talk to our team</Button>
+      </div>
     </div></div>:null}
   </header>;
 }

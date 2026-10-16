@@ -4,6 +4,7 @@ import { navigation } from "@/config/navigation";
 import { siteConfig } from "@/config/site";
 import { CookiePreferencesButton } from "@/components/layout/CookieConsent";
 import { Button } from "@/components/ui/Button";
+import { tenantAppRoutes } from "@/config/app";
 
 /** Site footer with grouped product navigation and developer quick links. */
 export function Footer() {
@@ -17,7 +18,7 @@ export function Footer() {
           </Link>
           <p className="footer-note">{siteConfig.tagline}</p>
           <p className="footer-maturity">{siteConfig.maturity}</p>
-          <Button href="/contact/sales" size="sm" variant="lime">Talk to our team</Button>
+          <div className="footer-brand-actions"><Button href={tenantAppRoutes.getStarted} size="sm">Open tenant dashboard</Button><Button href="/contact/sales" size="sm" variant="lime">Talk to our team</Button></div>
         </div>
 
         <div className="footer-links">
