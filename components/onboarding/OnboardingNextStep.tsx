@@ -132,7 +132,7 @@ export function OnboardingNextStep({ stage }: { stage: Stage }) {
         <Link className="onboarding-secondary-link" href={stage === "verify-email" ? "/get-started" : "/onboarding/status?preview=1"}><ArrowLeft size={14} style={{display:"inline",verticalAlign:"middle"}}/> {stage === "verify-email" ? "Back to registration" : "Back to onboarding status"}</Link>
       </section>
     </div>
-    <footer className="onboarding-footer"><span>© {new Date().getFullYear()} PesaGuard</span><span><Link href="/privacy">Privacy</Link><Link href="/terms">Terms</Link><Link href="/contact">Support</Link></span></footer>
+    <footer className="onboarding-footer"><span>© {new Date().getFullYear()} PesaGuard</span><span><Link href="/privacy">Privacy</Link><Link href="/terms">Terms</Link><Link href="/contact/sales">Support</Link></span></footer>
   </main>;
 }
 function Brand() { return <Link className="onboarding-brand" href="/"><span className="brand-symbol"><ShieldCheck size={21}/></span><span>PesaGuard<small>FINANCIAL OPERATIONS</small></span></Link>; }
