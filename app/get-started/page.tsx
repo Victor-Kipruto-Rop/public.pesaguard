@@ -42,7 +42,7 @@ export default function GetStartedPage() {
   }
   function back() { setError(""); setStep((current) => Math.max(0, current - 1)); }
 
-  return <main className="onboarding-page">
+  return <div className="onboarding-page">
     <header className="onboarding-header"><Brand /><nav><Link href="/product">Product</Link><Link href="/security">Security</Link><span>Already have access?</span><Link className="onboarding-login" href="/login">Sign in <ChevronRight size={14} /></Link></nav></header>
     <div className="onboarding-shell">
       <aside className="onboarding-aside">
@@ -96,6 +96,6 @@ export default function GetStartedPage() {
       </section>
     </div>
     <footer className="onboarding-footer"><span>© {new Date().getFullYear()} PesaGuard</span><span><Link href="/privacy">Privacy</Link><Link href="/terms">Terms</Link><Link href="/contact/sales">Support</Link></span></footer>
-  </main>;
+  </div>;
 }
 function Brand() { return <Link className="onboarding-brand" href="/"><span className="brand-symbol"><ShieldCheck size={21} /></span><span>PesaGuard<small>FINANCIAL OPERATIONS</small></span></Link>; }
