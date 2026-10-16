@@ -18,7 +18,7 @@ export function Footer() {
           </Link>
           <p className="footer-note">{siteConfig.tagline}</p>
           <p className="footer-maturity">{siteConfig.maturity}</p>
-          <div className="footer-brand-actions"><Button href={tenantAppRoutes.getStarted} size="sm">Open tenant dashboard</Button><Button href="/contact/sales" size="sm" variant="lime">Talk to our team</Button></div>
+          <div className="footer-brand-actions"><Button href={tenantAppRoutes.getStarted} size="sm">Get started</Button><Button href="/contact/sales" size="sm" variant="lime">Talk to our team</Button></div>
         </div>
 
         <div className="footer-links">
