@@ -172,3 +172,23 @@ body:has(.onboarding-page) > .site-footer { display:none !important; }
 @media(prefers-reduced-motion:reduce) {
  .onboarding-page *, .onboarding-page *::before, .onboarding-page *::after {animation:none!important;transition:none!important;scroll-behavior:auto!important}
 }
+
+/* Product-specific visual: a static, explicitly illustrative reconciliation trace. */
+.reconciliation-visual{position:relative;z-index:1;width:100%;max-width:430px;margin:clamp(28px,4vw,48px) 0 0;padding:17px;border:1px solid rgba(181,229,198,.2);border-radius:15px;background:linear-gradient(145deg,rgba(255,255,255,.075),rgba(255,255,255,.025));box-shadow:inset 0 1px rgba(255,255,255,.05)}
+.reconciliation-visual-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:15px;color:#a8cdb7;font:500 9px/1.5 var(--font-mono,monospace);letter-spacing:.12em}
+.illustrative-tag{padding:4px 6px;border:1px solid rgba(173,220,190,.18);border-radius:4px;color:#a9cbb6;font-size:8px;letter-spacing:.08em}
+.reconciliation-node{display:flex;align-items:center;gap:10px;padding:12px;border:1px solid rgba(197,229,208,.13);border-radius:10px;background:rgba(4,24,17,.24)}
+.reconciliation-node-icon{display:grid;place-items:center;width:31px;height:31px;flex:0 0 auto;border:1px solid rgba(115,226,163,.22);border-radius:8px;background:rgba(46,204,135,.1);color:#7ee2ac;font-size:13px;font-weight:800}
+.reconciliation-node-icon.ledger{font-size:19px}
+.reconciliation-node-copy{display:grid;gap:4px;min-width:0;flex:1}
+.reconciliation-node-copy strong{font-size:11px;font-weight:650;color:#f0faf3}
+.reconciliation-node-copy small{font-size:9px;color:#9ebcab}
+.reconciliation-node-state{color:#9ec6ac;font:500 8px/1.4 var(--font-mono,monospace);letter-spacing:.05em}
+.reconciliation-node-state.matched{color:#81e3a9}
+.reconciliation-connector{position:relative;display:flex;align-items:center;gap:9px;height:28px;padding-left:26px;color:#8cae9a}
+.reconciliation-connector span{position:absolute;left:15px;top:0;bottom:0;width:1px;background:linear-gradient(rgba(126,226,172,.6),rgba(126,226,172,.12))}
+.reconciliation-connector small{font-size:9px}
+.reconciliation-visual-foot{display:flex;align-items:center;gap:8px;margin-top:13px;padding-top:13px;border-top:1px solid rgba(255,255,255,.09);color:#b7d1c0;font-size:10px}
+.reconciliation-foot-mark{display:grid;place-items:center;width:20px;height:20px;border-radius:6px;background:rgba(46,204,135,.13);color:#83e7ae}
+@media(max-width:1050px){.reconciliation-visual{max-width:100%;margin-top:28px}}
+@media(max-width:640px){.reconciliation-visual{padding:14px}.reconciliation-node{padding:10px;gap:8px}.reconciliation-node-state{font-size:7px}}
