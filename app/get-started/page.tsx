@@ -49,6 +49,13 @@ export default function GetStartedPage() {
         <div className="aside-label"><Sparkles size={14} /> TENANT ONBOARDING</div>
         <h1>Start with clarity.<br /><span>Scale with confidence.</span></h1>
         <p>Build your workspace request in a few guided steps. This frontend is currently in preview mode; no account or tenant is created until the backend is connected.</p>
+        <div className="reconciliation-visual" aria-label="Illustrative reconciliation flow, not live transaction data">
+          <div className="reconciliation-visual-head"><span>RECONCILIATION FLOW</span><span className="illustrative-tag">ILLUSTRATIVE</span></div>
+          <div className="reconciliation-node"><span className="reconciliation-node-icon">M</span><span className="reconciliation-node-copy"><strong>M-Pesa payment</strong><small>Reference · KES 4,800.00</small></span><span className="reconciliation-node-state">RECEIVED</span></div>
+          <div className="reconciliation-connector"><span></span><small>Reference + amount</small></div>
+          <div className="reconciliation-node"><span className="reconciliation-node-icon ledger">≡</span><span className="reconciliation-node-copy"><strong>Internal ledger</strong><small>Reference · KES 4,800.00</small></span><span className="reconciliation-node-state matched">MATCHED</span></div>
+          <div className="reconciliation-visual-foot"><span className="reconciliation-foot-mark"><Check size={12}/></span><span>Traceable outcome. Clear ownership.</span></div>
+        </div>
         <div className="aside-benefits">
           <div><span><Check size={15} /></span><p><strong>Sandbox-first setup</strong><small>Begin with a sandbox request before production access is considered.</small></p></div>
           <div><span><Check size={15} /></span><p><strong>Clear organization context</strong><small>Capture the team and reconciliation workflow you need.</small></p></div>
