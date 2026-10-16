@@ -65,6 +65,13 @@ export function OnboardingNextStep({ stage }: { stage: Stage }) {
         <div className="aside-label"><ShieldCheck size={14}/> P E S A G U A R D · ONBOARDING</div>
         <h1>Every step.<br/><span>Clearly accounted for.</span></h1>
         <p>From account request to a secure workspace, the connected API remains the source of truth for identity, tenant membership and access.</p>
+        <div className="reconciliation-visual" aria-label="Illustrative reconciliation flow, not live transaction data">
+          <div className="reconciliation-visual-head"><span>RECONCILIATION FLOW</span><span className="illustrative-tag">ILLUSTRATIVE</span></div>
+          <div className="reconciliation-node"><span className="reconciliation-node-icon">M</span><span className="reconciliation-node-copy"><strong>M-Pesa payment</strong><small>Reference · KES 4,800.00</small></span><span className="reconciliation-node-state">RECEIVED</span></div>
+          <div className="reconciliation-connector"><span></span><small>Reference + amount</small></div>
+          <div className="reconciliation-node"><span className="reconciliation-node-icon ledger">≡</span><span className="reconciliation-node-copy"><strong>Internal ledger</strong><small>Reference · KES 4,800.00</small></span><span className="reconciliation-node-state matched">MATCHED</span></div>
+          <div className="reconciliation-visual-foot"><span className="reconciliation-foot-mark"><Check size={12}/></span><span>Traceable outcome. Clear ownership.</span></div>
+        </div>
         <div className="aside-benefits">
           <div><span><Check size={15}/></span><p><strong>Identity first</strong><small>Verification and session creation must happen on the server.</small></p></div>
           <div><span><Check size={15}/></span><p><strong>Tenant isolation</strong><small>Only server-authorized tenant memberships may access tenant data.</small></p></div>
