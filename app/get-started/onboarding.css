@@ -29,3 +29,146 @@
 .preview-notice{display:flex;align-items:center;gap:11px;margin-bottom:25px;padding:12px 14px;border:1px solid #d6e9dc;border-radius:10px;background:#f4fbf6}.preview-notice-dot{width:8px;height:8px;flex:0 0 auto;border-radius:50%;background:#b7791f;box-shadow:0 0 0 4px #f8ebd3}.preview-notice div{display:grid;gap:4px}.preview-notice strong{font-size:10px;color:#244739}.preview-notice small{font-size:9px;line-height:1.5;color:#718176}
 
 .auth-shell{display:grid;place-items:center;min-height:calc(100vh - 145px);padding:40px 20px 56px}.auth-card{width:min(100%,470px);padding:clamp(24px,4vw,42px);border:1px solid #e0ebe3;border-radius:18px;background:#fff;box-shadow:0 18px 60px rgba(11,46,36,.06)}.auth-card-icon{display:grid;place-items:center;width:48px;height:48px;margin-bottom:22px;border:1px solid #d5eddf;border-radius:14px;background:#f0faf4;color:#13804b}.auth-card h1{margin:10px 0 12px;font-size:clamp(29px,4vw,37px);line-height:1.12;letter-spacing:-.055em}.auth-card .stage-form{margin-top:24px}.auth-links{display:flex;justify-content:space-between;gap:12px;font-size:10px}.auth-links a,.auth-bottom a{color:#0b6a41;font-weight:750;text-decoration:none}.auth-bottom{margin:22px 0 0;color:#718176;font-size:10px;text-align:center}.auth-bottom a:hover,.auth-links a:hover{text-decoration:underline}
+
+/* Dedicated acquisition/auth surfaces: intentionally distinct from marketing chrome. */
+body:has(.onboarding-page) > .pg-strip,
+body:has(.onboarding-page) > .site-header,
+body:has(.onboarding-page) > .site-footer { display:none !important; }
+.onboarding-page {
+  font-family:var(--font-sans, Inter, "Segoe UI", sans-serif);
+  background:
+    radial-gradient(ellipse at 78% 7%, rgba(46,204,135,.065), transparent 32rem),
+    #fbfdfb;
+  color:#0b2e24;
+}
+.onboarding-header {height:76px;padding-inline:clamp(20px,5.2vw,84px);border-bottom:1px solid #e7efe9;background:rgba(255,255,255,.92);backdrop-filter:blur(14px)}
+.onboarding-brand {font-size:20px;letter-spacing:-.055em}
+.brand-symbol {width:42px;height:42px;border-radius:13px;box-shadow:0 5px 14px rgba(11,46,36,.16)}
+.onboarding-brand small {font-size:9px;letter-spacing:.16em}
+.onboarding-header nav {font-size:13px;gap:clamp(16px,2.2vw,30px)}
+.onboarding-header nav a {transition:color .18s ease}
+.onboarding-header nav a:hover {color:#118451}
+.onboarding-shell {grid-template-columns:minmax(310px,.88fr) minmax(470px,1.12fr);max-width:1420px;gap:clamp(30px,5.3vw,84px);padding:42px clamp(20px,5.2vw,84px) 64px;min-height:calc(100vh - 132px)}
+.onboarding-aside {min-height:680px;padding:clamp(30px,3.6vw,52px);border-radius:25px;background:linear-gradient(145deg,#103e2f 0%,#0b2e24 58%,#08271e 100%);box-shadow:0 24px 70px rgba(11,46,36,.13)}
+.onboarding-aside:before {width:530px;height:530px;right:-310px;top:10%;border-color:rgba(111,228,162,.2);box-shadow:0 0 0 1px rgba(111,228,162,.04),0 0 0 48px rgba(46,204,135,.035),0 0 0 96px rgba(46,204,135,.025)}
+.onboarding-aside:after {position:absolute;content:"";inset:0;background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);background-size:32px 32px;mask-image:linear-gradient(135deg,black,transparent 68%);pointer-events:none}
+.aside-label {font-size:10px;letter-spacing:.17em}
+.onboarding-aside h1 {margin:clamp(36px,5vw,70px) 0 20px;font-size:clamp(36px,3.55vw,53px);line-height:1.07;letter-spacing:-.065em;max-width:11ch}
+.onboarding-aside>p {max-width:36ch;font-size:14px;line-height:1.85;color:#c4d9cc}
+.aside-benefits {gap:25px;margin-top:clamp(38px,5vw,68px)}
+.aside-benefits>div>span {width:29px;height:29px;border-radius:9px}
+.aside-benefits p {gap:6px}
+.aside-benefits strong {font-size:13px;font-weight:650}
+.aside-benefits small {font-size:12px;line-height:1.65;color:#b4cebf}
+.aside-security {font-size:11px;border-top:1px solid rgba(255,255,255,.1);width:100%;padding-top:22px;margin-top:auto}
+.onboarding-main {max-width:660px;padding:16px 0}
+.preview-notice {margin-bottom:29px;padding:14px 16px;border-radius:12px;background:#f3faf5;border-color:#d7eadc}
+.preview-notice strong {font-size:12px}
+.preview-notice small {font-size:11px;line-height:1.55}
+.onboarding-progress {margin-bottom:35px}
+.progress-caption {font-size:10px;letter-spacing:.15em}
+.progress-percent {font-size:12px}
+.progress-track {height:5px;background:#e5eee8}
+.step-labels {gap:8px;margin-top:20px}
+.step-labels span {font-size:11px;gap:8px;color:#839188}
+.step-labels span i,.step-labels span svg {width:25px;height:25px;font-size:10px}
+.form-step {gap:18px}
+.onboarding-eyebrow {font-size:10px;letter-spacing:.16em}
+.form-step h2 {font-size:clamp(29px,2.8vw,37px);line-height:1.12;letter-spacing:-.055em;max-width:19ch}
+.step-description {font-size:13px;line-height:1.75;color:#667a6e}
+.form-step>label,.stage-input-label {gap:8px;font-size:12px;font-weight:650;color:#244739}
+.form-step input:not([type=checkbox]),.form-step select {min-height:51px;padding:0 14px;border-radius:10px;font-size:13px;background-color:#fff}
+.form-step input::placeholder {color:#9aa99f}
+.form-step label small {font-size:11px;line-height:1.6}
+.setup-callout,.sandbox-banner {padding:15px 16px;border-radius:12px}
+.setup-callout strong,.sandbox-banner strong {font-size:12px}
+.setup-callout span,.sandbox-banner small {font-size:11px;line-height:1.7}
+.review-section {padding:17px 0}
+.review-section>div span {font-size:10px}
+.review-section button {font-size:12px}
+.review-section strong {font-size:14px}
+.review-section p {font-size:12px;line-height:1.65}
+.onboarding-consent {font-size:12px;line-height:1.65}
+.security-note {font-size:11px;line-height:1.65}
+.form-actions {margin-top:30px}
+.button-back,.button-next {min-height:49px;padding-inline:20px;border-radius:10px;font-size:12px;transition:transform .18s ease,background .18s ease,border-color .18s ease,box-shadow .18s ease}
+.button-next {box-shadow:0 6px 14px rgba(11,93,59,.13)}
+.button-next:hover {transform:translateY(-1px);box-shadow:0 10px 20px rgba(11,93,59,.18)}
+.button-back:hover {background:#f7faf7;border-color:#b8d5c3}
+.form-footnote {font-size:10px;line-height:1.7;color:#839188}
+.onboarding-footer {padding:23px clamp(20px,5.2vw,84px);background:#fff;font-size:11px}
+.onboarding-footer a {transition:color .18s ease}
+.onboarding-footer a:hover {color:#0b6a41}
+.onboarding-shell-single {grid-template-columns:minmax(300px,.8fr) minmax(0,1.2fr);max-width:1280px;gap:clamp(32px,5vw,78px)}
+.stage-icon {width:58px;height:58px;margin:4px 0 24px;border-radius:17px;box-shadow:0 7px 20px rgba(46,204,135,.08)}
+.stage-title {font-size:clamp(30px,3.1vw,40px);line-height:1.1;max-width:19ch}
+.stage-description {font-size:13px;line-height:1.8;margin:0 0 24px}
+.stage-panel {gap:17px;padding:clamp(20px,2.7vw,30px);border-radius:16px;box-shadow:0 16px 42px rgba(11,46,36,.055)}
+.stage-panel-label {font-size:10px;letter-spacing:.15em}
+.stage-panel>strong {font-size:15px}
+.stage-panel>p {font-size:12px;line-height:1.75}
+.stage-input-label input,.stage-input-label select,.stage-input-label textarea {min-height:49px;padding:12px 14px;border-radius:10px;font-size:13px}
+.stage-input-label textarea {min-height:90px}
+.stage-input-label small {font-size:11px;line-height:1.65}
+.status-flag {padding:15px;border-radius:12px}
+.status-flag strong {font-size:12px}
+.status-flag small {font-size:11px;line-height:1.6}
+.status-list li {padding:17px 0;gap:14px}
+.status-list li>span:last-child {gap:6px}
+.status-list strong {font-size:13px}
+.status-list small {font-size:11px;line-height:1.65}
+.status-number,.status-list li>svg {width:27px;height:27px}
+.checklist-row {gap:12px;padding:12px 0;font-size:12px;line-height:1.6}
+.handoff-list {gap:11px;font-size:12px;line-height:1.7}
+.stage-small-note {font-size:11px!important;line-height:1.7!important}
+.auth-shell {min-height:calc(100vh - 132px);padding:56px 20px 72px;background:radial-gradient(ellipse at 50% 10%,rgba(46,204,135,.07),transparent 30rem)}
+.auth-card {padding:clamp(28px,4vw,46px);border-radius:20px;box-shadow:0 24px 80px rgba(11,46,36,.075)}
+.auth-card-icon {width:54px;height:54px;border-radius:16px}
+.auth-card h1 {font-size:clamp(32px,3.5vw,42px)}
+.auth-card .step-description {font-size:13px;line-height:1.8}
+.auth-links {font-size:12px}
+.auth-bottom {font-size:12px}
+.onboarding-error {padding:14px 16px;border-radius:11px;font-size:12px;line-height:1.65}
+.onboarding-secondary-link {font-size:12px;gap:8px}
+@media(max-width:1050px) {
+ .onboarding-shell,.onboarding-shell-single {grid-template-columns:minmax(0,1fr);max-width:760px;gap:30px;padding-top:28px}
+ .onboarding-aside {min-height:auto;padding:34px}
+ .onboarding-aside h1 {margin-top:30px;max-width:15ch}
+ .aside-benefits {grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:35px}
+ .aside-benefits>div {gap:10px}
+ .aside-benefits small {font-size:11px}
+ .aside-security {margin-top:30px}
+ .onboarding-main {max-width:none}
+}
+@media(max-width:640px) {
+ .onboarding-header {height:68px;padding-inline:18px}
+ .onboarding-brand {font-size:18px}
+ .onboarding-brand small {font-size:8px}
+ .onboarding-header nav {gap:12px;font-size:12px}
+ .onboarding-shell,.onboarding-shell-single {padding:18px 16px 30px;gap:23px}
+ .onboarding-aside {padding:24px;border-radius:18px}
+ .onboarding-aside h1 {font-size:34px;margin-top:27px}
+ .onboarding-aside>p {font-size:13px}
+ .aside-benefits {grid-template-columns:1fr;gap:15px;margin-top:28px}
+ .aside-benefits small {font-size:11px}
+ .aside-security {font-size:10px;padding-top:17px}
+ .onboarding-main {padding:0}
+ .preview-notice {margin-bottom:23px}
+ .onboarding-progress {margin-bottom:29px}
+ .step-labels {gap:4px}
+ .step-labels span {font-size:9px;gap:4px}
+ .step-labels span i,.step-labels span svg {width:21px;height:21px}
+ .form-step h2,.stage-title {font-size:29px}
+ .form-step {gap:16px}
+ .form-actions {margin-top:24px}
+ .button-back,.button-next {min-height:48px}
+ .onboarding-footer {padding:20px 16px;font-size:10px}
+ .onboarding-footer>span:last-child {gap:12px}
+ .stage-panel {padding:18px}
+ .auth-shell {min-height:calc(100vh - 120px);padding:32px 16px 42px}
+ .auth-card {padding:25px 21px;border-radius:17px}
+ .auth-card h1 {font-size:32px}
+}
+@media(prefers-reduced-motion:reduce) {
+ .onboarding-page *, .onboarding-page *::before, .onboarding-page *::after {animation:none!important;transition:none!important;scroll-behavior:auto!important}
+}
