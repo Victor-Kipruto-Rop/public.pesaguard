@@ -6,6 +6,7 @@ import { softwareApplicationJsonLd } from "@/lib/seo/structured-data";
 import { HeroHeadline } from "@/components/home/HeroHeadline";
 import { integrations } from "@/config/integrations";
 import { docsUrl } from "@/config/docs";
+import { tenantAppRoutes } from "@/config/app";
 import "@/styles/homepage.css";
 
 export const metadata = pageMetadata(
@@ -79,7 +80,7 @@ export default function Home() {
               <HeroHeadline />
               <p className="pg-enterprise-lede">PesaGuard helps teams reconcile M-Pesa transactions against internal records, investigate exceptions and account for what happened, without relying on scattered spreadsheets and manual follow-up.</p>
               <div className="pg-enterprise-actions">
-                <Link className="pg-enterprise-button pg-enterprise-button-primary" href="/contact/sales">Discuss your workflow</Link>
+                <Link className="pg-enterprise-button pg-enterprise-button-primary" href={tenantAppRoutes.getStarted}>Open tenant dashboard <ArrowRight size={15} aria-hidden="true" /></Link>
                 <Link className="pg-enterprise-button pg-enterprise-button-secondary" href={docsUrl()}>Read the documentation <ArrowUpRight size={15} aria-hidden="true" /></Link>
               </div>
             </div>
@@ -191,7 +192,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section className="pg-enterprise-close"><div className="pg-enterprise-container"><div className="pg-enterprise-close-card"><div className="pg-enterprise-close-copy"><p className="pg-enterprise-eyebrow">START WITH YOUR CURRENT FLOW</p><h2>Bring the process you have. Find the gaps you can explain.</h2><p>Tell us how M-Pesa payments arrive, which internal records they should match, and where your team spends time resolving differences. We will discuss fit and current limitations openly.</p></div><div className="pg-enterprise-close-actions"><Link className="pg-enterprise-button pg-enterprise-button-primary" href="/contact/sales">Talk through a pilot <ArrowRight size={16} aria-hidden="true"/></Link><Link className="pg-enterprise-close-docs" href={docsUrl()}><Code2 size={16} aria-hidden="true"/> Developer documentation</Link><span className="pg-enterprise-sandbox-note"><span aria-hidden="true" /> No public self-serve sandbox is available yet.</span></div></div></div></section>
+      <section className="pg-enterprise-close"><div className="pg-enterprise-container"><div className="pg-enterprise-close-card"><div className="pg-enterprise-close-copy"><p className="pg-enterprise-eyebrow">START WITH YOUR CURRENT FLOW</p><h2>Bring the process you have. Find the gaps you can explain.</h2><p>Tell us how M-Pesa payments arrive, which internal records they should match, and where your team spends time resolving differences. We will discuss fit and current limitations openly.</p></div><div className="pg-enterprise-close-actions"><Link className="pg-enterprise-button pg-enterprise-button-primary" href="/contact/sales">Talk through a pilot <ArrowRight size={16} aria-hidden="true"/></Link><Link className="pg-enterprise-close-docs" href={docsUrl()}><Code2 size={16} aria-hidden="true"/> Developer documentation</Link><span className="pg-enterprise-sandbox-note"><span aria-hidden="true" /> Tenant access opens in the PesaGuard application.</span></div></div></div></section>
     </div>
   </>;
 }
