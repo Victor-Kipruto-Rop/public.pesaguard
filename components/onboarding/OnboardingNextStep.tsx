@@ -58,7 +58,7 @@ export function OnboardingNextStep({ stage }: { stage: Stage }) {
     },
   }[stage];
 
-  return <main className="onboarding-page">
+  return <div className="onboarding-page">
     <header className="onboarding-header"><Brand /><nav><Link href="/product">Product</Link><Link href="/security">Security</Link><Link className="onboarding-login" href="/login">Sign in <ArrowRight size={14}/></Link></nav></header>
     <div className="onboarding-shell onboarding-shell-single">
       <aside className="onboarding-aside">
@@ -133,6 +133,6 @@ export function OnboardingNextStep({ stage }: { stage: Stage }) {
       </section>
     </div>
     <footer className="onboarding-footer"><span>© {new Date().getFullYear()} PesaGuard</span><span><Link href="/privacy">Privacy</Link><Link href="/terms">Terms</Link><Link href="/contact/sales">Support</Link></span></footer>
-  </main>;
+  </div>;
 }
 function Brand() { return <Link className="onboarding-brand" href="/"><span className="brand-symbol"><ShieldCheck size={21}/></span><span>PesaGuard<small>FINANCIAL OPERATIONS</small></span></Link>; }
